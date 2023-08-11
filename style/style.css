@@ -1,0 +1,98 @@
+/* GERAL */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-display: swap;
+    font-family: 'Bruno Ace SC', cursive;   
+}
+
+
+/* HEAD */
+
+body{
+    background-color: #0c0b19;
+}
+
+
+
+/* HEAD */
+
+
+.conteiner-head{
+    border-bottom: 1px solid #25f700;
+    flex: 1;
+    min-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.conteiner-head p{
+    font-size: 30px;
+    color: #fdfdfd;
+}
+
+.setLang-bt{
+    min-height: 40px;
+    min-width: 80px;
+
+    background-color: #fdfdfd;
+    color: darkgray;
+    font-size: 18px;
+    padding: .6rem;
+    border-radius: 2rem;
+}
+
+
+/* SECTION 01 */
+
+.conteiner-section-01{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conteiner-button-p{
+    display: flex;
+    margin-left: 10%;
+    vertical-align: baseline;
+    flex-direction: column;
+    font-size: 30px;
+    color: #25f700;
+}
+
+.button-curriculo{
+    min-height: 50px;
+    min-width: 110px;
+    border-radius: 2rem;
+    background-color: #fdfdfd;
+    color: darkgray;
+    font-size: 14px;
+    padding: .5rem;
+}
+.button-contato{
+    min-height: 50px;
+    min-width: 110px;
+    border-radius: 2rem;
+    background-color: #fdfdfd;
+    color: darkgray;
+    font-size: 14px;
+    padding: .5rem;
+    margin-left: 5%;
+}
+
+.conteiner-button{
+    margin-top: 10%;
+    margin-left: 25%;
+}
+
+.p-02{
+    display: flex;
+    margin-left: 10%;
+    
+}
+
+
+
