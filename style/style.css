@@ -15,6 +15,7 @@ body{
     background-color: #0c0b19;
     border-bottom: 1px solid #25f700;
     border-top: 1px solid #25f700;
+    justify-items: center;
 }
 
 
@@ -32,6 +33,7 @@ body{
 }
 
 .conteiner-head p{
+    display: flex;
     font-size: 30px;
     color: #fdfdfd;
 }
@@ -40,11 +42,194 @@ body{
     min-height: 40px;
     min-width: 80px;
 
-    background-color: #fdfdfd;
-    color: darkgray;
+    background-color: transparent;
+    color: #25f700;
     font-size: 18px;
     padding: .6rem;
     border-radius: 2rem;
+}
+
+
+
+
+
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 3vw;
+    height: 2vh;
+    box-sizing: border-box;
+}
+
+.button-cover {
+    height: 2vh;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+    border: 1px solid #25f700;
+}
+
+.button-cover:before {
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+}
+
+.button-cover,
+.knobs,
+.layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button {
+    position: relative;
+    top: 50%;
+    width: 74px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs {
+    display: flex;
+    z-index: 2;
+    justify-content: initial;
+}
+
+.layer {
+    width: 100%;
+    background-color: #212121;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+.button.r,
+.button.r .layer {
+    border-radius: 100px;
+    border: 1px solid #25f700;
+}
+
+#button-3 .knobs:before {
+    content: "EN";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #25f700;
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before {
+    width: 46px;
+    border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+    margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before {
+    content: "PT";
+    left: 42px;
+    background-color: #25f700;
+}
+
+#button-3 .checkbox:checked ~ .layer {
+    background-color: #212121;
+    border: 1px solid #25f700;
+}
+
+
+
+
+
+
+
+
+.theme {
+    --bg-color: #111;
+    --main-color: #25f700;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--bg-color);
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    margin-top: -5px;
+}
+
+.input {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+}
+
+.icon {
+    position: absolute;
+    top: calc(50% -13px);
+    left: calc(50% -13px);
+    width: 26px;
+    height: 26px;
+}
+
+.icon.icon-moon {
+    fill: var(--main-color);
+}
+
+.icon.icon-sun {
+    stroke: var(--main-color);
+    display: none;
+}
+
+.input:checked ~ .icon.icon-sun {
+    display: block;
+}
+
+.input:checked ~ .icon.icon-moon {
+    display: none;
+}
+
+.theme:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
 }
 
 
@@ -69,24 +254,13 @@ body{
     color: #25f700;
 }
 
-.button-curriculo{
-    display: flex;
-    min-height: 40px;
-    min-width: 110px;
-    border-radius: 2rem;
-    background-color: #fdfdfd;
-    color: darkgray;
-    font-size: 14px;
-    padding: .5rem;
-}
 .button-contato{
     display: flex;
     min-height: 40px;
     min-width: 110px;
     border-radius: 2rem;
-    background-color: #fdfdfd;
+    background-color: #25f700;
     color: darkgray;
-    font-size: 14px;
     padding: .5rem;
     margin-left: 5%;
 }
@@ -97,9 +271,16 @@ body{
     margin-left: 25%;
 }
 
+.conteiner-p{
+    text-align: center;
+}
+
+.p-01{
+    font-size: 30px;
+}
+
 .p-02{
-    display: flex;
-    margin-left: 10%;   
+    color: #505050;
 }
 
 .img-perfil{
@@ -112,6 +293,15 @@ body{
     align-items: center;
     margin: auto;
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -143,8 +333,8 @@ body{
 
 .about-me{
     margin-top: 12%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
     color: #fdfdfd;
     font-size: 20px;
     text-align: center;
@@ -269,10 +459,11 @@ body{
     align-items: center;
     border-radius: 1rem;
     cursor: pointer;
-    height: 14rem;
-    width: 20rem;
+    height: 15rem;
+    width: 23rem;
     margin: 2%;
     margin-bottom: 1%;
+    border: 1px solid #25f700;
 }
 
 .box-project p{
@@ -284,8 +475,9 @@ body{
 
 .box-project img{
     border-radius: 1rem;
-    margin-top: -2%;
-    height: 10rem;
+    margin-top: -4%;
+    height: 11rem;
+    border: 1px solid #25f700;
 }
 
 
@@ -322,19 +514,111 @@ body{
 
 .contato-icon{
     display: flex;
-    margin-bottom: 15%;
+    margin-bottom: 10%;
 }
 
-.contato-icon img{
+.contato-content img{
+    display: flex;
     height: 4rem;
     border-radius: 2.5rem;
 }
 
-.contato-icon p{
-    display: flex;
-    margin-left: -50%;
-    margin-top: -20%;
-    color: #25f700;
+
+
+
+
+/* TITLE OTIM */
+
+@media (max-width: 700px){
+    .about-me-p, .habi-title-p, .project-title-p, .contato-title-p{
+        font-size: 25px;
+    }
 }
 
+
+/* ABOUT-ME OTIM */
+
+@media (max-width: 700px){
+    .about-me{
+        font-size: 17px;
+    }
+}
+
+/* TITLE OTIM */
+
+@media (max-width: 700px){
+    .conteiner-head p{
+        font-size: 20px;
+    }
+}
+
+
+/* NOME OTIM */
+
+@media (max-width: 700px){
+    .conteiner-p{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 700px){
+    .p-01{
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 700px){
+    .p-02{
+        font-size: 20px;
+    }
+}
+
+
+/* IMG OTIM */
+
+@media (max-width: 700px){
+    .contato-content img{
+        height: 3rem;
+    }
+}
+
+
+/* PROJECT TITLE OTIM */
+
+@media (max-width: 700px){
+    .box-project p{
+        margin-top: -5px;
+        font-size: 20px;
+    }
+}
+
+/* HABI TITLE OTIM */
+
+@media (max-width: 700px){
+    .habi-contents p{
+        font-size: 15px;
+    }
+}
+
+
+
+/* HABI BOX OTIM */
+
+@media (max-width: 700px){
+    .box{
+    height: 140px;
+    width: 8rem;
+    }
+}
+
+
+/* HABI IMG OTIM */
+
+@media (max-width: 700px){
+    .box img{
+        width: 2.5rem;
+    }
+}
 
