@@ -84,7 +84,7 @@ body{
 }
 
 .button-cover,
-.knobs,
+#knobs,
 .layer {
     position: absolute;
     top: 0;
@@ -102,7 +102,7 @@ body{
     overflow: hidden;
 }
 
-.checkbox {
+#button33 {
     position: relative;
     width: 100%;
     height: 100%;
@@ -113,7 +113,7 @@ body{
     z-index: 3;
 }
 
-.knobs {
+#knobs {
     display: flex;
     z-index: 2;
     justify-content: initial;
@@ -132,7 +132,7 @@ body{
     border: 1px solid #25f700;
 }
 
-#button-3 .knobs:before {
+#button-3 #knobs:before {
     content: "EN";
     position: absolute;
     top: 4px;
@@ -150,22 +150,22 @@ body{
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 
-#button-3 .checkbox:active + .knobs:before {
+#button-3 #button33:active + #knobs:before {
     width: 46px;
     border-radius: 100px;
 }
 
-#button-3 .checkbox:checked:active + .knobs:before {
+#button-3 #button33:checked:active + #knobs:before {
     margin-left: -26px;
 }
 
-#button-3 .checkbox:checked + .knobs:before {
+#button-3 #button33:checked + #knobs:before {
     content: "PT";
     left: 42px;
     background-color: #25f700;
 }
 
-#button-3 .checkbox:checked ~ .layer {
+#button-3 #button33:checked ~ .layer {
     background-color: #212121;
     border: 1px solid #25f700;
 }
@@ -177,7 +177,7 @@ body{
 
 
 
-.theme {
+#theme {
     --bg-color: #111;
     --main-color: #25f700;
     position: relative;
@@ -227,7 +227,7 @@ body{
     display: none;
 }
 
-.theme:active {
+#theme:active {
     box-shadow: 0px 0px var(--main-color);
     transform: translate(3px, 3px);
 }
@@ -448,7 +448,9 @@ body{
     margin-top: 10%;
 }
 
-.box-project{
+#box-project-change-0, #box-project-change-1, 
+#box-project-change-2, #box-project-change-3, 
+#box-project-change-4, #box-project-change-5{
     display: flex;
     position: relative;
     text-align: center;
@@ -463,10 +465,11 @@ body{
     width: 23rem;
     margin: 2%;
     margin-bottom: 1%;
-    border: 1px solid #25f700;
+    border: 1px solid #25f700; 
 }
 
-.box-project p{
+#p-project-0, #p-project-1, #p-project-2,
+#p-project-3, #p-project-4, #p-project-5{
     margin-top: 5%;
     font-size: 1.6rem;
     color: #25f700;
@@ -510,6 +513,10 @@ body{
     flex: 1;
     margin: 10%;
     padding: 5%;
+}
+
+.contato-content a{
+    text-decoration: none;
 }
 
 .contato-icon{
@@ -608,8 +615,8 @@ body{
 
 @media (max-width: 700px){
     .box{
-    height: 140px;
-    width: 8rem;
+        height: 120px;
+        width: 7rem;
     }
 }
 
@@ -621,4 +628,8 @@ body{
         width: 2.5rem;
     }
 }
+
+
+
+/* PROJECT BOX OTIM */
 
