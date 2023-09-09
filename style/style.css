@@ -6,22 +6,38 @@
     margin: 0;
     font-display: swap;
     font-family: 'Bruno Ace SC', cursive;
+    text-decoration:none; 
 }
 
+/* HTML */
 
-
+html {
+    scroll-behavior: smooth;
+}
 
 
 /* BODY */
 
 body{
     background-color: #0c0b19;
-    border-bottom: 1px solid #25f700;
+    border-bottom: 2px solid #25f700;
     border-top: 1px solid #25f700;
     justify-items: center;
 }
 
+body::-webkit-scrollbar {
+    width: 10px;        
+}
 
+body::-webkit-scrollbar-track {
+    background: #0c0b19;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #25f700;
+    border-radius: 10px;    
+    border: 2px solid #0c0b19;     
+}
 
 
 
@@ -47,7 +63,6 @@ body{
 .setLang-bt{
     min-height: 40px;
     min-width: 80px;
-
     background-color: transparent;
     color: #25f700;
     font-size: 18px;
@@ -229,7 +244,6 @@ body{
 
 
 
-
 /* SECTION 01 */
 
 .conteiner-section-01{
@@ -247,8 +261,7 @@ body{
     margin-top: 10%;
     vertical-align: baseline;
     flex-direction: column;
-    font-size: 25px;
-    color: #25f700;
+    color: hsl(111, 100%, 48%);
 }
 
 .button-contato{
@@ -264,12 +277,17 @@ body{
 
 .conteiner-button{
     display: flex;
-    margin-top: 5%;
-    margin-left: 25%;
+    margin-top: 7%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .conteiner-p{
+    display: flex;
+    justify-content: center;
     text-align: center;
+    flex-direction: column;
 }
 
 .p-01{
@@ -278,10 +296,11 @@ body{
 
 .p-02{
     color: #505050;
+    font-size: 25px;
 }
 
 .img-perfil{
-    height: 550px;
+    height: 650px;
     display: flex;
 }
 
@@ -291,10 +310,173 @@ body{
     margin: auto;
 }
 
+.ui-btn {
+    --btn-default-bg: rgb(41, 41, 41);
+    border-radius: 2rem;
+    --btn-padding: 10px 15px;
+    height: 50px;
+    width: 200px;
+    margin: 5%;
+    border: 1px  solid  #25f700;
+    --btn-hover-bg: rgb(51, 51, 51);
+    --btn-transition: .3s;
+    --btn-letter-spacing: .1rem;
+    --btn-animation-duration: 1.2s;
+    --btn-shadow-color: rgba(0, 0, 0, 0.137);
+    --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
+    --hover-btn-color: #FAC921;
+    --default-btn-color: #fff;
+    --font-size: 15px;
+    --font-weight: 100;
+    text-decoration: none;
+    
+}
 
+.ui-btn {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--default-btn-color);
+    font: var(--font-weight) var(--font-size) var(--font-family);
+    background: var(--btn-default-bg);
+    cursor: pointer;
+    transition: var(--btn-transition);
+    overflow: hidden;
+    box-shadow: var(--btn-shadow);
+}
 
+.ui-btn a{
+    text-decoration: none;
+    color: #fdfdfd;
+}
 
+.ui-btn span {
+    text-decoration: none;
+    letter-spacing: var(--btn-letter-spacing);
+    transition: var(--btn-transition);
+    box-sizing: border-box;
+    position: relative;
+    background: inherit;
+}
 
+.ui-btn span::before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    background: inherit;
+    text-decoration: none;
+}
+
+.ui-btn:hover, .ui-btn:focus {
+    background: var(--btn-hover-bg);
+    text-decoration: none;
+}
+
+.ui-btn:hover span, .ui-btn:focus span {
+    color: #25f700;
+    text-decoration: none;
+}
+
+.ui-btn:hover span::before, .ui-btn:focus span::before {
+    animation: chitchat linear both var(--btn-animation-duration);
+    text-decoration: none;
+}
+
+@keyframes chitchat {
+    0% {
+    content: "#";
+    }
+
+    5% {
+content: ".";
+    }
+
+    10% {
+    content: "^{";
+    }
+
+    15% {
+    content: "-!";
+    }
+
+    20% {
+    content: "#$_";
+    }
+
+    25% {
+    content: "№1:0";
+    }
+
+    30% {
+    content: "#{+.";
+    }
+
+    35% {
+    content: "@}-2?";
+    }
+
+    40% {
+    content: "?{4@%";
+    }
+
+    45% {
+    content: "=.,^!";
+    }
+
+    50% {
+    content: "?2@%";
+    }
+
+    55% {
+    content: "\;1}]";
+    }
+
+    60% {
+    content: "?{%:4%";
+    right: 0;
+    }
+
+    65% {
+    content: "|{°f[4";
+    right: 0;
+    }
+
+    70% {
+    content: "{4@%0%";
+    right: 0;
+    }
+
+    75% {
+    content: "'1_0@<";
+    right: 0;
+    }
+
+    80% {
+    content: "{0-%";
+    right: 0;
+    }
+
+    85% {
+    content: "!]>'";
+    right: 0;
+    }
+
+    90% {
+    content: "4";
+    right: 0;
+    }
+
+    95% {
+    content: "2";
+    right: 0;
+    }
+
+    100% {
+    content: "";
+    right: 0;
+    }
+}
 
 
 
@@ -321,7 +503,6 @@ body{
     font-size: 30px;
 }
 
-
 .about-me{
     margin-top: 12%;
     margin-left: 20%;
@@ -330,6 +511,9 @@ body{
     font-size: 20px;
     text-align: center;
 }
+
+
+
 
 
 /* SECTION 03 */
@@ -371,7 +555,6 @@ body{
     margin-top: 10%;
 }
 
-
 .box{
     display: flex;
     position: relative;
@@ -403,13 +586,8 @@ body{
 
 
 
-
-
-
-
-
-
 /* SECTION 04 */
+
 
 .sec-04{
     margin-top: 15%;
@@ -425,6 +603,7 @@ body{
 }
 
 .project-title{
+    text-decoration: none;
     display: flex;
     flex: auto;
     justify-content: space-around;
@@ -438,6 +617,7 @@ body{
 }
 
 .projects-cont{
+    text-decoration: none;
     display: flex;
     margin-top: 10%;
     justify-content: space-between;
@@ -517,9 +697,9 @@ body{
 }
 
 .project-title {
+    text-decoration: none;
     font-size: 1em;
     margin: 0;
-    font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -539,6 +719,7 @@ body{
 }
 
 .project-type {
+    
     background: #b2b2fd;
     color: #fdfdfd;
     font-weight: bold;
@@ -557,14 +738,159 @@ body{
     transition: all 0.3s ease;
 }
 
-.container-project {
+.container-project-01 {
     width: 100%;
     height: 170px;
-    background-image: url(../img/Projects/Project-01.jpeg);
+    background-image: url(../img/Projects/Project-link.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.container-project-02 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/Project-pokemon.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-03 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/Project-tempo.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-04 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/wip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-05 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/wip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-06 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/wip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-07 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/wip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-project-08 {
+    width: 100%;
+    height: 170px;
+    background-image: url(../img/Projects/wip.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.project-title-00{
+    text-decoration: none;
+    font-size: 0.95em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-01{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-02{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-03{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-04{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-04{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-05{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
+.project-title-06{
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fdfdfd;
+}
+
 
 
 
@@ -611,6 +937,98 @@ body{
     display: flex;
     height: 4rem;
     border-radius: 2.5rem;
+    margin-top: 10px;
+}
+
+.contato-icon-wt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+
+.contato-icon-wt{
+    margin-bottom: 10px;
+    color: #25f700;
+    
+}
+
+.whatsapp-title{
+    margin-top: 20px;
+    color: #505050;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contato-icon-gt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+
+.contato-icon-gt{
+    margin-bottom: 10px;
+    color: #25f700;
+    text-decoration: none;
+}
+
+.github-title{
+    margin-top: 20px;
+    color: #505050;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.whatsapp-title-p, .github-title-p, 
+    .instagram-title-p, .linkedIn-title-p{
+        font-size: 18px;
+    }
+
+.contato-icon-in{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+.contato-icon-in{
+    margin-bottom: 10px;
+    color: #25f700;
+    text-decoration: none;
+}
+
+.instagram-title{
+    margin-top: 20px;
+    color: #505050;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contato-icon-li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+}
+.contato-icon-li{
+    margin-bottom: 10px;
+    color: #25f700;
+    text-decoration: none;
+}
+
+.linkedIn-title{
+    margin-top: 20px;
+    color: #505050;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 
@@ -618,8 +1036,9 @@ body{
 
 
 
-
 /* @MEDIA RESPONSIVE */
+
+
 
 
 
@@ -632,6 +1051,7 @@ body{
 }
 
 
+
 /* ABOUT-ME OTIM */
 
 @media (max-width: 700px){
@@ -641,6 +1061,7 @@ body{
 }
 
 
+
 /* TITLE OTIM */
 
 @media (max-width: 700px){
@@ -648,6 +1069,7 @@ body{
         font-size: 20px;
     }
 }
+
 
 
 /* NOME OTIM */
@@ -673,6 +1095,7 @@ body{
 }
 
 
+
 /* IMG OTIM */
 
 @media (max-width: 700px){
@@ -680,6 +1103,7 @@ body{
         height: 3rem;
     }
 }
+
 
 
 /* PROJECT TITLE OTIM */
@@ -692,6 +1116,7 @@ body{
 }
 
 
+
 /* HABI TITLE OTIM */
 
 @media (max-width: 700px){
@@ -699,6 +1124,7 @@ body{
         font-size: 15px;
     }
 }
+
 
 
 /* HABI BOX OTIM */
@@ -711,6 +1137,7 @@ body{
 }
 
 
+
 /* HABI IMG OTIM */
 
 @media (max-width: 700px){
@@ -718,6 +1145,7 @@ body{
         width: 2.5rem;
     }
 }
+
 
 
 /* IMG PERFIL OTIM */
@@ -741,6 +1169,7 @@ body{
 }
 
 
+
 /* PROJECT OTIM */
 
 @media (max-width: 700px){
@@ -757,3 +1186,40 @@ body{
     }
 }
 
+
+
+/* CONTATO OTIM */
+
+@media (max-width: 850px){
+    .contato-content img{
+        height: 2.7rem;
+    }
+}
+
+
+@media (max-width: 850px){
+    .whatsapp-title, .github-title, 
+    .instagram-title, .linkedIn-title  {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 850px){
+    .whatsapp-title-p, .github-title-p, 
+    .instagram-title-p, .linkedIn-title-p  {
+        font-size: 14px;
+    }
+}
+
+
+
+/* BUTTON CURRICULO AND CONTACT OTIM */
+
+@media (max-width: 550px){
+    .ui-btn{
+        height: 30px;
+        width: 120px;
+        margin: 5%;
+        font-size: 10px;
+    }
+}

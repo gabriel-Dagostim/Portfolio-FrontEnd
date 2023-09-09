@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Gabriel Dagostim</title>
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="shortcut icon" href="./img/icon/icon.png" type="image/x-icon">
     <script src="./app/app.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,23 +39,39 @@
 <body>     
     <section>
         <div class="conteiner-section-01">
+            <div class="img-perfil-div">
+                <img src="./img/perfil/Final.png" alt="Foto perfil" class="img-perfil">
+            </div>
+
             <div class="conteiner-button-p">
+                    
                 <div class="conteiner-p">
                     <p class="p-01" id="hi-p">
                         Hello, my name is Gabriel dagostim
                     </p>
+
                     <p class="p-02" id="hi-p-2">
                         Front-end programmer
                     </p>
-                    <div class="conteiner-button">
-                                        
-                    </div>
                 </div>
+
+                    <div class="conteiner-button">
+                        <button class="ui-btn">
+                            <a href="./archives/curriculo/Gabriel Dagostim.pdf" download="Curriculo-Gabriel-Dagostim">
+                                <span>
+                                    CURRICULO 
+                                </span>
+                            </a>
+                        </button>
+
+                        <button class="ui-btn">
+                            <span onclick="contact()">
+                                CONTATO 
+                            </span>
+                        </button>
+                    </div>
             </div>
-            <div class="img-perfil-div">
-                <img src="./img/perfil/Final.png" alt="Foto perfil" class="img-perfil">
-            </div>
-        </div>
+        </div>            
     </section>
 
     <section>
@@ -65,7 +82,11 @@
                 </p>
             </div>
             <div>
-                <p class="about-me" id="about-me-text">Front-end developer with experience in JavaScript, Material UI and API consumption. Passionate about web development. I also have experience in projects managed using Agile Methodologies. Studying software engineering with a specialization in Front-End at the Assis Gurgacz Foundation.</p>
+                <p class="about-me" id="about-me-text">
+                    Front-end developer with experience in JavaScript, Material UI and API consumption. Passionate about web development. 
+                    I also have experience in projects managed using Agile Methodologies. 
+                    Studying software engineering with a specialization in Front-End at the Assis Gurgacz Foundation.
+                </p>
             </div>
         </div>
     </section>
@@ -120,153 +141,197 @@
                 </p>
             </div>
                 <div class="projects-cont">
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
+                    <a href="https://linktree.gabrieldagostim.com">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-01">
                             </div>
-                        </div>
-                    </article>
-
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title text-nowrap">LinkTree</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">CSS</span>
+                                    <span style="background-color: rgb(252, 255, 74); color: #000000;" class="project-type"> JS </span>
+                                    <span style="background-color: rgb(255, 166, 0); color: #fdfdfd;" class="project-type"> HTML </span> 
+                                    
                                 </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </a>
 
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
+                    <a href="https://pokemon.gabrieldagostim.com">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-02">
                             </div>
-                        </div>
-                    </article>
-
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-00 text-nowrap">Qual é o pokemon?</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                        <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">CSS</span>
+                                        <span style="background-color: rgb(252, 255, 74); color: #000000;" class="project-type"> JS </span>
+                                        <span style="background-color: rgb(255, 166, 0); color: #fdfdfd;" class="project-type"> HTML </span>
+                                        <span style="background-color: rgb(0, 68, 255); color: #fdfdfd;" class="project-type"> API </span>
                                 </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </a>
 
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
+                    <a href="https://tempo.gabrieldagostim.com">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-03">
                             </div>
-                        </div>
-                    </article>
-
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-01 text-nowrap">Está chovendo?</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                        <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">CSS</span>
+                                        <span style="background-color: rgb(252, 255, 74); color: #000000;" class="project-type"> JS </span>
+                                        <span style="background-color: rgb(255, 166, 0); color: #fdfdfd;" class="project-type"> HTML </span>
+                                        <span style="background-color: rgb(0, 68, 255); color: #fdfdfd;" class="project-type"> API </span>
                                 </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </a>
 
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-04">
                             </div>
-                        </div>
-                    </article>
-
-
-                    <article class="article-wrapper">
-                        <div class="rounded-lg container-project">
-                        </div>
-                        <div class="project-info">
-                            <div class="flex-pr">
-                            <div class="project-title text-nowrap">Project</div>
-                                <div class="project-hover">
-                                <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-02 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
                                 </div>
-                                </div>
-                                <div class="types">
-                                <span style="background-color: rgba(165, 96, 247, 0.43); color: #fdfdfd;" class="project-type">• Analytics</span>
-                                <span class="project-type">• Dashboards</span>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-05">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-03 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-06">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-04 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-07">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-05 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-08">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-06 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-08">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-06 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <a href="">
+                        <article class="article-wrapper">
+                            <div class="rounded-lg container-project-08">
+                            </div>
+                            <div class="project-info">
+                                <div class="flex-pr">
+                                <div class="project-title-06 text-nowrap">WIP</div>
+                                    <div class="project-hover">
+                                    <svg style="color: #fdfdfd;" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="#fdfdfd" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"><line y2="12" x2="19" y1="12" x1="5"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </div>
+                                    </div>
+                                    <div class="types">
+                                    
+                                </div>
+                            </div>
+                        </article>
+                    </a>
             </div>
         </div>
     </section>
-
 
     <section class="sec-05">
         <div class="conteiner-section-05">
@@ -275,28 +340,56 @@
                     Contact
                 </p>
             </div>
-        </div>
-        <div class="contato-content">
-        <a href="https://api.whatsapp.com/send?phone=5545984127626&text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20estou%20entrando%20em%20contato%20com%20voc%C3%AA">
-            <div class="contato-icon-wt">
-                <img src="./img/Contats/WhatsApp.png" alt="WhatsApp">
+
+            <div class="contato-content">
+                <a href="https://api.whatsapp.com/send?phone=5545984127626&text=Ol%C3%A1%2C%20vi%20seu%20portf%C3%B3lio%20e%20estou%20entrando%20em%20contato%20com%20voc%C3%AA">
+                    <div class="contato-icon-wt">
+                        <p class="whatsapp-title-p" id="whatsapp-title-id">
+                            WhatsApp
+                        </p>
+                            <img src="./img/Contats/WhatsApp.png" alt="WhatsApp">
+                        <p class="whatsapp-title">
+                            +55 (45) 98412-7626
+                        </p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/gabriel-Dagostim">
+                    <div class="contato-icon-gt">
+                        <p class=" github-title-p" id="github-title-id">
+                            GitHub
+                        </p>
+                            <img src="./img/Contats/GitHub.webp" alt="GitHub">
+                        <p class="github-title">
+                            gabriel-Dagostim
+                        </p>
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/gabriel_dagostim/">
+                    <div class="contato-icon-in">
+                        <p class="instagram-title-p" id="instagram-title-id">
+                            Instagram
+                        </p>
+                            <img src="./img/Contats/Instagran.webp" alt="Instagram">
+                        <p class="instagram-title">
+                            Gabriel_Dagostim
+                        </p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/gabriel-dagostim/">
+                    <div class="contato-icon-li">
+                        <p class="linkedIn-title-p" id="linkedIn-title-id">
+                            LinkedIn
+                        </p>
+                            <img src="./img/Contats/Linkedin.png" alt="LinkedIn">
+                        <p class="linkedIn-title">
+                            gabriel-Dagostim
+                        </p>
+                    </div>
+                </a>
             </div>
-        </a>
-        <a href="https://github.com/gabriel-Dagostim">
-            <div class="contato-icon-gt">
-                <img src="./img/Contats/GitHub.webp" alt="GitHub">
-            </div>
-        </a>
-        <a href="https://www.instagram.com/gabriel_dagostim/">
-            <div class="contato-icon-in">
-                <img src="./img/Contats/Instagran.webp" alt="Instagram">
-            </div>
-        </a>
-        <a href="https://www.linkedin.com/in/gabriel-dagostim/">
-            <div class="contato-icon-li">
-                <img src="./img/Contats/Linkedin.png" alt="LinkedIn">
-            </div>
-        </a>
         </div>
     </section>    
 </body>

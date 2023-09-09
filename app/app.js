@@ -23,7 +23,6 @@ const checkbox = document.getElementById("button33");
     }
 };
 
-
 const lightThemeCheck = document.getElementById("lightTheme");
 //CHANGE THEME
     function lightCh(){
@@ -40,6 +39,10 @@ const lightThemeCheck = document.getElementById("lightTheme");
             document.getElementById('myhab').style.color = "#000";
             document.getElementById('MyProjects').style.color = "#000";
             document.getElementById('contact-me').style.color = "#000";
+            document.getElementById('whatsapp-title-id').style.color = "#000";
+            document.getElementById('github-title-id').style.color = "#000";
+            document.getElementById('instagram-title-id').style.color = "#000";
+            document.getElementById('linkedIn-title-id').style.color = "#000";
         } else {
             document.body.style.backgroundColor = '#0c0b19';
             document.getElementById("theme").style.backgroundColor = '#0c0b19';
@@ -50,6 +53,14 @@ const lightThemeCheck = document.getElementById("lightTheme");
             document.getElementById('about-me-text').style.color = "#fdfdfd";
             document.getElementById('myhab').style.color = "#25f700";
             document.getElementById('MyProjects').style.color = "#25f700";
-            document.getElementById('contact-me').style.color = "#25f700";  
+            document.getElementById('contact-me').style.color = "#25f700";
+            document.getElementById('whatsapp-title-id').style.color = "#25f700";
+            document.getElementById('github-title-id').style.color = "#25f700";
+            document.getElementById('instagram-title-id').style.color = "#25f700";
+            document.getElementById('linkedIn-title-id').style.color = "#25f700";
     }
 };
+
+function contact(){
+    window.scrollTo(0, document.body.scrollHeight);
+}
