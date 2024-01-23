@@ -1,6 +1,7 @@
 const checkbox = document.getElementById("button33");
 var buttonCurr = document.getElementById('bt-curr');
 //CHANGE LANG
+
     function clickAct(){
         var isChecked = checkbox.checked;
         if (isChecked) {    
@@ -44,33 +45,7 @@ const lightThemeCheck = document.getElementById("lightTheme");
             document.documentElement.style.setProperty('--color-wt2', 'black');
             document.documentElement.style.setProperty('--color-padrao-02', '#fdfdff');    
             document.documentElement.style.setProperty('--color-dark-2', '25f700');
-            document.documentElement.style.setProperty('--color-dark-3', '#fdfdfd');
-
-
-
-
-
-
-
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+            document.documentElement.style.setProperty('--color-dark-3', '#fdfdfd');      
         } else {
             document.body.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../img/background/wall.png)';
             document.body.style.backgroundColor = '#0c0b19'
@@ -79,16 +54,9 @@ const lightThemeCheck = document.getElementById("lightTheme");
             document.documentElement.style.setProperty('--color-wt3', '#25f700');
             document.documentElement.style.setProperty('--color-wt2', '#fdfdff');
             document.documentElement.style.setProperty('--color-padrao-02', '#25f702');
-            document.documentElement.style.setProperty('--color-dark-3', '#0c0b19');
-
-
-
-
-
-            
+            document.documentElement.style.setProperty('--color-dark-3', '#0c0b19');      
     }
 };
-
 function contact(){
     window.scrollTo(0, document.body.scrollHeight);
 }
