@@ -1,31 +1,6 @@
 const checkbox = document.getElementById("button33");
 const buttonCurr = document.getElementById('bt-curr');
-const section01 = document.getElementById("m-sec-01");
-const section02 = document.getElementById("m-sec-02");
-const section03 = document.getElementById("m-sec-03");
-const section34 = document.getElementById("sec-3-4");
-const section04 = document.getElementById("m-sec-04");
-const section05 = document.getElementById("m-sec-05");
-
 const lightThemeCheck = document.getElementById("lightTheme");
-
-// Projetos
-const project01 = document.getElementById("sec-project-01");
-const project02 = document.getElementById("sec-project-02");
-const project03 = document.getElementById("sec-project-03");
-const project04 = document.getElementById("sec-project-04");
-const project05 = document.getElementById("sec-project-05");
-const project06 = document.getElementById("sec-project-06");
-const project07 = document.getElementById("sec-project-07");
-const project08 = document.getElementById("sec-project-08");
-const project09 = document.getElementById("sec-project-09");
-const project10 = document.getElementById("sec-project-10");
-const project11 = document.getElementById("sec-project-11");
-const project12 = document.getElementById("sec-project-12");
-const project13 = document.getElementById("sec-project-13");
-const project14 = document.getElementById("sec-project-14");
-const project15 = document.getElementById("sec-project-15");
-
 
 //CHANGE LANG
 
@@ -59,62 +34,18 @@ function clickAct() {
         document.getElementById('p-desc-project-12').innerHTML = "WIP";
         document.getElementById('p-desc-project-13').innerHTML = "WIP";
 
-
-        document.getElementById("bt-bttn-access1").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access2").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access3").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access4").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access5").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access6").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access7").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access8").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access9").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access10").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access11").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access12").innerHTML = "Acessar projeto";
-        document.getElementById("bt-bttn-access13").innerHTML = "Acessar projeto";
-
-        document.getElementById("bt-bttn-repo-access1").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access2").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access3").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access4").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access5").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access6").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access7").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access8").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access9").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access10").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access11").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access12").innerHTML = "Acessar repositório";
-        document.getElementById("bt-bttn-repo-access13").innerHTML = "Acessar repositório";
-
-        document.getElementById("desc-tt-project1").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project2").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project3").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project4").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project5").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project6").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project7").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project8").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project9").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project10").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project11").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project12").innerHTML = "Descrição";
-        document.getElementById("desc-tt-project13").innerHTML = "Descrição";
-
-        document.getElementById("used-lang-pesc-desc1").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc2").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc3").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc4").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc5").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc6").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc7").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc8").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc9").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc10").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc11").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc12").innerHTML = "Linguagens usadas";
-        document.getElementById("used-lang-pesc-desc13").innerHTML = "Linguagens usadas";
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("bt-bttn-access" + i).innerHTML = "Acessar projeto";
+        }
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("bt-bttn-repo-access" + i).innerHTML = "Acessar repositório";
+        }
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("desc-tt-project" + i).innerHTML = "Descrição";
+        }      
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("used-lang-pesc-desc" + i).innerHTML = "Linguagens usadas";
+        }
     }
 
     else {
@@ -145,62 +76,18 @@ function clickAct() {
         document.getElementById('p-desc-project-12').innerHTML = "WIP";
         document.getElementById('p-desc-project-13').innerHTML = "WIP";
 
-
-        document.getElementById("bt-bttn-access1").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access2").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access3").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access4").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access5").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access6").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access7").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access8").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access9").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access10").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access11").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access12").innerHTML = "Access project";
-        document.getElementById("bt-bttn-access13").innerHTML = "Access project";
-
-        document.getElementById("bt-bttn-repo-access1").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access2").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access3").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access4").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access5").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access6").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access7").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access8").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access9").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access10").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access11").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access12").innerHTML = "Access repository";
-        document.getElementById("bt-bttn-repo-access13").innerHTML = "Access repository";
-
-        document.getElementById("desc-tt-project1").innerHTML = "Description";
-        document.getElementById("desc-tt-project2").innerHTML = "Description";
-        document.getElementById("desc-tt-project3").innerHTML = "Description";
-        document.getElementById("desc-tt-project4").innerHTML = "Description";
-        document.getElementById("desc-tt-project5").innerHTML = "Description";
-        document.getElementById("desc-tt-project6").innerHTML = "Description";
-        document.getElementById("desc-tt-project7").innerHTML = "Description";
-        document.getElementById("desc-tt-project8").innerHTML = "Description";
-        document.getElementById("desc-tt-project9").innerHTML = "Description";
-        document.getElementById("desc-tt-project10").innerHTML = "Description";
-        document.getElementById("desc-tt-project11").innerHTML = "Description";
-        document.getElementById("desc-tt-project12").innerHTML = "Description";
-        document.getElementById("desc-tt-project13").innerHTML = "Description";
-
-        document.getElementById("used-lang-pesc-desc1").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc2").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc3").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc4").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc5").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc6").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc7").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc8").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc9").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc10").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc11").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc12").innerHTML = "Language used";
-        document.getElementById("used-lang-pesc-desc13").innerHTML = "Language used";
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("bt-bttn-access" + i).innerHTML = "Access project";
+        }
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("bt-bttn-repo-access" + i).innerHTML = "Access repository";
+        }
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("desc-tt-project" + i).innerHTML = "Description";
+        }
+        for (let i = 1; i <= 13; i++) {
+            document.getElementById("used-lang-pesc-desc" + i).innerHTML = "Language used";
+        }        
     }
 };
 
@@ -210,173 +97,72 @@ function clickAct() {
 
 function lightCh() {
     var LightisChecked = lightThemeCheck.checked;
-    if (LightisChecked = !LightisChecked) {
-        document.body.style.backgroundImage = ' linear-gradient(rgba(253, 253, 253, 0.8), rgba(253, 253, 253, 0.8)), url(../img/background/wall-light.png)'
-        document.body.style.backgroundColor = '#fdfdfd'
-        document.documentElement.style.setProperty('--color-padrao', 'var(--color-dark)');
-        document.documentElement.style.setProperty('--color-wt2', 'black');
-        document.documentElement.style.setProperty('--color-padrao-02', '#fdfdff');
-        document.documentElement.style.setProperty('--color-dark-2', '25f700');
-        document.documentElement.style.setProperty('--color-dark-3', '#fdfdfd');
-    } else {
-        document.body.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../img/background/wall.png)';
-        document.body.style.backgroundColor = '#0c0b19'
-        document.documentElement.style.setProperty('--color-padrao', '#25f700');
-        document.documentElement.style.setProperty('--color-wt3', '#25f700');
-        document.documentElement.style.setProperty('--color-wt2', '#fdfdff');
-        document.documentElement.style.setProperty('--color-padrao-02', '#25f702');
-        document.documentElement.style.setProperty('--color-dark-3', '#0c0b19');
-    }
-};
+    document.body.style.backgroundImage = LightisChecked ? 
+        'linear-gradient(rgba(253, 253, 253, 0.8), rgba(253, 253, 253, 0.8)), url(../img/background/wall-light.png)' : 
+        'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../img/background/wall.png)';
+    document.body.style.backgroundColor = LightisChecked ? '#fdfdfd' : '#0c0b19';
+
+    document.documentElement.style.setProperty('--color-padrao', LightisChecked ? 'var(--color-dark)' : '#25f700');
+    document.documentElement.style.setProperty('--color-wt2', LightisChecked ? 'black' : '#fdfdff');
+    document.documentElement.style.setProperty('--color-padrao-02', LightisChecked ? '#fdfdff' : '#25f702');
+    document.documentElement.style.setProperty('--color-dark-2', LightisChecked ? '25f700' : '');
+    document.documentElement.style.setProperty('--color-dark-3', LightisChecked ? '#fdfdfd' : '#0c0b19');
+    document.documentElement.style.setProperty('--color-wt3', LightisChecked ? '' : '#25f700');
+}
+
+
+
 function contact() {
     window.scrollTo(0, document.body.scrollHeight);
 }
 
 
 function HideSections() {
-    section01.style.display = "none";
-    section02.style.display = "none";
-    section03.style.display = "none";
-    section34.style.display = "none";
-    section04.style.display = "none";
-    section05.style.display = "none";
+    const sections = [
+        document.getElementById("m-sec-01"),
+        document.getElementById("m-sec-02"),
+        document.getElementById("m-sec-03"),
+        document.getElementById("sec-3-4"),
+        document.getElementById("m-sec-04"),
+        document.getElementById("m-sec-05")
+    ];
+    sections.forEach(section => {
+        if (section) {
+            section.style.display = "none";
+        } else {
+            console.error('Uma das seções não foi encontrada');
+        }
+    });
 }
 
 function ShowSections() {
-    section01.style.display = "block";
-    section02.style.display = "block";
-    section03.style.display = "block";
-    section34.style.display = "block";
-    section04.style.display = "block";
-    section05.style.display = "block";
+    const sections = [
+        document.getElementById("m-sec-01"),
+        document.getElementById("m-sec-02"),
+        document.getElementById("m-sec-03"),
+        document.getElementById("sec-3-4"),
+        document.getElementById("m-sec-04"),
+        document.getElementById("m-sec-05")
+    ];
+    sections.forEach(section => {
+        if (section) {
+            section.style.display = "block";
+        } else {
+            console.error('Uma das seções não foi encontrada');
+        }
+    });
 }
 
-function toggleVisibility01() {
-    if (project01.style.display === "none") {
-        HideSections()
-        project01.style.display = "flex";
-    } else {
-        project01.style.display = "none";
-        ShowSections()
-    }
-}
 
-function toggleVisibility02() {
-    if (project02.style.display === "none") {
+function toggleVisibilityMaster(numberSelect) {
+    let secString0 = 'sec-project-' + numberSelect;
+    let secString = document.getElementById(secString0); 
+    
+    if (secString.style.display === "none") {
         HideSections()
-        project02.style.display = "flex";
+        secString.style.display = "flex";
     } else {
-        project02.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility03() {
-    if (project03.style.display === "none") {
-        HideSections()
-        project03.style.display = "flex";
-    } else {
-        project03.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility04() {
-    if (project04.style.display === "none") {
-        HideSections()
-        project04.style.display = "flex";
-    } else {
-        project04.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility05() {
-    if (project05.style.display === "none") {
-        HideSections()
-        project05.style.display = "flex";
-    } else {
-        project05.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility06() {
-    if (project06.style.display === "none") {
-        HideSections()
-        project06.style.display = "flex";
-    } else {
-        project06.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility07() {
-    if (project07.style.display === "none") {
-        HideSections()
-        project07.style.display = "flex";
-    } else {
-        project07.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility08() {
-    if (project08.style.display === "none") {
-        HideSections()
-        project08.style.display = "flex";
-    } else {
-        project08.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility09() {
-    if (project09.style.display === "none") {
-        HideSections()
-        project09.style.display = "flex";
-    } else {
-        project09.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility10() {
-    if (project10.style.display === "none") {
-        HideSections()
-        project10.style.display = "flex";
-    } else {
-        project10.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility11() {
-    if (project11.style.display === "none") {
-        HideSections()
-        project11.style.display = "flex";
-    } else {
-        project11.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility12() {
-    if (project12.style.display === "none") {
-        HideSections()
-        project12.style.display = "flex";
-    } else {
-        project12.style.display = "none";
-        ShowSections()
-    }
-}
-
-function toggleVisibility13() {
-    if (project13.style.display === "none") {
-        HideSections()
-        project13.style.display = "flex";
-    } else {
-        project13.style.display = "none";
+        secString.style.display = "none";
         ShowSections()
     }
 }
