@@ -68,10 +68,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
-
 /* HEAD */
-
 
 .conteiner-head {
     border-bottom: 1px solid var(--color-padrao);
@@ -548,7 +545,6 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
 /* SECTION 03 */
 
 .sec-03 {
@@ -623,13 +619,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
-
-
-
-
 /* SECTION 03-04 */
-
 
 
 #sec-3-4 {
@@ -646,7 +636,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 24px;
 }
 
-
 .projects-cont-3-4 {
     display: flex;
     text-decoration: none;
@@ -656,9 +645,6 @@ body::-webkit-scrollbar-thumb {
     vertical-align: baseline;
     flex-wrap: wrap;
 }
-
-
-
 
 .container-project-B-01 {
     width: 100%;
@@ -686,19 +672,6 @@ body::-webkit-scrollbar-thumb {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -740,7 +713,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 30px;
 }
 
-
 .projects-cont {
     text-decoration: none;
     display: flex;
@@ -754,8 +726,6 @@ body::-webkit-scrollbar-thumb {
 
 .project-hover svg {
     display: flex;
-
-
 }
 
 .article-wrapper {
@@ -1028,6 +998,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
+
 /* SECTION 05 */
 
 .sec-05 {
@@ -1085,7 +1056,6 @@ body::-webkit-scrollbar-thumb {
 .contato-icon-wt {
     margin-bottom: 10px;
     color: var(--color-padrao);
-
 }
 
 .whatsapp-title {
@@ -1174,39 +1144,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* SECTION PROJECT */
 
 
 .hidden-project-desc {
@@ -1223,11 +1161,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 30px;
     color: black;
     border: none;
-
-
 }
-
-
 
 .img-desc-title-project-contents {
     flex-direction: column;
@@ -1246,7 +1180,6 @@ body::-webkit-scrollbar-thumb {
     border: 2px solid var(--color-padrao);
 }
 
-
 .project-img-desc p {
     color: var(--color-padrao-02);
     font-size: 2vw;
@@ -1260,7 +1193,6 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
 }
 
-
 .project-img-desc img {
     max-height: 60vh;
     max-width: 80vw;
@@ -1271,7 +1203,6 @@ body::-webkit-scrollbar-thumb {
     border: 2px solid;
     border-color: var(--color-padrao-02);
 }
-
 
 .project-desc-buttons {
     margin-top: 5vh;
@@ -1285,17 +1216,6 @@ body::-webkit-scrollbar-thumb {
     font-size: 15px;
     border-radius: 2rem;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .text-desc-contents {
     display: flex;
@@ -1318,14 +1238,10 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 20px;
 }
 
-
-
-
 .text-desc-contents p {
     max-width: 70vw;
     word-wrap: break-word;
 }
-
 
 .types-project-desc {
     gap: 10px;
@@ -1335,7 +1251,6 @@ body::-webkit-scrollbar-thumb {
     justify-content: center;
     flex-wrap: wrap;
 }
-
 
 .project-type-desc {
     display: flex;
@@ -1351,16 +1266,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
-
-
-
-
-
-
-
-
-
+/* SECTION TURN SHOW */
 
 #m-sec-01,
 #m-sec-02,
@@ -1370,6 +1276,8 @@ body::-webkit-scrollbar-thumb {
 #m-sec-05 {
     display: block;
 }
+
+/* START PROJECTS CARDS OFF */
 
 #sec-project-01,
 #sec-project-02,
@@ -1391,82 +1299,7 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* @MEDIA RESPONSIVE */
-
-
 
 
 
@@ -1484,7 +1317,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
 /* ABOUT-ME OTIM */
 
 @media (max-width: 700px) {
@@ -1494,7 +1326,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
 /* TITLE OTIM */
 
 @media (max-width: 700px) {
@@ -1502,7 +1333,6 @@ body::-webkit-scrollbar-thumb {
         font-size: 20px;
     }
 }
-
 
 
 /* NOME OTIM */
@@ -1528,7 +1358,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
 /* IMG OTIM */
 
 @media (max-width: 700px) {
@@ -1536,7 +1365,6 @@ body::-webkit-scrollbar-thumb {
         height: 3rem;
     }
 }
-
 
 
 /* PROJECT TITLE OTIM */
@@ -1549,7 +1377,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
 /* HABI TITLE OTIM */
 
 @media (max-width: 700px) {
@@ -1557,7 +1384,6 @@ body::-webkit-scrollbar-thumb {
         font-size: 15px;
     }
 }
-
 
 
 /* HABI BOX OTIM */
@@ -1568,7 +1394,6 @@ body::-webkit-scrollbar-thumb {
         width: 7rem;
     }
 }
-
 
 
 /* HABI IMG OTIM */
@@ -1584,7 +1409,6 @@ body::-webkit-scrollbar-thumb {
         width: 2.5rem;
     }
 }
-
 
 
 /* IMG PERFIL OTIM */
@@ -1608,7 +1432,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 
-
 /* PROJECT OTIM */
 
 @media (max-width: 700px) {
@@ -1618,13 +1441,11 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-
 @media (max-width: 700px) {
     .project-type {
         display: none;
     }
 }
-
 
 
 /* CONTATO OTIM */
@@ -1634,7 +1455,6 @@ body::-webkit-scrollbar-thumb {
         height: 2.7rem;
     }
 }
-
 
 @media (max-width: 850px) {
 

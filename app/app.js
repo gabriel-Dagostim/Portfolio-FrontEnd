@@ -9,7 +9,6 @@ const section05 = document.getElementById("m-sec-05");
 
 const lightThemeCheck = document.getElementById("lightTheme");
 
-
 // Projetos
 const project01 = document.getElementById("sec-project-01");
 const project02 = document.getElementById("sec-project-02");
@@ -26,9 +25,6 @@ const project12 = document.getElementById("sec-project-12");
 const project13 = document.getElementById("sec-project-13");
 const project14 = document.getElementById("sec-project-14");
 const project15 = document.getElementById("sec-project-15");
-
-
-
 
 
 //CHANGE LANG
@@ -209,13 +205,9 @@ function clickAct() {
 };
 
 
-
-
-
-
-
-
 //CHANGE THEME
+
+
 function lightCh() {
     var LightisChecked = lightThemeCheck.checked;
     if (LightisChecked = !LightisChecked) {
@@ -241,9 +233,6 @@ function contact() {
 }
 
 
-
-
-
 function HideSections() {
     section01.style.display = "none";
     section02.style.display = "none";
@@ -261,11 +250,6 @@ function ShowSections() {
     section04.style.display = "block";
     section05.style.display = "block";
 }
-
-
-
-
-
 
 function toggleVisibility01() {
     if (project01.style.display === "none") {
@@ -396,17 +380,3 @@ function toggleVisibility13() {
         ShowSections()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
