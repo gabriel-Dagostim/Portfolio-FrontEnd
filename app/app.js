@@ -2,6 +2,7 @@ const checkbox = document.getElementById("button33");
 const buttonCurr = document.getElementById('bt-curr');
 const lightThemeCheck = document.getElementById("lightTheme");
 
+
 //CHANGE LANG
 
 function clickAct() {
