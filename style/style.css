@@ -677,6 +677,10 @@ body::-webkit-scrollbar-thumb {
 
 
 
+
+
+
+
 /* SECTION 04 */
 
 
@@ -1162,6 +1166,14 @@ body::-webkit-scrollbar-thumb {
     border: none;
 }
 
+.back-button-desc button:hover{
+    cursor: pointer;
+}
+
+.back-button-desc:hover{
+    cursor: pointer;
+}
+
 .img-desc-title-project-contents {
     flex-direction: column;
     flex-wrap: wrap;
@@ -1208,12 +1220,25 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 5vh;
 }
 
+.project-desc-buttons button:hover{
+    cursor: pointer;
+}
+
+.project-desc-buttons img{
+    margin-right: 5px;
+    margin-bottom: -4px;
+    position: relative;
+    height: 25px;
+}
+
 .project-desc-buttons button {
-    border: none;
+    border: 2px solid white;
+    background-color: var(--color-padrao-02);
     padding: 0.5rem;
     margin: 10px;
     font-size: 15px;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .text-desc-contents {

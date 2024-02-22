@@ -35,10 +35,10 @@ function clickAct() {
         document.getElementById('p-desc-project-13').innerHTML = "WIP";
 
         for (let i = 1; i <= 13; i++) {
-            document.getElementById("bt-bttn-access" + i).innerHTML = "Acessar projeto";
+            document.getElementById("bt-bttn-access" + i).innerHTML = '<img src="./img/icon/link.png" alt=""> Acessar projeto';
         }
         for (let i = 1; i <= 13; i++) {
-            document.getElementById("bt-bttn-repo-access" + i).innerHTML = "Acessar repositório";
+            document.getElementById("bt-bttn-repo-access" + i).innerHTML = '<img src="./img/icon/github.png" alt=""> Acessar repositório';
         }
         for (let i = 1; i <= 13; i++) {
             document.getElementById("desc-tt-project" + i).innerHTML = "Descrição";
@@ -77,10 +77,10 @@ function clickAct() {
         document.getElementById('p-desc-project-13').innerHTML = "WIP";
 
         for (let i = 1; i <= 13; i++) {
-            document.getElementById("bt-bttn-access" + i).innerHTML = "Access project";
+            document.getElementById("bt-bttn-access" + i).innerHTML = '<img src="./img/icon/link.png" alt="">Access project';
         }
         for (let i = 1; i <= 13; i++) {
-            document.getElementById("bt-bttn-repo-access" + i).innerHTML = "Access repository";
+            document.getElementById("bt-bttn-repo-access" + i).innerHTML = '<img src="./img/icon/github.png" alt=""> Access repository';
         }
         for (let i = 1; i <= 13; i++) {
             document.getElementById("desc-tt-project" + i).innerHTML = "Description";
