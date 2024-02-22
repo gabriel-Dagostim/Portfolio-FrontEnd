@@ -50,7 +50,7 @@ function clickAct() {
 
     else {
         buttonCurr.setAttribute('href', './archives/curriculo/Gabriel-Dagostim-en.pdf');
-        buttonCurr.setAttribute('download', 'CurriculoEN-Gabriel-Dagostim');
+        buttonCurr.setAttribute('download', 'CurriculoEN-Gabriel-Dagostim-en');
         document.getElementById('title-port').innerHTML = "Portfolio";
         document.getElementById('hi-p').innerHTML = "Hello, my name is Gabriel dagostim";
         document.getElementById('hi-p-2').innerHTML = "Front-end programmer";
