@@ -98,7 +98,7 @@ function clickAct() {
 
 function lightCh() {
     var LightisChecked = lightThemeCheck.checked;
-    document.body.style.backgroundImage = LightisChecked ? 
+    document.body.style.backgroundImage = LightisChecked ?
         'linear-gradient(rgba(253, 253, 253, 0.8), rgba(253, 253, 253, 0.8)), url(../img/background/wall-light.png)' : 
         'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../img/background/wall.png)';
     document.body.style.backgroundColor = LightisChecked ? '#fdfdfd' : '#0c0b19';
