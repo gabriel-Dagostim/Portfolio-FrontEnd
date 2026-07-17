@@ -32,6 +32,8 @@ export type Project = {
   published: boolean
   order: number
   status: ProjectStatus
+  /** Projeto em andamento — aparece na aba “Working on” de Projetos */
+  workingOn?: boolean
 }
 
 export type Category = {

@@ -25,7 +25,8 @@
   "nav": {
     "home": "Home",
     "projects": "Projects",
-    "estrela": "Estrela Systems",
+    "estrela": "Systems",
+    "systems": "Systems",
     "infra": "Infrastructure",
     "automations": "Automations",
     "about": "About",
@@ -41,20 +42,20 @@
     "ctaContact": "Get in touch",
     "scroll": "Scroll",
     "featuredTitle": "Featured",
-    "featuredSubtitle": "Automation, infra, Estrela systems, and freelance work — open any card to see the screenshots.",
+    "featuredSubtitle": "Automation, infra, systems, and freelance work — open any card to see the screenshots.",
     "statProjects": "Published projects",
-    "statEstrela": "Estrela systems",
+    "statEstrela": "Systems",
     "statInfra": "Infra cases",
     "statAuto": "Automations",
     "exploreEyebrow": "Browse",
     "exploreTitle": "Where to look first",
     "exploreSubtitle": "Shortcuts into the portfolio — internal products without public links, with screenshots and context.",
-    "exploreEstrelaTitle": "Estrela Systems",
-    "exploreEstrelaBody": "Sales tracking, expiry control, Auth, telephony, commission, and more — real network operations.",
+    "exploreEstrelaTitle": "Systems",
+    "exploreEstrelaBody": "Sales tracking, expiry control, Auth, telephony, commission, and more — real production operations.",
     "exploreInfraTitle": "Infrastructure",
     "exploreInfraBody": "Monitoring hub, remote SSH, ops bots, and installers that keep environments healthy.",
     "exploreAutoTitle": "Automations",
-    "exploreAutoBody": "Custom bots, image workflows, and smart data assistants built around real processes.",
+    "exploreAutoBody": "Custom bots, image workflows, and smart data assistants — plus the n8n Flow in progress.",
     "exploreAboutTitle": "About & skills",
     "exploreAboutBody": "Career, education, and what I can deliver based on what I've already built.",
     "whoEyebrow": "Who I am",
@@ -67,6 +68,10 @@
   "projects": {
     "title": "Projects",
     "subtitle": "Thumbnails for quick scanning — full detail on demand.",
+    "tabAll": "Published",
+    "tabWorking": "Working on",
+    "workingBadge": "In progress",
+    "workingEmpty": "No projects in progress right now.",
     "empty": "No projects match these filters.",
     "category": "Category",
     "stack": "Stack",
@@ -92,8 +97,13 @@
     "live": "Live demo"
   },
   "estrela": {
-    "title": "Estrela Systems",
-    "subtitle": "Internal tools for Rede Estrela. No public link — the product is shown through screenshots.",
+    "title": "Systems",
+    "subtitle": "Internal systems in production. No public link — the product is shown through screenshots.",
+    "empty": "No systems published yet."
+  },
+  "systems": {
+    "title": "Systems",
+    "subtitle": "Internal systems in production. No public link — the product is shown through screenshots.",
     "empty": "No systems published yet."
   },
   "infra": {
@@ -296,13 +306,13 @@
         "title": "Internal product delivery",
         "body": "Useful systems that help operators and end users — from understanding the process to an interface that speeds up the day.",
         "items": [
-          "Useful web systems",
           "System integrations",
+          "Linx systems integration",
+          "ERP integration familiarity",
           "Operator-first UX",
           "Real-time dashboards",
           "Auth and permissions",
           "API documentation",
-          "Deploy and operations",
           "Process improvement"
         ]
       }

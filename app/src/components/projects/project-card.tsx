@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import ParallaxTilt from "react-parallax-tilt"
 import { motion } from "framer-motion"
-import { Shield } from "lucide-react"
+import { LoaderCircle, Shield } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { pickBilingual } from "@/lib/i18n-utils"
@@ -52,6 +52,12 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
+                {project.workingOn ? (
+                  <Badge className="gap-1 bg-amber-500/90 text-white hover:bg-amber-500/90">
+                    <LoaderCircle className="size-3" />
+                    {t("projects.workingBadge")}
+                  </Badge>
+                ) : null}
                 {showcaseOnly ? (
                   <Badge className="gap-1 bg-background/90 text-foreground hover:bg-background/90">
                     <Shield className="size-3" />

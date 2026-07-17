@@ -15,7 +15,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
 export const SEED_CATEGORIES: Category[] = [
   {
     id: "cat-estrela",
-    name: { pt: "Sistemas da Estrela", en: "Estrela Systems" },
+    name: { pt: "Sistemas", en: "Systems" },
     showcaseOnly: true,
   },
   {
@@ -126,6 +126,7 @@ export const SEED_TECHNOLOGIES: Technology[] = [
   tech("obsidian", "Obsidian"),
   tech("telegram", "Telegram Bot"),
   tech("openai", "IA / LLM"),
+  tech("n8n", "n8n"),
 ]
 
 const LEG = (file: string) => `/legacy-projects/${file}`
@@ -319,8 +320,8 @@ const ESTRELA_SYSTEMS: Project[] = [
       en: "Commission lookup — SIT Estrela",
     },
     shortDescription: {
-      pt: "Integração ERP → web: consulta comissão por produto (EAN ou código) e percentuais por cargo da loja.",
-      en: "ERP → web integration: look up product commission (EAN or code) and percentages by store role.",
+      pt: "Integração com sistemas Linx / ERP → web: consulta comissão por produto (EAN ou código) e percentuais por cargo da loja.",
+      en: "Linx systems / ERP → web integration: look up product commission (EAN or code) and percentages by store role.",
     },
     fullDescription: {
       pt: "Aplicação web do Setor de Inovação e Tecnologia (SIT Estrela) que consome dados do ERP para calcular e exibir a comissão da venda com base no produto. O consultor informa EAN ou código interno; o sistema retorna cadastro do item (descrição, fabricante, categoria, linha) e a grade de comissão por cargo — consultor de vendas, caixa, farmacêuticos e variações (MP, WhatsApp). Integração de dados de ERP em aplicação web enxuta, focada em consulta rápida no dia a dia da loja.",
@@ -450,8 +451,8 @@ const AUTO_PROJECTS: Project[] = [
       en: "Featured automation: fetch images by EAN from pre-registered pharmacies, approval queue, cataloged bank, and apply to e-commerce via OpenClaw.",
     },
     fullDescription: {
-      pt: "Sistema auxiliar do e-commerce Estrela — que não oferece integração/banco para consultas. Confronta o ERP Linx ITEC com o que falta no e-commerce, dispara buscas por EAN em sites de farmácia já pré-cadastrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon, etc.), baixa as imagens e abre fila de aprovação (lista + Swipe). Após aprovada, a imagem entra no banco organizado/catalogado (MinIO) e um extrator aplica automaticamente no e-commerce com OpenClaw. Automações periódicas buscam produtos novos e re-buscam gaps — garantindo que as fotos publicadas estejam corretas.",
-      en: "Helper system for Estrela e-commerce — which has no integration/DB for lookups. It cross-checks Linx ITEC ERP against what's missing online, runs EAN searches on pre-registered pharmacy sites (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon, etc.), downloads images, and opens an approval queue (list + Swipe). Once approved, images land in an organized catalog (MinIO) and an extractor applies them to e-commerce via OpenClaw. Periodic jobs hunt new products and re-search gaps — keeping published photos correct.",
+      pt: "Sistema auxiliar do e-commerce Estrela — que não oferece integração/banco para consultas. Confronta o ERP via integração com sistemas Linx com o que falta no e-commerce, dispara buscas por EAN em sites de farmácia já pré-cadastrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon, etc.), baixa as imagens e abre fila de aprovação (lista + Swipe). Após aprovada, a imagem entra no banco organizado/catalogado (MinIO) e um extrator aplica automaticamente no e-commerce com OpenClaw. Automações periódicas buscam produtos novos e re-buscam gaps — garantindo que as fotos publicadas estejam corretas.",
+      en: "Helper system for Estrela e-commerce — which has no integration/DB for lookups. It cross-checks the ERP through Linx systems integration against what's missing online, runs EAN searches on pre-registered pharmacy sites (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon, etc.), downloads images, and opens an approval queue (list + Swipe). Once approved, images land in an organized catalog (MinIO) and an extractor applies them to e-commerce via OpenClaw. Periodic jobs hunt new products and re-search gaps — keeping published photos correct.",
     },
     context: {
       pt: "Operação de e-commerce / SIT Estrela. Uso interno — sem link público; prints do dashboard, consulta, revisão e banco aprovado.",
@@ -658,8 +659,8 @@ const INFRA_PROJECTS: Project[] = [
       en: "IT CLI: installs local systems, standardizes PCs, self-tests, auto-heals POS (logs, COM, spooler), and runs remote repair from the panel.",
     },
     fullDescription: {
-      pt: "Central de TI em console (Instalador Estrela) para automação de serviços simples de infra. Instala e configura PDV, impressoras, TEF, ITEC, Orçamento, Depósito/WMS, DeskManager e convênios; formata a máquina aos padrões da empresa (apps, wallpaper, usuários, hostname, OS, Microsoft). Executa verificações sozinho e corrige para o padrão operacional. No PDV, bot de auto-cura na inicialização: limpa logs e temporários, detecta mudança de porta COM e reconfigura o caixa, identifica problemas conhecidos (spooler travado e outros que param o Windows/PDV). Quando o painel alerta e o caso já está mapeado, o reparo remoto inicia e o PC se corrige sozinho.",
-      en: "Console IT hub (Instalador Estrela) for simple infra service automation. Installs and configures POS, printers, TEF, ITEC, budgeting, warehouse/WMS, DeskManager, and insurers; formats PCs to company standards (apps, wallpaper, users, hostname, OS, Microsoft). Runs self-checks and heals back to the operational baseline. On POS boot, an auto-heal bot clears logs/temps, detects COM port changes and reconfigures the till, and recognizes known failures (stuck spooler and other Windows issues that stop the POS). When the panel alerts and the case is mapped, remote repair starts and the PC fixes itself.",
+      pt: "Central de TI em console (Instalador Estrela) para automação de serviços simples de infra. Instala e configura PDV, impressoras, TEF, módulos de integração com sistemas Linx, Orçamento, Depósito/WMS, DeskManager e convênios; formata a máquina aos padrões da empresa (apps, wallpaper, usuários, hostname, OS, Microsoft). Executa verificações sozinho e corrige para o padrão operacional. No PDV, bot de auto-cura na inicialização: limpa logs e temporários, detecta mudança de porta COM e reconfigura o caixa, identifica problemas conhecidos (spooler travado e outros que param o Windows/PDV). Quando o painel alerta e o caso já está mapeado, o reparo remoto inicia e o PC se corrige sozinho.",
+      en: "Console IT hub (Instalador Estrela) for simple infra service automation. Installs and configures POS, printers, TEF, Linx systems integration modules, budgeting, warehouse/WMS, DeskManager, and insurers; formats PCs to company standards (apps, wallpaper, users, hostname, OS, Microsoft). Runs self-checks and heals back to the operational baseline. On POS boot, an auto-heal bot clears logs/temps, detects COM port changes and reconfigures the till, and recognizes known failures (stuck spooler and other Windows issues that stop the POS). When the panel alerts and the case is mapped, remote repair starts and the PC fixes itself.",
     },
     context: {
       pt: "Operação de campo / CPD Rede Estrela. Uso interno — sem link público; prints do menu CLI (sistemas, máquina, impressoras).",
@@ -692,7 +693,51 @@ const INFRA_PROJECTS: Project[] = [
   },
 ]
 
+const WORKING_PROJECTS: Project[] = [
+  {
+    id: "proj-fluxo-n8n",
+    slug: "fluxo-n8n",
+    title: {
+      pt: "Fluxo n8n",
+      en: "n8n Flow",
+    },
+    shortDescription: {
+      pt: "Em andamento: automatizando processos com IA, com foco em soluções financeiras e fiscais para reduzir trabalho manual.",
+      en: "In progress: automating processes with AI, focused on financial and fiscal solutions to cut manual work.",
+    },
+    fullDescription: {
+      pt: "Projeto em andamento de automação de processos com n8n e IA. O objetivo é orquestrar fluxos que conectam sistemas, dados e decisões — com ênfase em soluções financeiras e fiscais — para reduzir retrabalho, erros e tempo operacional. Inclui integração com sistemas Linx e familiaridade com integrações ERP para puxar, validar e acionar informações no momento certo.",
+      en: "Ongoing process-automation project with n8n and AI. The goal is to orchestrate flows that connect systems, data, and decisions — with emphasis on financial and fiscal solutions — to reduce rework, errors, and operational time. It includes Linx systems integration and familiarity with ERP integrations to pull, validate, and trigger information at the right moment.",
+    },
+    context: {
+      pt: "Automação operacional em evolução — ainda sem demo pública; o portfólio registra o foco e o estágio do trabalho.",
+      en: "Operational automation in progress — no public demo yet; the portfolio records the focus and current stage.",
+    },
+    participation: {
+      pt: "Desenho e implementação dos fluxos n8n, integração com dados/ERP e aplicação de IA para apoiar decisões financeiras e fiscais.",
+      en: "Designing and implementing n8n flows, data/ERP integration, and applying AI to support financial and fiscal decisions.",
+    },
+    technicalChallenges: {
+      pt: "Orquestrar integrações confiáveis, tratar dados sensíveis financeiros/fiscais e usar IA com contexto operacional sem aumentar complexidade para o usuário.",
+      en: "Orchestrating reliable integrations, handling sensitive financial/fiscal data, and using AI with operational context without adding complexity for the user.",
+    },
+    categoryId: "cat-auto",
+    areaId: "area-auto",
+    creationDate: "2026-07-01",
+    technologyIds: ["n8n", "openai", "node", "python", "mssql", "rest"],
+    coverImageUrl: "/projects/fluxo-n8n.svg",
+    thumbnailUrl: "/projects/fluxo-n8n.svg",
+    galleryImages: ["/projects/fluxo-n8n.svg"],
+    featured: false,
+    published: true,
+    order: 0,
+    status: "published",
+    workingOn: true,
+  },
+]
+
 export const SEED_PROJECTS: Project[] = [
+  ...WORKING_PROJECTS,
   ...AUTO_PROJECTS,
   ...ESTRELA_SYSTEMS,
   ...INFRA_PROJECTS,

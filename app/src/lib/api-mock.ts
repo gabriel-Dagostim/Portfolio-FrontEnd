@@ -7,6 +7,8 @@ export type ProjectListFilters = {
   technologyId?: string
   search?: string
   includeUnpublished?: boolean
+  /** true = só em andamento; false/undefined = publicados que não são WIP */
+  workingOn?: boolean
 }
 
 export async function fetchPublishedProjects(
@@ -17,6 +19,11 @@ export async function fetchPublishedProjects(
   let list = projects.filter((p) => p.published && p.status === "published")
   if (filters.includeUnpublished) {
     list = [...projects]
+  }
+  if (filters.workingOn === true) {
+    list = list.filter((p) => Boolean(p.workingOn))
+  } else {
+    list = list.filter((p) => !p.workingOn)
   }
   if (filters.categoryId) {
     list = list.filter((p) => p.categoryId === filters.categoryId)

@@ -85,6 +85,11 @@ export function ProjectDetailPanel({
               {t("projects.internalSystem")}
             </Badge>
           ) : null}
+          {project.workingOn ? (
+            <Badge className="gap-1.5 bg-amber-500/15 text-amber-700 hover:bg-amber-500/20 dark:text-amber-300">
+              {t("projects.workingBadge")}
+            </Badge>
+          ) : null}
           {project.featured ? (
             <Badge variant="secondary" className="gap-1.5">
               <Sparkles className="size-3.5" />

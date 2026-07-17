@@ -45,7 +45,7 @@ export function ProjectDetailPage() {
 
   const back =
     category?.id === "cat-estrela"
-      ? { to: "/estrela", label: t("nav.estrela") }
+      ? { to: "/sistemas", label: t("nav.systems") }
       : category?.id === "cat-infra"
         ? { to: "/infra", label: t("nav.infra") }
         : category?.id === "cat-auto-ops"

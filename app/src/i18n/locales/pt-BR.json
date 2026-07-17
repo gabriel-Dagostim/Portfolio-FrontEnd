@@ -25,7 +25,8 @@
   "nav": {
     "home": "Início",
     "projects": "Projetos",
-    "estrela": "Sistemas Estrela",
+    "estrela": "Sistemas",
+    "systems": "Sistemas",
     "infra": "Infraestrutura",
     "automations": "Automações",
     "about": "Sobre",
@@ -41,20 +42,20 @@
     "ctaContact": "Falar comigo",
     "scroll": "Rolar",
     "featuredTitle": "Em destaque",
-    "featuredSubtitle": "Automação, infra, sistemas Estrela e freelas — abra qualquer card para ver as prints.",
+    "featuredSubtitle": "Automação, infra, sistemas e freelas — abra qualquer card para ver as prints.",
     "statProjects": "Projetos publicados",
-    "statEstrela": "Sistemas Estrela",
+    "statEstrela": "Sistemas",
     "statInfra": "Cases de infra",
     "statAuto": "Automações",
     "exploreEyebrow": "Navegar",
     "exploreTitle": "Onde olhar primeiro",
     "exploreSubtitle": "Atalhos para as áreas do portfólio — internos sem link público, com prints e contexto.",
-    "exploreEstrelaTitle": "Sistemas Estrela",
-    "exploreEstrelaBody": "Acompanhamento de vendas, validade, Auth, telefonia, comissão e mais — operação real da rede.",
+    "exploreEstrelaTitle": "Sistemas",
+    "exploreEstrelaBody": "Acompanhamento de vendas, validade, Auth, telefonia, comissão e mais — operação real em produção.",
     "exploreInfraTitle": "Infraestrutura",
     "exploreInfraBody": "Hub de monitoramento, SSH remoto, bots de operação e instaladores que mantêm ambientes saudáveis.",
     "exploreAutoTitle": "Automações",
-    "exploreAutoBody": "Bots sob medida, fluxos de imagem e assistentes de dados construídos em cima de processos reais.",
+    "exploreAutoBody": "Bots sob medida, fluxos de imagem e assistentes de dados — além do Fluxo n8n em andamento.",
     "exploreAboutTitle": "Sobre & skills",
     "exploreAboutBody": "Trajetória, formação e o que consigo entregar com base no que já construí.",
     "whoEyebrow": "Quem sou",
@@ -67,6 +68,10 @@
   "projects": {
     "title": "Projetos",
     "subtitle": "Miniaturas pensadas para navegação rápida — detalhes completos sob demanda.",
+    "tabAll": "Publicados",
+    "tabWorking": "Em andamento",
+    "workingBadge": "Em andamento",
+    "workingEmpty": "Nenhum projeto em andamento no momento.",
     "empty": "Nenhum projeto encontrado com esses filtros.",
     "category": "Categoria",
     "stack": "Stack",
@@ -92,8 +97,13 @@
     "live": "Demo / produção"
   },
   "estrela": {
-    "title": "Sistemas da Estrela",
-    "subtitle": "Ferramentas internas da Rede Estrela. Sem link público — o produto aparece nas prints.",
+    "title": "Sistemas",
+    "subtitle": "Sistemas internos em produção. Sem link público — o produto aparece nas prints.",
+    "empty": "Nenhum sistema publicado ainda."
+  },
+  "systems": {
+    "title": "Sistemas",
+    "subtitle": "Sistemas internos em produção. Sem link público — o produto aparece nas prints.",
     "empty": "Nenhum sistema publicado ainda."
   },
   "infra": {
@@ -296,13 +306,13 @@
         "title": "Entrega de produto interno",
         "body": "Sistemas úteis que auxiliam a vida do operador e do usuário final — do entendimento do processo à interface que acelera o dia a dia.",
         "items": [
-          "Sistemas web úteis",
           "Integrações entre sistemas",
+          "Integração com sistemas Linx",
+          "Familiaridade com ERP",
           "UX para o operador",
           "Painéis em tempo real",
           "Auth e permissões",
           "Documentação de API",
-          "Deploy e operação",
           "Melhoria de processos"
         ]
       }

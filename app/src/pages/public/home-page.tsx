@@ -32,7 +32,7 @@ const FEATURED_IDS = [
 
 const EXPLORE = [
   {
-    to: "/estrela",
+    to: "/sistemas",
     icon: Building2,
     titleKey: "home.exploreEstrelaTitle",
     bodyKey: "home.exploreEstrelaBody",
@@ -267,8 +267,8 @@ export function HomePage() {
                 <RouterLinkButton to="/projects" variant="outline">
                   {t("home.ctaProjects")}
                 </RouterLinkButton>
-                <RouterLinkButton to="/estrela" variant="ghost">
-                  {t("nav.estrela")}
+                <RouterLinkButton to="/sistemas" variant="ghost">
+                  {t("nav.systems")}
                 </RouterLinkButton>
               </div>
             </motion.div>

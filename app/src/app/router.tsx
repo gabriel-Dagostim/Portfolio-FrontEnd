@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { Navigate, createBrowserRouter } from "react-router-dom"
 import { PublicShell } from "@/components/layout/public-shell"
 import { AdminShell } from "@/components/layout/admin-shell"
 import { HomePage } from "@/pages/public/home-page"
@@ -9,7 +9,7 @@ import { SkillsPage } from "@/pages/public/skills-page"
 import { ContactPage } from "@/pages/public/contact-page"
 import { InfraPage } from "@/pages/public/infra-page"
 import { AutomationsPage } from "@/pages/public/automations-page"
-import { EstrelaSystemsPage } from "@/pages/public/estrela-systems-page"
+import { SystemsPage } from "@/pages/public/systems-page"
 import { AdminLoginPage } from "@/pages/admin/admin-login-page"
 import { AdminDashboardPage } from "@/pages/admin/admin-dashboard-page"
 import { AdminProjectsPage } from "@/pages/admin/admin-projects-page"
@@ -26,7 +26,8 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "projects", element: <ProjectsPage /> },
       { path: "projects/:slug", element: <ProjectDetailPage /> },
-      { path: "estrela", element: <EstrelaSystemsPage /> },
+      { path: "sistemas", element: <SystemsPage /> },
+      { path: "estrela", element: <Navigate to="/sistemas" replace /> },
       { path: "infra", element: <InfraPage /> },
       { path: "automations", element: <AutomationsPage /> },
       { path: "about", element: <AboutPage /> },

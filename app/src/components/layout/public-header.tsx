@@ -22,7 +22,7 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
 const NAV_LINKS = [
   { to: "/", end: true, key: "nav.home" },
   { to: "/projects", key: "nav.projects" },
-  { to: "/estrela", key: "nav.estrela" },
+  { to: "/sistemas", key: "nav.systems" },
   { to: "/infra", key: "nav.infra" },
   { to: "/automations", key: "nav.automations" },
   { to: "/about", key: "nav.about" },
