@@ -105,8 +105,8 @@ function ChannelCard({
       rel={external ? "noreferrer" : undefined}
       className={cn(
         "group block rounded-3xl border border-border/60 bg-card/55 p-5 backdrop-blur-md transition",
-        "hover:-translate-y-1 hover:border-primary/35 hover:bg-card/80 hover:shadow-md",
-        primary && "border-primary/30 bg-primary/5 sm:col-span-2",
+        "hover:-translate-y-0.5 hover:border-primary/35 hover:bg-card/80 hover:shadow-md",
+        primary && "border-primary/30 bg-primary/5",
         className,
       )}
     >
@@ -174,14 +174,12 @@ export function ContactPage() {
               title={t("contact.whatsapp")}
               detail={CONTACT.phoneDisplay}
               icon={MessageCircle}
-              className="-rotate-1"
             />
             <ChannelCard
               href={`mailto:${CONTACT.email}`}
               title={t("contact.emailCta")}
               detail={CONTACT.email}
               icon={Mail}
-              className="sm:translate-y-3 sm:rotate-1"
             />
             <ChannelCard
               href={CONTACT.githubUrl}
@@ -189,7 +187,6 @@ export function ContactPage() {
               title={t("contact.github")}
               detail="gabriel-Dagostim"
               icon={Code2}
-              className="sm:-rotate-1"
             />
             <ChannelCard
               href={CONTACT.linkedinUrl}
@@ -197,13 +194,12 @@ export function ContactPage() {
               title={t("contact.linkedin")}
               detail="gabriel-dagostim"
               icon={Briefcase}
-              className="sm:translate-y-2 sm:rotate-1"
             />
           </div>
         </SectionReveal>
 
         <SectionReveal className="mt-10" delay={0.12}>
-          <div className="mx-auto max-w-lg rounded-[1.75rem] border border-border/60 bg-card/50 p-6 text-center backdrop-blur-md sm:-rotate-[0.5deg] sm:p-8">
+          <div className="mx-auto max-w-lg rounded-[1.75rem] border border-border/60 bg-card/50 p-6 text-center backdrop-blur-md sm:p-8">
             <p className="text-sm text-muted-foreground">{t("contact.cvHint")}</p>
             <div className="mt-4 flex justify-center">
               <CvDownloadButton size="lg" />
