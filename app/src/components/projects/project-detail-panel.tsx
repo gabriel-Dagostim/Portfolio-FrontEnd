@@ -4,8 +4,10 @@ import { Badge } from "@/components/ui/badge"
 import { RouterLinkButton } from "@/components/ui/link-button"
 import { AnchorButton } from "@/components/ui/anchor-button"
 import { Separator } from "@/components/ui/separator"
+import { SectionReveal } from "@/components/motion/section-reveal"
 import { pickBilingual } from "@/lib/i18n-utils"
 import type { Category, Project, Technology } from "@/types"
+import { cn } from "@/lib/utils"
 
 type Props = {
   project: Project
@@ -25,6 +27,8 @@ export function ProjectDetailPanel({
 }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
+  const showcaseOnly = Boolean(category?.showcaseOnly)
+  const hasLinks = Boolean(project.githubUrl || project.liveUrl)
 
   return (
     <div className="space-y-6">
@@ -45,13 +49,15 @@ export function ProjectDetailPanel({
           ))}
         </div>
       </div>
-      <img
-        src={project.coverImageUrl}
-        alt=""
-        loading={loadGallery ? "eager" : "lazy"}
-        decoding="async"
-        className="aspect-video w-full rounded-lg object-cover"
-      />
+      {!showcaseOnly ? (
+        <img
+          src={project.coverImageUrl}
+          alt=""
+          loading={loadGallery ? "eager" : "lazy"}
+          decoding="async"
+          className="aspect-video w-full rounded-lg object-cover"
+        />
+      ) : null}
       <p className="text-sm leading-relaxed text-muted-foreground">
         {pickBilingual(project.fullDescription, lang)}
       </p>
@@ -85,17 +91,36 @@ export function ProjectDetailPanel({
       ) : null}
       {loadGallery && project.galleryImages.length > 0 ? (
         <div>
-          <h3 className="mb-3 text-sm font-semibold">{t("projects.gallery")}</h3>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {project.galleryImages.map((url) => (
-              <img
-                key={url}
-                src={url}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="rounded-md object-cover"
-              />
+          <h3 className="mb-2 text-sm font-semibold">{t("projects.gallery")}</h3>
+          {showcaseOnly ? (
+            <p className="mb-6 text-sm text-muted-foreground">
+              {t("projects.showcaseHint")}
+            </p>
+          ) : null}
+          <div
+            className={cn(
+              showcaseOnly
+                ? "space-y-10"
+                : "grid gap-3 sm:grid-cols-2",
+            )}
+          >
+            {project.galleryImages.map((url, i) => (
+              <SectionReveal key={url} delay={showcaseOnly ? i * 0.04 : 0}>
+                <figure className="overflow-hidden rounded-xl border border-border/70 bg-muted/30">
+                  <img
+                    src={url}
+                    alt=""
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    className={cn(
+                      "w-full",
+                      showcaseOnly
+                        ? "object-contain object-top"
+                        : "rounded-md object-cover",
+                    )}
+                  />
+                </figure>
+              </SectionReveal>
             ))}
           </div>
         </div>
@@ -105,7 +130,7 @@ export function ProjectDetailPanel({
         <RouterLinkButton to={`/projects/${project.slug}`}>
           {t("common.viewFullPage")}
         </RouterLinkButton>
-        {project.githubUrl ? (
+        {!showcaseOnly && project.githubUrl ? (
           <AnchorButton
             variant="outline"
             href={project.githubUrl}
@@ -116,7 +141,7 @@ export function ProjectDetailPanel({
             {t("projects.github")}
           </AnchorButton>
         ) : null}
-        {project.liveUrl ? (
+        {!showcaseOnly && project.liveUrl ? (
           <AnchorButton
             variant="outline"
             href={project.liveUrl}
@@ -126,6 +151,11 @@ export function ProjectDetailPanel({
             <ExternalLink className="mr-2 size-4" />
             {t("projects.live")}
           </AnchorButton>
+        ) : null}
+        {showcaseOnly && !hasLinks ? (
+          <p className="text-sm text-muted-foreground">
+            {t("projects.internalOnly")}
+          </p>
         ) : null}
       </div>
     </div>

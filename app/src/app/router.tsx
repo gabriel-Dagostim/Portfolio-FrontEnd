@@ -7,6 +7,9 @@ import { ProjectDetailPage } from "@/pages/public/project-detail-page"
 import { AboutPage } from "@/pages/public/about-page"
 import { SkillsPage } from "@/pages/public/skills-page"
 import { ContactPage } from "@/pages/public/contact-page"
+import { InfraPage } from "@/pages/public/infra-page"
+import { AutomationsPage } from "@/pages/public/automations-page"
+import { EstrelaSystemsPage } from "@/pages/public/estrela-systems-page"
 import { AdminLoginPage } from "@/pages/admin/admin-login-page"
 import { AdminDashboardPage } from "@/pages/admin/admin-dashboard-page"
 import { AdminProjectsPage } from "@/pages/admin/admin-projects-page"
@@ -23,6 +26,9 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "projects", element: <ProjectsPage /> },
       { path: "projects/:slug", element: <ProjectDetailPage /> },
+      { path: "estrela", element: <EstrelaSystemsPage /> },
+      { path: "infra", element: <InfraPage /> },
+      { path: "automations", element: <AutomationsPage /> },
       { path: "about", element: <AboutPage /> },
       { path: "skills", element: <SkillsPage /> },
       { path: "contact", element: <ContactPage /> },

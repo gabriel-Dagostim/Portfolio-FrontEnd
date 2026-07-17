@@ -37,6 +37,11 @@ export type Project = {
 export type Category = {
   id: string
   name: Bilingual
+  /**
+   * Projetos internos sem link público — o detalhe é a galeria
+   * (prints em sequência conforme o visitante rola a página).
+   */
+  showcaseOnly?: boolean
 }
 
 export type AreaOfWork = {

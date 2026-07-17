@@ -43,17 +43,32 @@ export function ProjectDetailPage() {
   const area = areas.find((a) => a.id === project.areaId)
   const techs = technologies.filter((x) => project.technologyIds.includes(x.id))
 
+  const back =
+    category?.id === "cat-estrela"
+      ? { to: "/estrela", label: t("nav.estrela") }
+      : category?.id === "cat-infra"
+        ? { to: "/infra", label: t("nav.infra") }
+        : category?.id === "cat-auto-ops"
+          ? { to: "/automations", label: t("nav.automations") }
+          : { to: "/projects", label: t("nav.projects") }
+
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <div
+      className={
+        category?.showcaseOnly
+          ? "mx-auto max-w-5xl px-4 py-10 sm:px-6"
+          : "mx-auto max-w-3xl px-4 py-10 sm:px-6"
+      }
+    >
       <Link
-        to="/projects"
+        to={back.to}
         className={cn(
           buttonVariants({ variant: "ghost" }),
           "mb-8 inline-flex gap-2 px-0",
         )}
       >
         <ArrowLeft className="size-4" />
-        {t("nav.projects")}
+        {back.label}
       </Link>
       <ProjectDetailPanel
         project={project}

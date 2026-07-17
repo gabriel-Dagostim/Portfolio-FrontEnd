@@ -96,7 +96,10 @@ export function HeroSection() {
             <RouterLinkButton to="/projects" size="lg">
               {t("home.ctaProjects")}
             </RouterLinkButton>
-            <RouterLinkButton to="/contact" size="lg" variant="outline">
+            <RouterLinkButton to="/about" size="lg" variant="outline">
+              {t("home.ctaAbout")}
+            </RouterLinkButton>
+            <RouterLinkButton to="/contact" size="lg" variant="ghost">
               {t("home.ctaContact")}
             </RouterLinkButton>
           </motion.div>
