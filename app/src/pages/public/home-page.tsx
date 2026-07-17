@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom"
 import { HeroSection } from "@/components/home/hero-section"
 import { HomeTechBackdrop } from "@/components/home/home-tech-backdrop"
+import { HomeDevFlowSection } from "@/components/home/home-dev-flow-section"
 import { SectionReveal } from "@/components/motion/section-reveal"
 import { ProjectCard } from "@/components/projects/project-card"
 import { ProjectDetailSheet } from "@/components/projects/project-detail-sheet"
@@ -116,9 +117,9 @@ export function HomePage() {
         <HeroSection />
 
         {/* Snapshot / atalhos úteis */}
-        <section className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
+        <section className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 md:px-8">
           <SectionReveal>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
               {[
                 {
                   label: t("home.statProjects"),
@@ -136,10 +137,15 @@ export function HomePage() {
                   label: t("home.statAuto"),
                   value: String(stats.auto),
                 },
-              ].map((s) => (
+              ].map((s, i) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl border border-border/70 bg-card/50 px-4 py-3 backdrop-blur-sm"
+                  className={cn(
+                    "rounded-2xl border border-border/70 bg-card/50 px-4 py-3 backdrop-blur-sm",
+                    i === 1 && "sm:translate-y-2",
+                    i === 2 && "lg:-translate-y-1",
+                    i === 3 && "sm:translate-y-3 lg:translate-y-2",
+                  )}
                 >
                   <p className="text-2xl font-semibold tracking-tight">
                     {s.value}
@@ -152,23 +158,23 @@ export function HomePage() {
         </section>
 
         {/* Explorar áreas */}
-        <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+        <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:max-w-7xl">
           <SectionReveal>
-            <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
+            <div className="mb-10 flex flex-col gap-2 sm:-ml-3 sm:flex-row sm:items-end sm:justify-between md:-ml-6">
+              <div className="max-w-xl">
                 <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
                   {t("home.exploreEyebrow")}
                 </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
                   {t("home.exploreTitle")}
                 </h2>
-                <p className="mt-2 max-w-xl text-muted-foreground">
+                <p className="mt-3 max-w-lg text-muted-foreground">
                   {t("home.exploreSubtitle")}
                 </p>
               </div>
             </div>
           </SectionReveal>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
             {EXPLORE.map((item, i) => {
               const Icon = item.icon
               return (
@@ -176,8 +182,10 @@ export function HomePage() {
                   <Link
                     to={item.to}
                     className={cn(
-                      "group flex h-full gap-4 rounded-3xl border border-border/70 bg-card/50 p-5 backdrop-blur-sm",
+                      "group flex h-full gap-4 rounded-3xl border border-border/70 bg-card/50 p-5 backdrop-blur-sm sm:p-6",
                       "transition-all hover:border-primary/35 hover:bg-card hover:shadow-md",
+                      i % 2 === 1 && "sm:translate-y-4",
+                      i === 2 && "lg:-translate-y-2",
                     )}
                   >
                     <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary transition-colors group-hover:bg-primary/18">
@@ -200,6 +208,8 @@ export function HomePage() {
             })}
           </div>
         </section>
+
+        <HomeDevFlowSection />
 
         {/* Quem sou — faixa compacta */}
         <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
@@ -248,22 +258,22 @@ export function HomePage() {
         {/* Destaques — vários projetos */}
         <section
           ref={featuredRef}
-          className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20"
+          className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20"
         >
           <SectionReveal>
             <motion.div
               style={{ y: headerShift }}
-              className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+              className="mb-10 flex flex-col gap-4 sm:-ml-4 sm:flex-row sm:items-end sm:justify-between md:-ml-6"
             >
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <div className="max-w-xl">
+                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
                   {t("home.featuredTitle")}
                 </h2>
-                <p className="mt-2 max-w-xl text-muted-foreground">
+                <p className="mt-3 max-w-lg text-muted-foreground">
                   {t("home.featuredSubtitle")}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 sm:translate-x-2">
                 <RouterLinkButton to="/projects" variant="outline">
                   {t("home.ctaProjects")}
                 </RouterLinkButton>
@@ -276,7 +286,7 @@ export function HomePage() {
 
           <motion.div
             style={{ y: featuredParallaxY }}
-            className="grid gap-6 will-change-transform sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 will-change-transform sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
           >
             {featuredList.map((p) => (
               <ProjectCard

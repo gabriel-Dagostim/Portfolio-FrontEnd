@@ -32,6 +32,7 @@ export const router = createBrowserRouter([
       { path: "automations", element: <AutomationsPage /> },
       { path: "about", element: <AboutPage /> },
       { path: "skills", element: <SkillsPage /> },
+      { path: "flow", element: <Navigate to="/#dev-flow" replace /> },
       { path: "contact", element: <ContactPage /> },
     ],
   },

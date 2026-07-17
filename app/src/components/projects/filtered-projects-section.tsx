@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useState, type ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 import { useQuery } from "@tanstack/react-query"
 import { SectionReveal } from "@/components/motion/section-reveal"
@@ -11,10 +11,9 @@ type Props = {
   titleKey: string
   subtitleKey: string
   emptyKey: string
-  /** Filtra por categoryId (ex.: cat-estrela, cat-auto-ops, cat-infra). */
   categoryId?: string
-  /** Filtra por areaId (ex.: area-infra). */
   areaId?: string
+  atmosphere?: ReactNode
 }
 
 export function FilteredProjectsSection({
@@ -23,6 +22,7 @@ export function FilteredProjectsSection({
   emptyKey,
   categoryId,
   areaId,
+  atmosphere,
 }: Props) {
   const { t } = useTranslation()
   const { projects, categories, areas, technologies } = usePortfolioStore()
@@ -58,44 +58,51 @@ export function FilteredProjectsSection({
     : []
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <SectionReveal>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t(titleKey)}
-        </h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground">{t(subtitleKey)}</p>
-      </SectionReveal>
+    <div className="relative overflow-hidden">
+      {atmosphere}
+      <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+        <SectionReveal>
+          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            {t(titleKey)}
+          </h1>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            {t(subtitleKey)}
+          </p>
+        </SectionReveal>
 
-      {isLoading ? (
-        <p className="mt-12 text-center text-muted-foreground">
-          {t("common.loading")}
-        </p>
-      ) : list.length === 0 ? (
-        <p className="mt-12 text-center text-muted-foreground">{t(emptyKey)}</p>
-      ) : (
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((p) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              category={categories.find((c) => c.id === p.categoryId)}
-              techs={technologies.filter((x) => p.technologyIds.includes(x.id))}
-              onOpen={() => setSheetId(p.id)}
-            />
-          ))}
-        </div>
-      )}
+        {isLoading ? (
+          <p className="mt-12 text-center text-muted-foreground">
+            {t("common.loading")}
+          </p>
+        ) : list.length === 0 ? (
+          <p className="mt-12 text-center text-muted-foreground">{t(emptyKey)}</p>
+        ) : (
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {list.map((p) => (
+              <ProjectCard
+                key={p.id}
+                project={p}
+                category={categories.find((c) => c.id === p.categoryId)}
+                techs={technologies.filter((x) =>
+                  p.technologyIds.includes(x.id),
+                )}
+                onOpen={() => setSheetId(p.id)}
+              />
+            ))}
+          </div>
+        )}
 
-      <ProjectDetailSheet
-        project={sheetProject}
-        open={Boolean(sheetProject)}
-        onOpenChange={(o) => {
-          if (!o) setSheetId(null)
-        }}
-        category={sheetCategory}
-        area={sheetArea}
-        techs={sheetTechs}
-      />
+        <ProjectDetailSheet
+          project={sheetProject}
+          open={Boolean(sheetProject)}
+          onOpenChange={(o) => {
+            if (!o) setSheetId(null)
+          }}
+          category={sheetCategory}
+          area={sheetArea}
+          techs={sheetTechs}
+        />
+      </div>
     </div>
   )
 }

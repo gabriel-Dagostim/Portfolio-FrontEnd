@@ -12,13 +12,22 @@ type Props = {
   category?: Category
   techs: Technology[]
   onOpen: () => void
+  /** Larger cards — projects index page only */
+  size?: "default" | "lg"
 }
 
-export function ProjectCard({ project, category, techs, onOpen }: Props) {
+export function ProjectCard({
+  project,
+  category,
+  techs,
+  onOpen,
+  size = "default",
+}: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
   const year = project.creationDate.slice(0, 4)
   const showcaseOnly = Boolean(category?.showcaseOnly)
+  const large = size === "lg"
 
   return (
     <motion.div
@@ -27,6 +36,7 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-5%" }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="h-full"
     >
       <ParallaxTilt
         tiltMaxAngleX={5}
@@ -34,21 +44,27 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
         scale={1.02}
         transitionSpeed={1200}
         glareEnable={false}
-        className="rounded-xl"
+        className="h-full rounded-xl"
       >
         <button
           type="button"
           onClick={onOpen}
-          className="block w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex h-full w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <Card className="overflow-hidden border-border/80 bg-card/80 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md">
-            <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
+          <Card className="flex h-full w-full flex-col overflow-hidden border-border/80 bg-card/80 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md">
+            <div
+              className={
+                large
+                  ? "relative aspect-[16/11] w-full shrink-0 overflow-hidden bg-muted/30"
+                  : "relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted/30"
+              }
+            >
               <img
                 src={project.thumbnailUrl}
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
@@ -71,12 +87,24 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
                 </Badge>
               ) : null}
             </div>
-            <CardContent className="space-y-3 p-4">
+            <CardContent
+              className={
+                large
+                  ? "flex flex-1 flex-col gap-3.5 p-5"
+                  : "flex flex-1 flex-col gap-3 p-4"
+              }
+            >
               <div className="flex items-start justify-between gap-2">
-                <h3 className="text-lg font-semibold leading-tight tracking-tight">
+                <h3
+                  className={
+                    large
+                      ? "line-clamp-2 min-h-[3rem] text-xl font-semibold leading-tight tracking-tight"
+                      : "line-clamp-2 min-h-[2.75rem] text-lg font-semibold leading-tight tracking-tight"
+                  }
+                >
                   {pickBilingual(project.title, lang)}
                 </h3>
-                <span className="shrink-0 text-xs text-muted-foreground">
+                <span className="shrink-0 pt-1 text-xs text-muted-foreground">
                   {year}
                 </span>
               </div>
@@ -84,11 +112,15 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
                 <p className="text-xs font-medium uppercase tracking-wider text-primary">
                   {pickBilingual(category.name, lang)}
                 </p>
-              ) : null}
-              <p className="line-clamp-2 text-sm text-muted-foreground">
+              ) : (
+                <p className="text-xs font-medium uppercase tracking-wider text-transparent">
+                  —
+                </p>
+              )}
+              <p className="line-clamp-2 min-h-[2.5rem] flex-1 text-sm text-muted-foreground sm:leading-6">
                 {pickBilingual(project.shortDescription, lang)}
               </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="mt-auto flex min-h-[1.75rem] flex-wrap gap-1.5">
                 {techs.slice(0, 4).map((tech) => (
                   <Badge
                     key={tech.id}

@@ -1,6 +1,6 @@
 ﻿/**
  * Gera CVs PT-BR e EN em PDF para o portfólio.
- * Uso: node scripts/generate-cv.cjs
+ * Uso: node scripts/generate-cv.cjs  (ou npm run generate:cv)
  */
 const PDFDocument = require("../app/node_modules/pdfkit")
 const fs = require("fs")
@@ -11,11 +11,21 @@ const FONT_REG = "C:/Windows/Fonts/arial.ttf"
 const FONT_BOLD = "C:/Windows/Fonts/arialbd.ttf"
 const FONT_ITALIC = "C:/Windows/Fonts/ariali.ttf"
 
+const COLORS = {
+  ink: "#0f172a",
+  inkSoft: "#1e293b",
+  muted: "#64748b",
+  body: "#334155",
+  line: "#e2e8f0",
+  accent: "#6d28d9",
+  accentSoft: "#f5f3ff",
+  chip: "#f1f5f9",
+}
+
 const CONTACT = {
   name: "Gabriel Henrique Dagostim",
   email: "profissional.gabrieldagostim@outlook.com",
   phone: "+55 (45) 98412-7626",
-  location: "Cascavel, Paraná — Brasil",
   linkedin: "linkedin.com/in/gabriel-dagostim",
   github: "github.com/gabriel-Dagostim",
   portfolio: "gabrieldagostim.com",
@@ -23,37 +33,46 @@ const CONTACT = {
 
 const CONTENT = {
   "pt-BR": {
-    role: "Infraestrutura, desenvolvimento web e automações",
+    role: "Full stack · APIs · dados com IA · infraestrutura",
     file: "Gabriel-Dagostim-CV-pt-BR.pdf",
     location: "Cascavel, Paraná — Brasil",
-    summaryTitle: "Perfil profissional",
+    summaryTitle: "Perfil",
     summary:
-      "Desenvolvo sistemas web, integrações, automações e organização de infraestrutura com foco em facilitar a vida de operadores e usuários finais. Atuo na interseção entre desenvolvimento e operação: painéis, bots, auth, monitoramento e melhorias de processo em produção.",
-    experienceTitle: "Experiência",
-    educationTitle: "Formação",
-    skillsTitle: "Competências técnicas",
+      "Desenvolvo frontend e backend (APIs), análise de dados com IA, integrações, automações e organização de infraestrutura. Atuo na interseção entre produto e operação: sistemas internos, painéis, bots e melhorias de processo que a operação usa de verdade.",
+    experienceTitle: "Experiência profissional",
+    educationTitle: "Formação acadêmica",
+    skillsTitle: "Competências",
     awardsTitle: "Premiações e competições",
-    coursesTitle: "Cursos e atividades complementares",
+    coursesTitle: "Cursos e atividades",
     languagesTitle: "Idiomas",
+    contactLabel: "Contato",
     experiences: [
       {
         title: "Infraestrutura & Desenvolvedor Sênior",
         org: "Farmácias Estrela",
         period: "Fev 2025 — Atual",
         bullets: [
-          "Desenvolvimento de sistemas internos web, integrações e automações para a operação da rede.",
-          "Criação de painéis, bots, autenticação centralizada, monitoramento e ferramentas de TI.",
-          "Organização estrutural de infra e melhoria de processos com foco em uso real no dia a dia.",
+          "APIs e backends, sistemas web internos, integrações e automações para a operação da rede.",
+          "Análise de dados com IA, painéis, bots, auth centralizado, monitoramento e ferramentas de TI.",
+          "Organização de infra e melhoria de processos com foco em uso real no dia a dia.",
         ],
       },
       {
-        title: "Analista / Suporte a usuários — Datacenter",
+        title: "Analista / Suporte — Datacenter",
         org: "Unioeste",
         period: "Nov 2023 — Fev 2025",
         bullets: [
-          "Operação de datacenter: disponibilidade de sistemas, suporte técnico interno e segurança.",
-          "Trabalho com redes, Active Directory e otimização do ambiente institucional.",
-          "Base prática de infraestrutura que sustenta o trabalho atual em sistemas e automação.",
+          "Operação de datacenter: disponibilidade, suporte técnico interno e segurança.",
+          "Redes, Active Directory e otimização do ambiente institucional.",
+        ],
+      },
+      {
+        title: "Social Media",
+        org: "EletroLimp",
+        period: "Jan 2023 — Nov 2023",
+        bullets: [
+          "Gestão de redes, metodologia de posts, impulsionamento e CRM de marketing.",
+          "Componentes visuais para site e sistema.",
         ],
       },
       {
@@ -61,16 +80,7 @@ const CONTENT = {
         org: "Workana",
         period: "Set 2022 — Ago 2023",
         bullets: [
-          "Prototipação e interfaces em Figma para projetos de clientes.",
-          "Experiência prática em UI/UX aplicada a produtos digitais.",
-        ],
-      },
-      {
-        title: "Social Media",
-        org: "EletroLimp",
-        period: "Abr 2023 — Set 2023",
-        bullets: [
-          "Gestão de contas digitais e produção regular de conteúdo.",
+          "Freelas de UI/UX, textos e posts; prototipação em Figma para clientes.",
         ],
       },
     ],
@@ -88,63 +98,89 @@ const CONTENT = {
       {
         title: "Ensino Médio",
         org: "Colégio Eleodoro Ebano Pereira",
-        period: "Concluído em 2019",
+        period: "2019",
       },
     ],
     skills: [
-      "Frontend: TypeScript, React, Vite, Next.js, Tailwind CSS, UI/UX, Figma",
-      "Backend: Node.js, Python, REST APIs, JWT, SQL Server, PostgreSQL, MongoDB",
-      "Infra: Windows Server, Active Directory, Linux, Docker, redes, PowerShell",
-      "Automação & IA: bots customizados, integrações, NL→SQL, estrutura de conhecimento para LLMs locais",
+      {
+        label: "Frontend",
+        value: "TypeScript, React, Vite, Next.js, Tailwind CSS, UI/UX, Figma",
+      },
+      {
+        label: "Backend & APIs",
+        value: "Node.js, Python, REST, JWT, SQL Server, PostgreSQL, MongoDB",
+      },
+      {
+        label: "Dados & IA",
+        value: "SQL avançado, NL→SQL, LLMs locais, cruzamento de dados, relatórios",
+      },
+      {
+        label: "Infra & ops",
+        value: "Windows Server, AD, Linux, Docker, Coolify, redes, PowerShell",
+      },
+      {
+        label: "Automação",
+        value: "Bots customizados, integrações, webhooks, jobs e fluxos operacionais",
+      },
     ],
     awards: [
-      "Hackathons pela FAG — Show Rural Digital com pódios consecutivos (incluindo 3º lugar em 2024 e participação em 2023).",
-      "Feiras de robótica pela Eureka — credencial FEBRACE 2021.",
-      "Infomatrix 2020 — credencial para feira no México; Infomatrix Guadalajara-México 2021.",
-      "3º lugar Fenecit 2020; participações em FETEC-SP e Ciência Jovem (Eureka).",
-      "Código Kid — 1 ano e 9 meses em programação de dispositivos eletrônicos e Arduino.",
+      "Hackathons FAG — Show Rural Digital (pódios, incl. 3º lugar 2024).",
+      "Eureka — FEBRACE 2021; Infomatrix México 2020/2021; 3º Fenecit 2020.",
+      "Código Kid — 1a9m em programação de dispositivos eletrônicos e Arduino.",
     ],
     courses: [
-      "Programação de dispositivos eletrônicos — Código Kid (1 ano e 9 meses)",
-      "Feiras de robótica e prototipagem — Eureka",
-      "Lógica de programação, informática e hardware — Harpa Informática",
+      "Programação eletrônica — Código Kid (1a9m)",
+      "Feiras de robótica — Eureka",
+      "Lógica, informática e hardware — Harpa Informática",
       "Inglês — New York School (desde fev/2023)",
-      "Introdução à Informática — SEST SENAT (EAD); Gestão de finanças",
+      "Introdução à Informática — SEST SENAT; Gestão de finanças",
     ],
-    languages: ["Português — nativo", "Inglês — intermediário"],
+    languages: [
+      { name: "Português", level: "Nativo" },
+      { name: "Inglês", level: "Intermediário" },
+    ],
   },
   en: {
-    role: "Infrastructure, web development & automation",
+    role: "Full stack · APIs · data with AI · infrastructure",
     file: "Gabriel-Dagostim-CV-en.pdf",
     location: "Cascavel, Paraná — Brazil",
-    summaryTitle: "Professional profile",
+    summaryTitle: "Profile",
     summary:
-      "I build web systems, integrations, automations, and infrastructure organization focused on making life easier for operators and end users. I work where development meets operations: dashboards, bots, auth, monitoring, and process improvements in production.",
-    experienceTitle: "Experience",
+      "I build frontend and backend (APIs), data analysis with AI, integrations, automations, and infrastructure. I work where product meets operations: internal systems, dashboards, bots, and process improvements people actually use.",
+    experienceTitle: "Professional experience",
     educationTitle: "Education",
-    skillsTitle: "Technical skills",
+    skillsTitle: "Skills",
     awardsTitle: "Awards & competitions",
-    coursesTitle: "Courses & complementary activities",
+    coursesTitle: "Courses & activities",
     languagesTitle: "Languages",
+    contactLabel: "Contact",
     experiences: [
       {
         title: "Infrastructure & Senior Developer",
         org: "Farmácias Estrela",
         period: "Feb 2025 — Present",
         bullets: [
-          "Building internal web systems, integrations, and automations for network operations.",
-          "Dashboards, bots, centralized authentication, monitoring, and IT tooling.",
-          "Infrastructure organization and process improvement focused on real day-to-day use.",
+          "Backend APIs, internal web systems, integrations, and automations for network operations.",
+          "Data analysis with AI, dashboards, bots, central auth, monitoring, and IT tooling.",
+          "Infrastructure organization and process improvement for day-to-day use.",
         ],
       },
       {
-        title: "Analyst / User Support — Data Center",
+        title: "Analyst / Support — Data Center",
         org: "Unioeste",
         period: "Nov 2023 — Feb 2025",
         bullets: [
-          "Data center operations: system uptime, internal technical support, and security.",
+          "Data center ops: uptime, internal support, and security.",
           "Networking, Active Directory, and institutional environment optimization.",
-          "Hands-on infrastructure foundation that supports current systems and automation work.",
+        ],
+      },
+      {
+        title: "Social Media",
+        org: "EletroLimp",
+        period: "Jan 2023 — Nov 2023",
+        bullets: [
+          "Social ops, posting methodology, boosting tools, and marketing CRM.",
+          "Visual components for website and system.",
         ],
       },
       {
@@ -152,16 +188,7 @@ const CONTENT = {
         org: "Workana",
         period: "Sep 2022 — Aug 2023",
         bullets: [
-          "Figma prototyping and interfaces for client projects.",
-          "Practical UI/UX experience applied to digital products.",
-        ],
-      },
-      {
-        title: "Social Media",
-        org: "EletroLimp",
-        period: "Apr 2023 — Sep 2023",
-        bullets: [
-          "Digital account management and regular content production.",
+          "UI/UX freelancing, copy, and posts; Figma prototyping for clients.",
         ],
       },
     ],
@@ -179,30 +206,47 @@ const CONTENT = {
       {
         title: "High School",
         org: "Colégio Eleodoro Ebano Pereira",
-        period: "Completed in 2019",
+        period: "2019",
       },
     ],
     skills: [
-      "Frontend: TypeScript, React, Vite, Next.js, Tailwind CSS, UI/UX, Figma",
-      "Backend: Node.js, Python, REST APIs, JWT, SQL Server, PostgreSQL, MongoDB",
-      "Infra: Windows Server, Active Directory, Linux, Docker, networking, PowerShell",
-      "Automation & AI: custom bots, integrations, NL→SQL, knowledge structures for local LLMs",
+      {
+        label: "Frontend",
+        value: "TypeScript, React, Vite, Next.js, Tailwind CSS, UI/UX, Figma",
+      },
+      {
+        label: "Backend & APIs",
+        value: "Node.js, Python, REST, JWT, SQL Server, PostgreSQL, MongoDB",
+      },
+      {
+        label: "Data & AI",
+        value: "Advanced SQL, NL→SQL, local LLMs, data joins, reporting",
+      },
+      {
+        label: "Infra & ops",
+        value: "Windows Server, AD, Linux, Docker, Coolify, networking, PowerShell",
+      },
+      {
+        label: "Automation",
+        value: "Custom bots, integrations, webhooks, jobs, and operational flows",
+      },
     ],
     awards: [
-      "Hackathons through FAG — Show Rural Digital consecutive podiums (including 3rd place in 2024 and 2023 participation).",
-      "Robotics fairs through Eureka — FEBRACE 2021 credential.",
-      "Infomatrix 2020 — credential for Mexico fair; Infomatrix Guadalajara-Mexico 2021.",
-      "3rd place Fenecit 2020; FETEC-SP and Ciência Jovem participations (Eureka).",
-      "Código Kid — 1 year 9 months in electronic device programming and Arduino.",
+      "FAG hackathons — Show Rural Digital (podiums, incl. 3rd place 2024).",
+      "Eureka — FEBRACE 2021; Infomatrix Mexico 2020/2021; 3rd Fenecit 2020.",
+      "Código Kid — 1y9m electronic device programming and Arduino.",
     ],
     courses: [
-      "Electronic device programming — Código Kid (1 year 9 months)",
-      "Robotics fairs and prototyping — Eureka",
-      "Programming logic, IT and hardware — Harpa Informática",
+      "Electronic programming — Código Kid (1y9m)",
+      "Robotics fairs — Eureka",
+      "Logic, IT and hardware — Harpa Informática",
       "English — New York School (since Feb/2023)",
-      "Introduction to Computing — SEST SENAT (online); Finance management",
+      "Intro to Computing — SEST SENAT; Finance management",
     ],
-    languages: ["Portuguese — native", "English — intermediate"],
+    languages: [
+      { name: "Portuguese", level: "Native" },
+      { name: "English", level: "Intermediate" },
+    ],
   },
 }
 
@@ -211,7 +255,7 @@ function drawCv(locale) {
   const outPath = path.join(OUT_DIR, data.file)
   const doc = new PDFDocument({
     size: "A4",
-    margins: { top: 48, bottom: 48, left: 52, right: 52 },
+    margins: { top: 42, bottom: 42, left: 48, right: 48 },
     info: {
       Title: `${CONTACT.name} — CV (${locale})`,
       Author: CONTACT.name,
@@ -225,178 +269,233 @@ function drawCv(locale) {
   const stream = fs.createWriteStream(outPath)
   doc.pipe(stream)
 
+  const left = doc.page.margins.left
   const pageWidth =
     doc.page.width - doc.page.margins.left - doc.page.margins.right
   let y = doc.page.margins.top
 
-  const ensureSpace = (need = 60) => {
+  const ensureSpace = (need = 56) => {
     if (y + need > doc.page.height - doc.page.margins.bottom) {
       doc.addPage()
       y = doc.page.margins.top
     }
   }
 
-  const section = (title) => {
-    ensureSpace(36)
-    y += 10
+  const sectionTitle = (title) => {
+    ensureSpace(40)
+    y += 14
     doc
       .font("BodyBold")
-      .fontSize(11)
-      .fillColor("#111827")
-      .text(title.toUpperCase(), doc.page.margins.left, y)
-    y = doc.y + 4
+      .fontSize(12)
+      .fillColor(COLORS.accent)
+      .text(title.toUpperCase(), left, y, {
+        width: pageWidth,
+        characterSpacing: 0.6,
+      })
+    y = doc.y + 5
     doc
-      .moveTo(doc.page.margins.left, y)
-      .lineTo(doc.page.margins.left + pageWidth, y)
-      .strokeColor("#d1d5db")
+      .moveTo(left, y)
+      .lineTo(left + pageWidth, y)
+      .strokeColor(COLORS.line)
       .lineWidth(1)
       .stroke()
-    y += 10
+    // accent underline
+    doc
+      .moveTo(left, y)
+      .lineTo(left + 42, y)
+      .strokeColor(COLORS.accent)
+      .lineWidth(2.2)
+      .stroke()
+    y += 12
   }
 
+  // Accent bar on left of first page header
+  doc
+    .rect(0, 0, 8, 118)
+    .fill(COLORS.accent)
+
+  // Name
   doc
     .font("BodyBold")
-    .fontSize(20)
-    .fillColor("#0f172a")
-    .text(CONTACT.name, doc.page.margins.left, y, { width: pageWidth })
-  y = doc.y + 4
+    .fontSize(22)
+    .fillColor(COLORS.ink)
+    .text(CONTACT.name, left, y, { width: pageWidth })
+  y = doc.y + 5
+
+  // Role
   doc
     .font("Body")
     .fontSize(11)
-    .fillColor("#334155")
-    .text(data.role, { width: pageWidth })
-  y = doc.y + 8
-  doc
-    .fontSize(9)
-    .fillColor("#475569")
-    .text(
-      [
-        data.location,
-        CONTACT.email,
-        CONTACT.phone,
-        CONTACT.linkedin,
-        CONTACT.github,
-        CONTACT.portfolio,
-      ].join("  ·  "),
-      { width: pageWidth, lineGap: 2 },
-    )
-  y = doc.y + 6
+    .fillColor(COLORS.inkSoft)
+    .text(data.role, left, y, { width: pageWidth })
+  y = doc.y + 10
 
-  section(data.summaryTitle)
+  // Contact strip
+  doc.roundedRect(left, y, pageWidth, 36, 6).fill(COLORS.accentSoft)
   doc
     .font("Body")
-    .fontSize(9.5)
-    .fillColor("#1f2937")
-    .text(data.summary, doc.page.margins.left, y, {
+    .fontSize(8.5)
+    .fillColor(COLORS.body)
+    .text(
+      `${data.location}   ·   ${CONTACT.email}   ·   ${CONTACT.phone}`,
+      left + 10,
+      y + 7,
+      { width: pageWidth - 20, lineGap: 2 },
+    )
+  doc.text(
+    `${CONTACT.linkedin}   ·   ${CONTACT.github}   ·   ${CONTACT.portfolio}`,
+    left + 10,
+    y + 20,
+    { width: pageWidth - 20 },
+  )
+  y += 48
+
+  // Profile
+  sectionTitle(data.summaryTitle)
+  doc
+    .font("Body")
+    .fontSize(10)
+    .fillColor(COLORS.body)
+    .text(data.summary, left, y, {
       width: pageWidth,
       align: "justify",
-      lineGap: 1.5,
+      lineGap: 2.5,
     })
-  y = doc.y + 4
+  y = doc.y + 2
 
-  section(data.experienceTitle)
+  // Experience
+  sectionTitle(data.experienceTitle)
   for (const job of data.experiences) {
-    ensureSpace(70)
+    ensureSpace(78)
     doc
       .font("BodyBold")
-      .fontSize(10)
-      .fillColor("#0f172a")
-      .text(job.title, doc.page.margins.left, y, {
-        width: pageWidth * 0.68,
-      })
-    const titleY = doc.y
+      .fontSize(11)
+      .fillColor(COLORS.ink)
+      .text(job.title, left, y, { width: pageWidth * 0.66 })
+    const titleBottom = doc.y
     doc
-      .font("Body")
+      .font("BodyBold")
       .fontSize(9)
-      .fillColor("#64748b")
-      .text(job.period, doc.page.margins.left + pageWidth * 0.68, y, {
-        width: pageWidth * 0.32,
+      .fillColor(COLORS.accent)
+      .text(job.period, left + pageWidth * 0.66, y, {
+        width: pageWidth * 0.34,
         align: "right",
       })
-    y = Math.max(titleY, doc.y) + 1
+    y = Math.max(titleBottom, doc.y) + 2
     doc
       .font("BodyItalic")
-      .fontSize(9)
-      .fillColor("#334155")
-      .text(job.org, doc.page.margins.left, y)
-    y = doc.y + 3
-    doc.font("Body").fontSize(9).fillColor("#1f2937")
+      .fontSize(9.5)
+      .fillColor(COLORS.muted)
+      .text(job.org, left, y)
+    y = doc.y + 5
     for (const b of job.bullets) {
-      ensureSpace(28)
-      doc.text(`•  ${b}`, doc.page.margins.left + 4, y, {
-        width: pageWidth - 8,
-        lineGap: 1,
-      })
-      y = doc.y + 2
+      ensureSpace(26)
+      doc
+        .circle(left + 4, y + 5, 1.6)
+        .fill(COLORS.accent)
+      doc
+        .font("Body")
+        .fontSize(9.5)
+        .fillColor(COLORS.body)
+        .text(b, left + 12, y, {
+          width: pageWidth - 12,
+          lineGap: 1.5,
+        })
+      y = doc.y + 3
     }
-    y += 6
+    y += 8
   }
 
-  section(data.educationTitle)
+  // Education
+  sectionTitle(data.educationTitle)
   for (const edu of data.education) {
-    ensureSpace(40)
+    ensureSpace(42)
     doc
       .font("BodyBold")
-      .fontSize(10)
-      .fillColor("#0f172a")
-      .text(edu.title, doc.page.margins.left, y, { width: pageWidth * 0.68 })
+      .fontSize(10.5)
+      .fillColor(COLORS.ink)
+      .text(edu.title, left, y, { width: pageWidth * 0.66 })
     const ey = doc.y
     doc
-      .font("Body")
+      .font("BodyBold")
       .fontSize(9)
-      .fillColor("#64748b")
-      .text(edu.period, doc.page.margins.left + pageWidth * 0.68, y, {
-        width: pageWidth * 0.32,
+      .fillColor(COLORS.accent)
+      .text(edu.period, left + pageWidth * 0.66, y, {
+        width: pageWidth * 0.34,
         align: "right",
       })
-    y = Math.max(ey, doc.y) + 1
+    y = Math.max(ey, doc.y) + 2
+    doc
+      .font("Body")
+      .fontSize(9.5)
+      .fillColor(COLORS.muted)
+      .text(edu.org, left, y)
+    y = doc.y + 10
+  }
+
+  // Skills as labeled rows
+  sectionTitle(data.skillsTitle)
+  for (const s of data.skills) {
+    ensureSpace(28)
+    doc
+      .font("BodyBold")
+      .fontSize(9.5)
+      .fillColor(COLORS.ink)
+      .text(s.label, left, y, { width: 88, continued: false })
+    const labelY = y
+    doc
+      .font("Body")
+      .fontSize(9.5)
+      .fillColor(COLORS.body)
+      .text(s.value, left + 92, labelY, {
+        width: pageWidth - 92,
+        lineGap: 1.2,
+      })
+    y = Math.max(doc.y, labelY + 12) + 5
+  }
+
+  // Awards
+  sectionTitle(data.awardsTitle)
+  for (const a of data.awards) {
+    ensureSpace(26)
+    doc.circle(left + 4, y + 5, 1.6).fill(COLORS.accent)
+    doc
+      .font("Body")
+      .fontSize(9.5)
+      .fillColor(COLORS.body)
+      .text(a, left + 12, y, { width: pageWidth - 12, lineGap: 1.4 })
+    y = doc.y + 4
+  }
+
+  // Courses
+  sectionTitle(data.coursesTitle)
+  for (const c of data.courses) {
+    ensureSpace(24)
+    doc.circle(left + 4, y + 5, 1.6).fill(COLORS.accent)
+    doc
+      .font("Body")
+      .fontSize(9.5)
+      .fillColor(COLORS.body)
+      .text(c, left + 12, y, { width: pageWidth - 12, lineGap: 1.2 })
+    y = doc.y + 3
+  }
+
+  // Languages chips
+  sectionTitle(data.languagesTitle)
+  let chipX = left
+  const chipY = y
+  for (const lang of data.languages) {
+    const label = `${lang.name} — ${lang.level}`
+    const w = doc.widthOfString(label) + 18
+    if (chipX + w > left + pageWidth) break
+    doc.roundedRect(chipX, chipY, w, 20, 10).fill(COLORS.chip)
     doc
       .font("Body")
       .fontSize(9)
-      .fillColor("#334155")
-      .text(edu.org, doc.page.margins.left, y)
-    y = doc.y + 8
+      .fillColor(COLORS.inkSoft)
+      .text(label, chipX + 9, chipY + 5)
+    chipX += w + 8
   }
-
-  section(data.skillsTitle)
-  doc.font("Body").fontSize(9).fillColor("#1f2937")
-  for (const s of data.skills) {
-    ensureSpace(24)
-    doc.text(`•  ${s}`, doc.page.margins.left + 4, y, {
-      width: pageWidth - 8,
-      lineGap: 1,
-    })
-    y = doc.y + 2
-  }
-
-  section(data.awardsTitle)
-  for (const a of data.awards) {
-    ensureSpace(28)
-    doc.text(`•  ${a}`, doc.page.margins.left + 4, y, {
-      width: pageWidth - 8,
-      lineGap: 1,
-    })
-    y = doc.y + 2
-  }
-
-  section(data.coursesTitle)
-  for (const c of data.courses) {
-    ensureSpace(24)
-    doc.text(`•  ${c}`, doc.page.margins.left + 4, y, {
-      width: pageWidth - 8,
-      lineGap: 1,
-    })
-    y = doc.y + 2
-  }
-
-  section(data.languagesTitle)
-  doc
-    .font("Body")
-    .fontSize(9)
-    .fillColor("#1f2937")
-    .text(data.languages.join("  ·  "), doc.page.margins.left, y, {
-      width: pageWidth,
-    })
 
   doc.end()
   return new Promise((resolve, reject) => {

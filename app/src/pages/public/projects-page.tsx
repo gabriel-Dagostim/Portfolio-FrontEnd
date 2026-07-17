@@ -58,17 +58,19 @@ export function ProjectsPage() {
     : []
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
       <SectionReveal>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t("projects.title")}
-        </h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          {t("projects.subtitle")}
-        </p>
+        <div className="sm:-ml-2 md:-ml-4 lg:max-w-[85%]">
+          <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            {t("projects.title")}
+          </h1>
+          <p className="mt-4 max-w-xl text-pretty text-muted-foreground sm:text-lg">
+            {t("projects.subtitle")}
+          </p>
+        </div>
       </SectionReveal>
 
-      <div className="mt-8 inline-flex rounded-xl border border-border/70 bg-card/40 p-1">
+      <div className="mt-10 inline-flex rounded-xl border border-border/70 bg-card/40 p-1">
         {(
           [
             { id: "published", label: t("projects.tabAll") },
@@ -152,7 +154,7 @@ export function ProjectsPage() {
             : t("projects.empty")}
         </p>
       ) : (
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {list.map((p) => (
             <ProjectCard
               key={p.id}
@@ -160,6 +162,7 @@ export function ProjectsPage() {
               category={categories.find((c) => c.id === p.categoryId)}
               techs={technologies.filter((x) => p.technologyIds.includes(x.id))}
               onOpen={() => setSheetId(p.id)}
+              size="lg"
             />
           ))}
         </div>

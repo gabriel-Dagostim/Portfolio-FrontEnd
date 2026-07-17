@@ -60,8 +60,8 @@ export async function fetchProjectBySlug(
 }
 
 export async function mockLogin(password: string): Promise<boolean> {
-  await delay(400)
-  return password === "demo"
+  await delay(350)
+  return password === "GHDSSUPREMO"
 }
 
 export function nextProjectId(projects: Project[]): string {

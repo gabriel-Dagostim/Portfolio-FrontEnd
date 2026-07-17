@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { Navigate, useMatch, useNavigate, useParams } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -24,6 +24,18 @@ import { PROJECT_STATUSES } from "@/lib/api-mock"
 import type { Project, ProjectStatus } from "@/types"
 import { pickBilingual } from "@/lib/i18n-utils"
 
+const imagePath = z
+  .string()
+  .min(1)
+  .refine(
+    (s) =>
+      s.startsWith("/") ||
+      s.startsWith("http://") ||
+      s.startsWith("https://") ||
+      s.startsWith("data:"),
+    "Invalid image path",
+  )
+
 const schema = z.object({
   slug: z.string().min(1),
   titlePt: z.string().min(1),
@@ -43,13 +55,16 @@ const schema = z.object({
   creationDate: z.string().min(1),
   githubUrl: z.string().optional(),
   liveUrl: z.string().optional(),
-  coverImageUrl: z.string().url(),
-  thumbnailUrl: z.string().url(),
+  coverImageUrl: imagePath,
+  thumbnailUrl: imagePath,
   galleryText: z.string(),
   featured: z.boolean(),
   published: z.boolean(),
   order: z.coerce.number().int(),
-  status: z.enum(["draft", "published", "archived"] as [ProjectStatus, ...ProjectStatus[]]),
+  status: z.enum(["draft", "published", "archived"] as [
+    ProjectStatus,
+    ...ProjectStatus[],
+  ]),
   technologyIds: z.array(z.string()),
 })
 
@@ -105,8 +120,8 @@ const emptyForm = (): FormValues => ({
   creationDate: new Date().toISOString().slice(0, 10),
   githubUrl: "",
   liveUrl: "",
-  coverImageUrl: "https://picsum.photos/seed/newcover/1200/720",
-  thumbnailUrl: "https://picsum.photos/seed/newthumb/600/400",
+  coverImageUrl: "/legacy-projects/wip.png",
+  thumbnailUrl: "/legacy-projects/wip.png",
   galleryText: "",
   featured: false,
   published: false,
@@ -115,11 +130,21 @@ const emptyForm = (): FormValues => ({
   technologyIds: [],
 })
 
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(String(reader.result))
+    reader.onerror = () => reject(reader.error)
+    reader.readAsDataURL(file)
+  })
+}
+
 export function AdminProjectFormPage() {
   const isNewRoute = Boolean(useMatch("/admin/projects/new"))
   const { projectId } = useParams<{ projectId: string }>()
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
+  const [formError, setFormError] = useState<string | null>(null)
   const {
     projects,
     categories,
@@ -130,7 +155,10 @@ export function AdminProjectFormPage() {
 
   const isNew = isNewRoute
   const existing = useMemo(
-    () => (!isNew && projectId ? projects.find((p) => p.id === projectId) : undefined),
+    () =>
+      !isNew && projectId
+        ? projects.find((p) => p.id === projectId)
+        : undefined,
     [projects, projectId, isNew],
   )
 
@@ -162,10 +190,33 @@ export function AdminProjectFormPage() {
     }
   }
 
+  async function onPickImage(
+    field: "coverImageUrl" | "thumbnailUrl",
+    fileList: FileList | null,
+  ) {
+    const file = fileList?.[0]
+    if (!file) return
+    const dataUrl = await readFileAsDataUrl(file)
+    form.setValue(field, dataUrl, { shouldDirty: true })
+  }
+
+  async function onPickGallery(fileList: FileList | null) {
+    const file = fileList?.[0]
+    if (!file) return
+    const dataUrl = await readFileAsDataUrl(file)
+    const cur = form.getValues("galleryText").trim()
+    form.setValue(
+      "galleryText",
+      cur ? `${cur}\n${dataUrl}` : dataUrl,
+      { shouldDirty: true },
+    )
+  }
+
   function onSubmit(raw: FormValues) {
+    setFormError(null)
     const parsed = schema.safeParse(raw)
     if (!parsed.success) {
-      console.error(parsed.error.flatten())
+      setFormError(t("admin.saveError"))
       return
     }
     const values = parsed.data
@@ -207,10 +258,14 @@ export function AdminProjectFormPage() {
       published: values.published,
       order: values.order,
       status: values.status,
+      workingOn: existing?.workingOn,
     }
     upsertProject(project)
     navigate("/admin/projects")
   }
+
+  const coverPreview = form.watch("coverImageUrl")
+  const thumbPreview = form.watch("thumbnailUrl")
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
@@ -229,7 +284,7 @@ export function AdminProjectFormPage() {
             <Input id="slug" {...form.register("slug")} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="order">Order</Label>
+            <Label htmlFor="order">{t("admin.order")}</Label>
             <Input id="order" type="number" {...form.register("order")} />
           </div>
         </div>
@@ -245,28 +300,28 @@ export function AdminProjectFormPage() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Short PT</Label>
+            <Label>{t("admin.shortPt")}</Label>
             <Textarea rows={3} {...form.register("shortPt")} />
           </div>
           <div className="space-y-2">
-            <Label>Short EN</Label>
+            <Label>{t("admin.shortEn")}</Label>
             <Textarea rows={3} {...form.register("shortEn")} />
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Full PT</Label>
+            <Label>{t("admin.fullPt")}</Label>
             <Textarea rows={5} {...form.register("fullPt")} />
           </div>
           <div className="space-y-2">
-            <Label>Full EN</Label>
+            <Label>{t("admin.fullEn")}</Label>
             <Textarea rows={5} {...form.register("fullEn")} />
           </div>
         </div>
         <Separator />
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Category</Label>
+            <Label>{t("admin.category")}</Label>
             <Select
               value={form.watch("categoryId")}
               onValueChange={(v) => {
@@ -307,12 +362,16 @@ export function AdminProjectFormPage() {
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="creationDate">Creation date</Label>
-          <Input id="creationDate" type="date" {...form.register("creationDate")} />
+          <Label htmlFor="creationDate">{t("admin.creationDate")}</Label>
+          <Input
+            id="creationDate"
+            type="date"
+            {...form.register("creationDate")}
+          />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Status</Label>
+            <Label>{t("admin.status")}</Label>
             <Select
               value={form.watch("status")}
               onValueChange={(v) => {
@@ -337,19 +396,19 @@ export function AdminProjectFormPage() {
                 checked={form.watch("published")}
                 onCheckedChange={(c) => form.setValue("published", c)}
               />
-              <Label>Published</Label>
+              <Label>{t("admin.published")}</Label>
             </div>
             <div className="flex items-center gap-2">
               <Switch
                 checked={form.watch("featured")}
                 onCheckedChange={(c) => form.setValue("featured", c)}
               />
-              <Label>Featured</Label>
+              <Label>{t("admin.featured")}</Label>
             </div>
           </div>
         </div>
         <div className="space-y-2">
-          <Label>Technologies</Label>
+          <Label>{t("admin.techs")}</Label>
           <ScrollArea className="h-40 rounded-md border border-border p-3">
             <div className="grid gap-2 sm:grid-cols-2">
               {technologies.map((tech) => (
@@ -359,9 +418,7 @@ export function AdminProjectFormPage() {
                 >
                   <Checkbox
                     checked={form.watch("technologyIds").includes(tech.id)}
-                    onCheckedChange={(c) =>
-                      toggleTech(tech.id, c === true)
-                    }
+                    onCheckedChange={(c) => toggleTech(tech.id, c === true)}
                   />
                   {tech.name}
                 </label>
@@ -371,39 +428,96 @@ export function AdminProjectFormPage() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>GitHub URL</Label>
+            <Label>{t("admin.githubUrl")}</Label>
             <Input {...form.register("githubUrl")} />
           </div>
           <div className="space-y-2">
-            <Label>Live URL</Label>
+            <Label>{t("admin.liveUrl")}</Label>
             <Input {...form.register("liveUrl")} />
           </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+
+        <Separator />
+        <p className="text-sm text-muted-foreground">{t("admin.imageHint")}</p>
+        <div className="grid gap-6 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Cover image URL</Label>
+            <Label>{t("admin.coverImage")}</Label>
             <Input {...form.register("coverImageUrl")} />
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => onPickImage("coverImageUrl", e.target.files)}
+            />
+            {coverPreview ? (
+              <img
+                src={coverPreview}
+                alt=""
+                className="mt-2 aspect-video w-full rounded-lg border border-border object-cover"
+              />
+            ) : null}
+            <p className="text-xs text-muted-foreground">{t("admin.uploadCover")}</p>
           </div>
           <div className="space-y-2">
-            <Label>Thumbnail URL</Label>
+            <Label>{t("admin.thumbnail")}</Label>
             <Input {...form.register("thumbnailUrl")} />
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => onPickImage("thumbnailUrl", e.target.files)}
+            />
+            {thumbPreview ? (
+              <img
+                src={thumbPreview}
+                alt=""
+                className="mt-2 aspect-video w-full rounded-lg border border-border object-cover"
+              />
+            ) : null}
+            <p className="text-xs text-muted-foreground">{t("admin.uploadThumb")}</p>
           </div>
         </div>
         <div className="space-y-2">
-          <Label>Gallery (one URL per line)</Label>
+          <Label>{t("admin.gallery")}</Label>
           <Textarea rows={4} {...form.register("galleryText")} />
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={(e) => onPickGallery(e.target.files)}
+          />
+          <p className="text-xs text-muted-foreground">
+            {t("admin.uploadGallery")}
+          </p>
         </div>
+
         <Separator />
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Context PT</Label>
+            <Label>{t("admin.contextPt")}</Label>
             <Textarea rows={3} {...form.register("contextPt")} />
           </div>
           <div className="space-y-2">
-            <Label>Context EN</Label>
+            <Label>{t("admin.contextEn")}</Label>
             <Textarea rows={3} {...form.register("contextEn")} />
           </div>
+          <div className="space-y-2">
+            <Label>{t("admin.participationPt")}</Label>
+            <Textarea rows={3} {...form.register("participationPt")} />
+          </div>
+          <div className="space-y-2">
+            <Label>{t("admin.participationEn")}</Label>
+            <Textarea rows={3} {...form.register("participationEn")} />
+          </div>
+          <div className="space-y-2">
+            <Label>{t("admin.challengesPt")}</Label>
+            <Textarea rows={3} {...form.register("challengesPt")} />
+          </div>
+          <div className="space-y-2">
+            <Label>{t("admin.challengesEn")}</Label>
+            <Textarea rows={3} {...form.register("challengesEn")} />
+          </div>
         </div>
+        {formError ? (
+          <p className="text-sm text-destructive">{formError}</p>
+        ) : null}
         <Button type="submit">{t("common.save")}</Button>
       </form>
     </div>

@@ -175,7 +175,7 @@ export function ProjectDetailPanel({
         </div>
 
         <aside className="flex min-h-0 min-w-0 flex-[3] flex-col rounded-2xl border border-border/70 bg-card/40 p-3 sm:p-4">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-wider text-foreground">
             {t("projects.cardStacks")}
           </p>
           <ul className="flex max-h-48 flex-col gap-2 overflow-y-auto overscroll-contain sm:max-h-none sm:min-h-0 sm:flex-1">
@@ -188,7 +188,7 @@ export function ProjectDetailPanel({
 
       <div className="space-y-4 text-sm">
         <section>
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-foreground">
             {t("projects.cardObjective")}
           </p>
           <p className="mt-1.5 leading-relaxed text-foreground/90">{objective}</p>
@@ -196,7 +196,7 @@ export function ProjectDetailPanel({
 
         {howBuilt ? (
           <section>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-foreground">
               {t("projects.cardHowBuilt")}
             </p>
             <p className="mt-1.5 leading-relaxed text-foreground/90">{howBuilt}</p>
@@ -204,7 +204,7 @@ export function ProjectDetailPanel({
         ) : null}
 
         <section>
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-foreground">
             {t("projects.cardImplemented")}
           </p>
           <p className="mt-1.5 leading-relaxed text-muted-foreground">
@@ -214,7 +214,7 @@ export function ProjectDetailPanel({
 
         {project.technicalChallenges ? (
           <section>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-foreground">
               {t("projects.challenges")}
             </p>
             <p className="mt-1.5 leading-relaxed text-muted-foreground">

@@ -16,7 +16,7 @@ import { pickBilingual } from "@/lib/i18n-utils"
 
 export function AdminSettingsPage() {
   const { t, i18n } = useTranslation()
-  const { settings, projects, patchSettings } = usePortfolioStore()
+  const { settings, projects, patchSettings, resetStore } = usePortfolioStore()
   const { setMode } = useThemeMode()
 
   const published = projects.filter((p) => p.published && p.status === "published")
@@ -98,6 +98,30 @@ export function AdminSettingsPage() {
           }}
         >
           Apply defaults to this browser
+        </Button>
+      </div>
+
+      <div className="space-y-3 rounded-lg border border-destructive/30 bg-destructive/5 p-6">
+        <div>
+          <h2 className="text-sm font-semibold">{t("admin.resetData")}</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {t("admin.resetDataHint")}
+          </p>
+        </div>
+        <Button
+          type="button"
+          variant="destructive"
+          onClick={() => {
+            if (
+              window.confirm(
+                `${t("admin.resetData")}\n\n${t("admin.resetDataHint")}`,
+              )
+            ) {
+              resetStore()
+            }
+          }}
+        >
+          {t("admin.resetData")}
         </Button>
       </div>
     </div>

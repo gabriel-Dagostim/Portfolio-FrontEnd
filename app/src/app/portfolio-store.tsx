@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
   type ReactNode,
@@ -21,6 +22,8 @@ import type {
   Technology,
 } from "@/types"
 
+const STORAGE_KEY = "portfolio-admin-store-v1"
+
 type StoreState = {
   projects: Project[]
   categories: Category[]
@@ -37,9 +40,48 @@ type Action =
   | { type: "UPSERT_TECH"; tech: Technology }
   | { type: "DELETE_TECH"; id: string }
   | { type: "SET_SETTINGS"; settings: Partial<SiteSettings> }
+  | { type: "RESET" }
+  | { type: "HYDRATE"; state: StoreState }
+
+function seedState(): StoreState {
+  return {
+    projects: structuredClone(SEED_PROJECTS),
+    categories: structuredClone(SEED_CATEGORIES),
+    areas: structuredClone(SEED_AREAS),
+    technologies: structuredClone(SEED_TECHNOLOGIES),
+    settings: { ...INITIAL_SETTINGS },
+  }
+}
+
+function loadPersisted(): StoreState | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as Partial<StoreState>
+    if (!parsed || !Array.isArray(parsed.projects)) return null
+    const seed = seedState()
+    return {
+      projects: parsed.projects,
+      categories: Array.isArray(parsed.categories)
+        ? parsed.categories
+        : seed.categories,
+      areas: Array.isArray(parsed.areas) ? parsed.areas : seed.areas,
+      technologies: Array.isArray(parsed.technologies)
+        ? parsed.technologies
+        : seed.technologies,
+      settings: { ...seed.settings, ...(parsed.settings ?? {}) },
+    }
+  } catch {
+    return null
+  }
+}
 
 function reducer(state: StoreState, action: Action): StoreState {
   switch (action.type) {
+    case "HYDRATE":
+      return action.state
+    case "RESET":
+      return seedState()
     case "UPSERT_PROJECT": {
       const idx = state.projects.findIndex((p) => p.id === action.project.id)
       const projects =
@@ -89,14 +131,6 @@ function reducer(state: StoreState, action: Action): StoreState {
   }
 }
 
-const initialState: StoreState = {
-  projects: structuredClone(SEED_PROJECTS),
-  categories: structuredClone(SEED_CATEGORIES),
-  areas: structuredClone(SEED_AREAS),
-  technologies: structuredClone(SEED_TECHNOLOGIES),
-  settings: { ...INITIAL_SETTINGS },
-}
-
 type PortfolioContextValue = StoreState & {
   upsertProject: (project: Project) => void
   deleteProject: (id: string) => void
@@ -105,12 +139,23 @@ type PortfolioContextValue = StoreState & {
   upsertTechnology: (tech: Technology) => void
   deleteTechnology: (id: string) => void
   patchSettings: (s: Partial<SiteSettings>) => void
+  resetStore: () => void
 }
 
 const PortfolioContext = createContext<PortfolioContextValue | null>(null)
 
 export function PortfolioStoreProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, undefined, () => {
+    return loadPersisted() ?? seedState()
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    } catch {
+      // Quota exceeded (large data URLs) — keep in-memory only
+    }
+  }, [state])
 
   const upsertProject = useCallback((project: Project) => {
     dispatch({ type: "UPSERT_PROJECT", project })
@@ -140,6 +185,11 @@ export function PortfolioStoreProvider({ children }: { children: ReactNode }) {
     dispatch({ type: "SET_SETTINGS", settings })
   }, [])
 
+  const resetStore = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY)
+    dispatch({ type: "RESET" })
+  }, [])
+
   const value = useMemo<PortfolioContextValue>(
     () => ({
       ...state,
@@ -150,6 +200,7 @@ export function PortfolioStoreProvider({ children }: { children: ReactNode }) {
       upsertTechnology,
       deleteTechnology,
       patchSettings,
+      resetStore,
     }),
     [
       state,
@@ -160,6 +211,7 @@ export function PortfolioStoreProvider({ children }: { children: ReactNode }) {
       upsertTechnology,
       deleteTechnology,
       patchSettings,
+      resetStore,
     ],
   )
 

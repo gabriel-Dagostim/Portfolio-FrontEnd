@@ -54,10 +54,14 @@ export function SkillsPage() {
         </SectionReveal>
 
         <SectionReveal className="mt-12" delay={0.05}>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { label: t("skills.statFrontend"), value: "6" },
               { label: t("skills.statBackend"), value: "4" },
+              {
+                label: t("skills.statDataAi"),
+                value: t("skills.statDataAiValue"),
+              },
               {
                 label: t("skills.statFocus"),
                 value: t("skills.statFocusValue"),
