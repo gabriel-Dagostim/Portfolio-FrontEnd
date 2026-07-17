@@ -76,6 +76,7 @@ export function ProjectDetailPage() {
         area={area}
         techs={techs}
         loadGallery
+        showFullPageLink={false}
       />
     </div>
   )
