@@ -86,7 +86,7 @@ export function AboutPage() {
     },
     {
       id: "competitions",
-      logo: EUREKA_SRC,
+      logo: FAG_SRC,
       logoClass: "bg-white p-1.5",
       period: t("about.eduCompetitionsPeriod"),
       title: t("about.eduCompetitionsTitle"),
@@ -95,7 +95,7 @@ export function AboutPage() {
       tags: [
         t("about.tagHackathon"),
         t("about.tagAwards"),
-        t("about.tagInternational"),
+        t("about.tagProduct"),
       ],
     },
     {
@@ -109,7 +109,7 @@ export function AboutPage() {
       tags: [
         t("about.tagElectronics"),
         t("about.tagPrototype"),
-        t("about.tagResearch"),
+        t("about.tagInternational"),
       ],
     },
     {

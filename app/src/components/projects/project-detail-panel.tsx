@@ -1,21 +1,10 @@
+import { useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import type { ReactNode } from "react"
-import {
-  Building2,
-  CalendarDays,
-  Code2,
-  ExternalLink,
-  Focus,
-  History,
-  Layers,
-  Shield,
-  Sparkles,
-  Wrench,
-} from "lucide-react"
+import { ChevronLeft, ChevronRight, Code2, ExternalLink, Shield } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { RouterLinkButton } from "@/components/ui/link-button"
 import { AnchorButton } from "@/components/ui/anchor-button"
-import { SectionReveal } from "@/components/motion/section-reveal"
+import { getTechIconUrl } from "@/lib/tech-icons"
 import { pickBilingual } from "@/lib/i18n-utils"
 import type { Category, Project, Technology } from "@/types"
 import { cn } from "@/lib/utils"
@@ -25,60 +14,91 @@ type Props = {
   category?: Category
   area?: { name: { pt: string; en: string } }
   techs: Technology[]
-  /** When false, gallery URLs are not rendered (lazy). */
   loadGallery: boolean
-  /** Compact mode for constrained containers. */
-  compact?: boolean
-  /** Hide "open full page" when already on the detail route */
   showFullPageLink?: boolean
 }
 
-function InfoBlock({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: typeof History
-  title: string
-  children: ReactNode
-}) {
+function TechRow({ tech }: { tech: Technology }) {
+  const src = getTechIconUrl(tech.id)
   return (
-    <div className="rounded-2xl border border-border/70 bg-card/50 p-4 sm:p-5">
-      <div className="mb-2 flex items-center gap-2 text-sm font-semibold tracking-tight">
-        <span className="flex size-8 items-center justify-center rounded-xl bg-primary/12 text-primary">
-          <Icon className="size-4" />
-        </span>
-        {title}
-      </div>
-      <div className="text-sm leading-relaxed text-muted-foreground">
-        {children}
-      </div>
-    </div>
+    <li className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-secondary/50 px-2.5 py-2">
+      {src ? (
+        <img
+          src={src}
+          alt=""
+          className="size-5 shrink-0 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span className="size-5 shrink-0 rounded-md bg-primary/30" aria-hidden />
+      )}
+      <span className="min-w-0 truncate text-sm font-medium text-foreground">
+        {tech.name}
+      </span>
+    </li>
   )
 }
 
 export function ProjectDetailPanel({
   project,
   category,
-  area,
   techs,
   loadGallery,
-  compact = false,
   showFullPageLink = true,
 }: Props) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
   const showcaseOnly = Boolean(category?.showcaseOnly)
   const hasLinks = Boolean(project.githubUrl || project.liveUrl)
-  const year = project.creationDate.slice(0, 10)
   const title = pickBilingual(project.title, lang)
-  const gallery = project.galleryImages
+  const [slide, setSlide] = useState(0)
+
+  useEffect(() => {
+    setSlide(0)
+  }, [project.id])
+
+  const slides = useMemo(() => {
+    if (!loadGallery) return []
+    const fromGallery = project.galleryImages.filter(Boolean)
+    if (fromGallery.length > 0) return fromGallery
+    return [project.coverImageUrl || project.thumbnailUrl].filter(Boolean)
+  }, [
+    loadGallery,
+    project.coverImageUrl,
+    project.galleryImages,
+    project.thumbnailUrl,
+  ])
+
+  const objective = pickBilingual(project.shortDescription, lang)
+  const howBuilt = project.participation
+    ? pickBilingual(project.participation, lang)
+    : ""
+  const implemented = pickBilingual(project.fullDescription, lang)
+
+  const go = (dir: -1 | 1) => {
+    setSlide((i) => {
+      const next = i + dir
+      if (next < 0) return slides.length - 1
+      if (next >= slides.length) return 0
+      return next
+    })
+  }
 
   return (
-    <div className={cn("space-y-8", compact && "space-y-6")}>
-      {/* Header */}
-      <header className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-col gap-5">
+      <header className="flex flex-wrap items-start justify-between gap-3 pr-8">
+        <div className="min-w-0">
+          <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
+            {title}
+          </h2>
+          {category ? (
+            <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-primary">
+              {pickBilingual(category.name, lang)}
+            </p>
+          ) : null}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
           {showcaseOnly ? (
             <Badge className="gap-1.5 bg-primary/15 text-primary hover:bg-primary/20">
               <Shield className="size-3.5" />
@@ -90,194 +110,121 @@ export function ProjectDetailPanel({
               {t("projects.workingBadge")}
             </Badge>
           ) : null}
-          {project.featured ? (
-            <Badge variant="secondary" className="gap-1.5">
-              <Sparkles className="size-3.5" />
-              {t("common.featured")}
-            </Badge>
-          ) : null}
-          {category ? (
-            <Badge variant="outline">
-              {pickBilingual(category.name, lang)}
-            </Badge>
-          ) : null}
-        </div>
-
-        <div>
-          <h2
-            className={cn(
-              "font-semibold tracking-tight text-balance",
-              compact ? "text-2xl" : "text-3xl sm:text-4xl",
-            )}
-          >
-            {title}
-          </h2>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {pickBilingual(project.shortDescription, lang)}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5">
-            <CalendarDays className="size-3.5 text-primary" />
-            {year}
-          </span>
-          {area ? (
-            <span className="inline-flex items-center gap-1.5">
-              <Layers className="size-3.5 text-primary" />
-              {pickBilingual(area.name, lang)}
-            </span>
-          ) : null}
-          {showcaseOnly ? (
-            <span className="inline-flex items-center gap-1.5">
-              <Building2 className="size-3.5 text-primary" />
-              {t("projects.noPublicDemo")}
-            </span>
-          ) : null}
         </div>
       </header>
 
-      {/* Cover for non-showcase */}
-      {!showcaseOnly ? (
-        <div className="overflow-hidden rounded-2xl border border-border/70 bg-muted/30">
-          <div className="aspect-[16/10] w-full">
-            <img
-              src={project.coverImageUrl}
-              alt=""
-              loading={loadGallery ? "eager" : "lazy"}
-              decoding="async"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      ) : null}
-
-      {/* Focus + overview */}
-      <section className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Focus className="size-4 text-primary" />
-          <h3 className="text-lg font-semibold tracking-tight">
-            {t("projects.focus")}
-          </h3>
-        </div>
-        <div className="rounded-2xl border border-border/70 bg-gradient-to-br from-primary/10 via-card/40 to-transparent p-5 sm:p-6">
-          <p className="text-sm leading-relaxed text-foreground/90 sm:text-base">
-            {pickBilingual(project.fullDescription, lang)}
-          </p>
-        </div>
-      </section>
-
-      {/* History / role / challenges */}
-      <section
-        className={cn(
-          "grid gap-4",
-          compact ? "grid-cols-1" : "md:grid-cols-2",
-        )}
-      >
-        {project.context ? (
-          <InfoBlock icon={History} title={t("projects.history")}>
-            {pickBilingual(project.context, lang)}
-          </InfoBlock>
-        ) : null}
-        {project.participation ? (
-          <InfoBlock icon={Wrench} title={t("projects.participation")}>
-            {pickBilingual(project.participation, lang)}
-          </InfoBlock>
-        ) : null}
-        {project.technicalChallenges ? (
-          <InfoBlock
-            icon={Sparkles}
-            title={t("projects.challenges")}
-          >
-            {pickBilingual(project.technicalChallenges, lang)}
-          </InfoBlock>
-        ) : null}
-        {showcaseOnly ? (
-          <InfoBlock icon={Shield} title={t("projects.deliveryNoteTitle")}>
-            {t("projects.deliveryNoteBody")}
-          </InfoBlock>
-        ) : null}
-      </section>
-
-      {/* Technologies */}
-      <section className="space-y-3">
-        <div className="flex items-center gap-2">
-          <Code2 className="size-4 text-primary" />
-          <h3 className="text-lg font-semibold tracking-tight">
-            {t("projects.technologies")}
-          </h3>
-        </div>
-        <p className="text-sm text-muted-foreground">
-          {t("projects.technologiesHint")}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {techs.map((x) => (
-            <Badge
-              key={x.id}
-              variant="secondary"
-              className="px-3 py-1.5 text-sm font-medium"
-            >
-              {x.name}
-            </Badge>
-          ))}
-        </div>
-      </section>
-
-      {/* Gallery — uniform frames */}
-      {loadGallery && gallery.length > 0 ? (
-        <section className="space-y-4">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h3 className="text-lg font-semibold tracking-tight">
+      {/* 70% image | 30% stacks — side-by-side from sm up */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
+        <div className="relative min-w-0 flex-[7] overflow-hidden rounded-2xl border border-border/70 bg-muted/40">
+          <div className="relative aspect-[16/10] w-full">
+            {slides.length > 0 ? (
+              <img
+                key={slides[slide]}
+                src={slides[slide]}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover object-top"
+                loading="eager"
+                decoding="async"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
                 {t("projects.gallery")}
-              </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {showcaseOnly
-                  ? t("projects.showcaseHint")
-                  : t("projects.galleryHint")}
-              </p>
-            </div>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {t("projects.galleryCount", { count: gallery.length })}
-            </p>
-          </div>
-
-          <div
-            className={cn(
-              "grid gap-4",
-              compact ? "grid-cols-1" : "sm:grid-cols-2",
+              </div>
             )}
-          >
-            {gallery.map((url, i) => (
-              <SectionReveal key={url} delay={i * 0.03}>
-                <figure className="overflow-hidden rounded-2xl border border-border/70 bg-muted/25 shadow-sm">
-                  <div className="relative aspect-[16/10] w-full bg-background/40">
-                    <img
-                      src={url}
-                      alt={`${title} — ${t("projects.screenshot")} ${String(i + 1).padStart(2, "0")}`}
-                      loading={i < 2 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-contain object-center p-2"
-                    />
-                  </div>
-                  <figcaption className="flex items-center justify-between border-t border-border/60 px-3 py-2 text-xs text-muted-foreground">
-                    <span>
-                      {t("projects.screenshot")}{" "}
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-medium text-foreground/70">
-                      {String(i + 1)}/{gallery.length}
-                    </span>
-                  </figcaption>
-                </figure>
-              </SectionReveal>
-            ))}
-          </div>
-        </section>
-      ) : null}
 
-      {/* Actions */}
-      <footer className="flex flex-col gap-3 border-t border-border/60 pt-6 sm:flex-row sm:flex-wrap sm:items-center">
+            {slides.length > 1 ? (
+              <>
+                <button
+                  type="button"
+                  aria-label={t("projects.prevScreenshot")}
+                  onClick={() => go(-1)}
+                  className="absolute left-2 top-1/2 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-background/85 text-foreground shadow-sm backdrop-blur-sm transition hover:bg-background"
+                >
+                  <ChevronLeft className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label={t("projects.nextScreenshot")}
+                  onClick={() => go(1)}
+                  className="absolute right-2 top-1/2 z-10 flex size-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-background/85 text-foreground shadow-sm backdrop-blur-sm transition hover:bg-background"
+                >
+                  <ChevronRight className="size-4" />
+                </button>
+                <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
+                  {slides.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-label={`${i + 1}/${slides.length}`}
+                      onClick={() => setSlide(i)}
+                      className={cn(
+                        "size-1.5 rounded-full transition-colors",
+                        i === slide
+                          ? "bg-primary"
+                          : "bg-background/70 hover:bg-background",
+                      )}
+                    />
+                  ))}
+                </div>
+                <span className="absolute right-3 top-3 rounded-md bg-background/85 px-2 py-0.5 text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
+                  {slide + 1}/{slides.length}
+                </span>
+              </>
+            ) : null}
+          </div>
+        </div>
+
+        <aside className="flex min-h-0 min-w-0 flex-[3] flex-col rounded-2xl border border-border/70 bg-card/40 p-3 sm:p-4">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("projects.cardStacks")}
+          </p>
+          <ul className="flex max-h-48 flex-col gap-2 overflow-y-auto overscroll-contain sm:max-h-none sm:min-h-0 sm:flex-1">
+            {techs.map((tech) => (
+              <TechRow key={tech.id} tech={tech} />
+            ))}
+          </ul>
+        </aside>
+      </div>
+
+      <div className="space-y-4 text-sm">
+        <section>
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("projects.cardObjective")}
+          </p>
+          <p className="mt-1.5 leading-relaxed text-foreground/90">{objective}</p>
+        </section>
+
+        {howBuilt ? (
+          <section>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t("projects.cardHowBuilt")}
+            </p>
+            <p className="mt-1.5 leading-relaxed text-foreground/90">{howBuilt}</p>
+          </section>
+        ) : null}
+
+        <section>
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {t("projects.cardImplemented")}
+          </p>
+          <p className="mt-1.5 leading-relaxed text-muted-foreground">
+            {implemented}
+          </p>
+        </section>
+
+        {project.technicalChallenges ? (
+          <section>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t("projects.challenges")}
+            </p>
+            <p className="mt-1.5 leading-relaxed text-muted-foreground">
+              {pickBilingual(project.technicalChallenges, lang)}
+            </p>
+          </section>
+        ) : null}
+      </div>
+
+      <footer className="flex flex-col gap-3 border-t border-border/60 pt-5 sm:flex-row sm:flex-wrap sm:items-center">
         {showFullPageLink ? (
           <RouterLinkButton to={`/projects/${project.slug}`}>
             {t("common.viewFullPage")}

@@ -28,7 +28,7 @@ export function getTechIconUrl(techId: string): string | null {
     php: `${D}/php/php-original.svg`,
     mysql: `${D}/mysql/mysql-original.svg`,
     pg: `${D}/postgresql/postgresql-original.svg`,
-    mssql: S("microsoftsqlserver"),
+    mssql: `${D}/microsoftsqlserver/microsoftsqlserver-original.svg`,
     mongo: `${D}/mongodb/mongodb-original.svg`,
     firebase: `${D}/firebase/firebase-plain.svg`,
     supabase: S("supabase"),
@@ -43,8 +43,8 @@ export function getTechIconUrl(techId: string): string | null {
     linux: `${D}/linux/linux-original.svg`,
     winserver: S("windows"),
     python: `${D}/python/python-original.svg`,
-    playwright: S("playwright"),
-    selenium: S("selenium"),
+    playwright: `${D}/playwright/playwright-original.svg`,
+    selenium: `${D}/selenium/selenium-original.svg`,
     minio: S("minio"),
     jwt: S("jsonwebtoken"),
     figma: `${D}/figma/figma-original.svg`,
@@ -53,6 +53,12 @@ export function getTechIconUrl(techId: string): string | null {
     wordpress: S("wordpress"),
     elementor: S("elementor"),
     jquery: S("jquery"),
+    mercadopago: S("mercadopago"),
+    obsidian: S("obsidian"),
+    telegram: S("telegram"),
+    openai: S("openai"),
+    n8n: S("n8n"),
+    powershell: S("powershell"),
   }
   return m[techId] ?? null
 }

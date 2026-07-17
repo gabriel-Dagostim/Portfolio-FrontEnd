@@ -78,7 +78,7 @@ const CONTENT = {
       {
         title: "Pós-graduação — IA aplicada a negócios",
         org: "Centro Universitário Assis Gurgacz (FAG)",
-        period: "Pós-graduação",
+        period: "Cursando",
       },
       {
         title: "Engenharia de Software",
@@ -98,14 +98,15 @@ const CONTENT = {
       "Automação & IA: bots customizados, integrações, NL→SQL, estrutura de conhecimento para LLMs locais",
     ],
     awards: [
-      "Hackathon Show Rural Digital — pódios consecutivos (incluindo 3º lugar em 2024 e participação em 2023).",
-      "Credencial FEBRACE 2021.",
+      "Hackathons pela FAG — Show Rural Digital com pódios consecutivos (incluindo 3º lugar em 2024 e participação em 2023).",
+      "Feiras de robótica pela Eureka — credencial FEBRACE 2021.",
       "Infomatrix 2020 — credencial para feira no México; Infomatrix Guadalajara-México 2021.",
-      "3º lugar Fenecit 2020; participações em FETEC-SP e Ciência Jovem.",
-      "Pesquisa/iniciação científica (Código Kid + Eureka) com protótipos eletrônicos e prêmios em feiras.",
+      "3º lugar Fenecit 2020; participações em FETEC-SP e Ciência Jovem (Eureka).",
+      "Código Kid — 1 ano e 9 meses em programação de dispositivos eletrônicos e Arduino.",
     ],
     courses: [
-      "Robótica e eletrônica básica — Eureka / Código Kid",
+      "Programação de dispositivos eletrônicos — Código Kid (1 ano e 9 meses)",
+      "Feiras de robótica e prototipagem — Eureka",
       "Lógica de programação, informática e hardware — Harpa Informática",
       "Inglês — New York School (desde fev/2023)",
       "Introdução à Informática — SEST SENAT (EAD); Gestão de finanças",
@@ -168,7 +169,7 @@ const CONTENT = {
       {
         title: "Postgraduate — AI applied to business",
         org: "Centro Universitário Assis Gurgacz (FAG)",
-        period: "Postgraduate",
+        period: "In progress",
       },
       {
         title: "Software Engineering",
@@ -188,14 +189,15 @@ const CONTENT = {
       "Automation & AI: custom bots, integrations, NL→SQL, knowledge structures for local LLMs",
     ],
     awards: [
-      "Show Rural Digital Hackathon — consecutive podiums (including 3rd place in 2024 and 2023 participation).",
-      "FEBRACE 2021 credential.",
+      "Hackathons through FAG — Show Rural Digital consecutive podiums (including 3rd place in 2024 and 2023 participation).",
+      "Robotics fairs through Eureka — FEBRACE 2021 credential.",
       "Infomatrix 2020 — credential for Mexico fair; Infomatrix Guadalajara-Mexico 2021.",
-      "3rd place Fenecit 2020; FETEC-SP and Ciência Jovem participations.",
-      "Undergraduate research (Código Kid + Eureka) with electronic prototypes and fair awards.",
+      "3rd place Fenecit 2020; FETEC-SP and Ciência Jovem participations (Eureka).",
+      "Código Kid — 1 year 9 months in electronic device programming and Arduino.",
     ],
     courses: [
-      "Robotics and basic electronics — Eureka / Código Kid",
+      "Electronic device programming — Código Kid (1 year 9 months)",
+      "Robotics fairs and prototyping — Eureka",
       "Programming logic, IT and hardware — Harpa Informática",
       "English — New York School (since Feb/2023)",
       "Introduction to Computing — SEST SENAT (online); Finance management",
