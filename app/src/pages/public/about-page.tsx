@@ -57,6 +57,20 @@ export function AboutPage() {
 
   const educationTimeline = [
     {
+      id: "pos",
+      logo: FAG_SRC,
+      logoClass: "bg-white p-1.5",
+      period: t("about.eduPosPeriod"),
+      title: t("about.eduPosTitle"),
+      org: t("about.eduPosOrg"),
+      body: t("about.eduPosBody"),
+      tags: [
+        t("about.tagPostgrad"),
+        t("about.tagAiBusiness"),
+        t("about.tagProduct"),
+      ],
+    },
+    {
       id: "fag",
       logo: FAG_SRC,
       logoClass: "bg-white p-1.5",

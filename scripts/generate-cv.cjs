@@ -76,9 +76,14 @@ const CONTENT = {
     ],
     education: [
       {
-        title: "Engenharia de Software — 5º período (em andamento)",
+        title: "Pós-graduação — IA aplicada a negócios",
         org: "Centro Universitário Assis Gurgacz (FAG)",
-        period: "2022 — Atual",
+        period: "Pós-graduação",
+      },
+      {
+        title: "Engenharia de Software",
+        org: "Centro Universitário Assis Gurgacz (FAG)",
+        period: "Concluído",
       },
       {
         title: "Ensino Médio",
@@ -161,9 +166,14 @@ const CONTENT = {
     ],
     education: [
       {
-        title: "Software Engineering — 5th semester (in progress)",
+        title: "Postgraduate — AI applied to business",
         org: "Centro Universitário Assis Gurgacz (FAG)",
-        period: "2022 — Present",
+        period: "Postgraduate",
+      },
+      {
+        title: "Software Engineering",
+        org: "Centro Universitário Assis Gurgacz (FAG)",
+        period: "Completed",
       },
       {
         title: "High School",
