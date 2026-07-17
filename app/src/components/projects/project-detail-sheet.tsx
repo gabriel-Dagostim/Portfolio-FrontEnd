@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "@/components/ui/sheet"
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { ProjectDetailPanel } from "@/components/projects/project-detail-panel"
 import { pickBilingual } from "@/lib/i18n-utils"
 import type { Category, Project, Technology } from "@/types"
-import { cn } from "@/lib/utils"
 
 type Props = {
   project: Project | null
@@ -40,40 +39,34 @@ export function ProjectDetailSheet({
   }, [open, project?.id])
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent
-        className={cn(
-          "flex w-full flex-col gap-0 p-0",
-          showcaseOnly ? "sm:max-w-2xl md:max-w-3xl" : "sm:max-w-lg md:max-w-xl",
-        )}
-      >
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="grid h-[min(92vh,920px)] w-[min(1120px,calc(100vw-1.5rem))] max-w-none grid-rows-[auto_1fr] gap-0 overflow-hidden rounded-3xl border border-border/70 bg-background/95 p-0 shadow-2xl backdrop-blur-xl">
         {project ? (
           <>
-            <SheetHeader className="space-y-1 border-b border-border px-6 py-4 text-left">
-              <SheetTitle className="line-clamp-2 text-left text-base sm:text-lg">
+            <DialogHeader className="space-y-2 border-b border-border/70 bg-card/45 px-5 py-4 pr-14 text-left sm:px-8 sm:py-5">
+              <DialogTitle className="line-clamp-2 text-left text-lg font-semibold tracking-tight sm:text-xl">
                 {pickBilingual(project.title, i18n.language)}
-              </SheetTitle>
-              <SheetDescription className="line-clamp-2 text-left">
+              </DialogTitle>
+              <DialogDescription className="line-clamp-2 max-w-3xl text-left">
                 {showcaseOnly
                   ? t("projects.internalSystem")
                   : pickBilingual(project.shortDescription, i18n.language)}
-              </SheetDescription>
-            </SheetHeader>
-            <ScrollArea className="flex-1">
-              <div className="px-6 py-5">
+              </DialogDescription>
+            </DialogHeader>
+            <ScrollArea className="min-h-0">
+              <div className="mx-auto max-w-5xl px-5 py-6 sm:px-8 sm:py-8">
                 <ProjectDetailPanel
                   project={project}
                   category={category}
                   area={area}
                   techs={techs}
                   loadGallery={loadGallery}
-                  compact
                 />
               </div>
             </ScrollArea>
           </>
         ) : null}
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   )
 }

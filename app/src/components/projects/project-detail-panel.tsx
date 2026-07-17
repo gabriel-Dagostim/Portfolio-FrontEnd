@@ -27,7 +27,7 @@ type Props = {
   techs: Technology[]
   /** When false, gallery URLs are not rendered (lazy). */
   loadGallery: boolean
-  /** Compact mode inside the side sheet */
+  /** Compact mode for constrained containers. */
   compact?: boolean
   /** Hide "open full page" when already on the detail route */
   showFullPageLink?: boolean
