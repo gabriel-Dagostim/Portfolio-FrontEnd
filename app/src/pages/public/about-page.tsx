@@ -15,6 +15,7 @@ import {
 import { SectionReveal } from "@/components/motion/section-reveal"
 import { Badge } from "@/components/ui/badge"
 import { RouterLinkButton } from "@/components/ui/link-button"
+import { CvDownloadButton } from "@/components/cv/cv-download-button"
 
 const PROFILE_SRC = "/profile/perfil.png"
 const UNIOESTE_SRC = "/profile/unioeste.png"
@@ -111,6 +112,17 @@ export function AboutPage() {
         t("about.tagLogic"),
       ],
     },
+    {
+      id: "high-school",
+      logo: FAG_SRC,
+      logoClass: "bg-white p-1.5",
+      period: t("about.eduHighSchoolPeriod"),
+      title: t("about.eduHighSchoolTitle"),
+      org: t("about.eduHighSchoolOrg"),
+      body: t("about.eduHighSchoolBody"),
+      tags: [t("about.tagLogic")],
+      hideLogo: true,
+    },
   ] as const
 
   const timeline = [
@@ -143,6 +155,28 @@ export function AboutPage() {
         t("about.tagCampuses"),
         t("about.tagDev"),
       ],
+    },
+    {
+      id: "freelance",
+      logo: PROFILE_SRC,
+      logoClass: "object-cover",
+      period: t("about.jobFreelancePeriod"),
+      title: t("about.jobFreelanceTitle"),
+      org: t("about.jobFreelanceOrg"),
+      body: t("about.jobFreelanceBody"),
+      tags: [t("about.tagUi"), t("about.tagFigma")],
+      hideLogo: true,
+    },
+    {
+      id: "social",
+      logo: PROFILE_SRC,
+      logoClass: "object-cover",
+      period: t("about.jobSocialPeriod"),
+      title: t("about.jobSocialTitle"),
+      org: t("about.jobSocialOrg"),
+      body: t("about.jobSocialBody"),
+      tags: [t("about.tagContent")],
+      hideLogo: true,
     },
   ] as const
 
@@ -258,11 +292,29 @@ export function AboutPage() {
                 <RouterLinkButton to="/projects">
                   {t("home.ctaProjects")}
                 </RouterLinkButton>
+                <CvDownloadButton />
                 <RouterLinkButton to="/contact" variant="outline">
                   {t("home.ctaContact")}
                 </RouterLinkButton>
               </div>
             </div>
+          </div>
+        </SectionReveal>
+
+        <SectionReveal className="mt-12" delay={0.04}>
+          <div className="rounded-3xl border border-border/70 bg-card/50 p-6 backdrop-blur-sm sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-8">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
+                {t("about.cvEyebrow")}
+              </p>
+              <h2 className="mt-2 text-xl font-semibold tracking-tight">
+                {t("about.cvTitle")}
+              </h2>
+              <p className="mt-2 max-w-xl text-sm text-muted-foreground sm:text-base">
+                {t("about.cvBody")}
+              </p>
+            </div>
+            <CvDownloadButton variant="default" size="lg" className="mt-4 sm:mt-0" />
           </div>
         </SectionReveal>
 
@@ -329,11 +381,15 @@ export function AboutPage() {
                 className="relative grid gap-4 pl-14 sm:pl-16 md:grid-cols-[140px_1fr] md:gap-8"
               >
                 <div className="absolute left-0 top-1 flex size-11 items-center justify-center overflow-hidden rounded-full border border-border bg-background shadow-sm sm:size-12">
-                  <img
-                    src={item.logo}
-                    alt=""
-                    className={`size-full object-contain ${item.logoClass}`}
-                  />
+                  {"hideLogo" in item && item.hideLogo ? (
+                    <GraduationCap className="size-5 text-primary" />
+                  ) : (
+                    <img
+                      src={item.logo}
+                      alt=""
+                      className={`size-full object-contain ${item.logoClass}`}
+                    />
+                  )}
                 </div>
                 <div className="pt-1 text-sm font-medium text-primary md:pt-2">
                   {item.period}
@@ -373,11 +429,15 @@ export function AboutPage() {
             {timeline.map((job, i) => (
               <li key={job.id} className="relative grid gap-4 pl-14 sm:pl-16 md:grid-cols-[140px_1fr] md:gap-8">
                 <div className="absolute left-0 top-1 flex size-11 items-center justify-center overflow-hidden rounded-full border border-border bg-background shadow-sm sm:size-12">
-                  <img
-                    src={job.logo}
-                    alt=""
-                    className={`size-full object-contain ${job.logoClass}`}
-                  />
+                  {"hideLogo" in job && job.hideLogo ? (
+                    <Briefcase className="size-5 text-primary" />
+                  ) : (
+                    <img
+                      src={job.logo}
+                      alt=""
+                      className={`size-full object-contain ${job.logoClass}`}
+                    />
+                  )}
                 </div>
                 <div className="pt-1 text-sm font-medium text-primary md:pt-2">
                   {job.period}

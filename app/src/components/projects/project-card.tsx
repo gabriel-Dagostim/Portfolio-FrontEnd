@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next"
 import ParallaxTilt from "react-parallax-tilt"
 import { motion } from "framer-motion"
+import { Shield } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { pickBilingual } from "@/lib/i18n-utils"
@@ -14,9 +15,10 @@ type Props = {
 }
 
 export function ProjectCard({ project, category, techs, onOpen }: Props) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const lang = i18n.language
   const year = project.creationDate.slice(0, 4)
+  const showcaseOnly = Boolean(category?.showcaseOnly)
 
   return (
     <motion.div
@@ -40,7 +42,7 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
           className="block w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <Card className="overflow-hidden border-border/80 bg-card/80 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md">
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
               <img
                 src={project.thumbnailUrl}
                 alt=""
@@ -49,6 +51,14 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+              <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
+                {showcaseOnly ? (
+                  <Badge className="gap-1 bg-background/90 text-foreground hover:bg-background/90">
+                    <Shield className="size-3" />
+                    {t("projects.internalSystem")}
+                  </Badge>
+                ) : null}
+              </div>
               {project.featured ? (
                 <Badge className="absolute right-3 top-3 bg-primary/90 text-primary-foreground">
                   ★
@@ -73,9 +83,13 @@ export function ProjectCard({ project, category, techs, onOpen }: Props) {
                 {pickBilingual(project.shortDescription, lang)}
               </p>
               <div className="flex flex-wrap gap-1.5">
-                {techs.slice(0, 4).map((t) => (
-                  <Badge key={t.id} variant="secondary" className="font-normal">
-                    {t.name}
+                {techs.slice(0, 4).map((tech) => (
+                  <Badge
+                    key={tech.id}
+                    variant="secondary"
+                    className="font-normal"
+                  >
+                    {tech.name}
                   </Badge>
                 ))}
                 {techs.length > 4 ? (

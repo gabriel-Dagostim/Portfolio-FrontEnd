@@ -2,14 +2,11 @@ import { useTranslation } from "react-i18next"
 import { Mail, Code2, Briefcase, MessageCircle } from "lucide-react"
 import { SectionReveal } from "@/components/motion/section-reveal"
 import { AnchorButton } from "@/components/ui/anchor-button"
-
-const WHATSAPP_E164 = "5545984127626"
-const WHATSAPP_DISPLAY = "+55 45 98412-7626"
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_E164}`
+import { CvDownloadButton } from "@/components/cv/cv-download-button"
+import { CONTACT } from "@/lib/contact"
 
 export function ContactPage() {
   const { t } = useTranslation()
-  const email = "contato@exemplo.com"
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6">
@@ -25,22 +22,27 @@ export function ContactPage() {
       >
         <AnchorButton
           size="lg"
-          href={WHATSAPP_URL}
+          href={CONTACT.whatsappUrl}
           target="_blank"
           rel="noreferrer"
         >
           <MessageCircle className="mr-2 size-4" />
           {t("contact.whatsapp")}
         </AnchorButton>
-        <p className="text-sm text-muted-foreground">{WHATSAPP_DISPLAY}</p>
-        <AnchorButton size="lg" variant="outline" href={`mailto:${email}`}>
+        <p className="text-sm text-muted-foreground">{CONTACT.phoneDisplay}</p>
+        <AnchorButton
+          size="lg"
+          variant="outline"
+          href={`mailto:${CONTACT.email}`}
+        >
           <Mail className="mr-2 size-4" />
           {t("contact.emailCta")}
         </AnchorButton>
+        <p className="text-sm text-muted-foreground">{CONTACT.email}</p>
         <div className="flex flex-wrap justify-center gap-3">
           <AnchorButton
             variant="outline"
-            href="https://github.com/gabriel-Dagostim"
+            href={CONTACT.githubUrl}
             target="_blank"
             rel="noreferrer"
           >
@@ -49,13 +51,17 @@ export function ContactPage() {
           </AnchorButton>
           <AnchorButton
             variant="outline"
-            href="https://linkedin.com"
+            href={CONTACT.linkedinUrl}
             target="_blank"
             rel="noreferrer"
           >
             <Briefcase className="mr-2 size-4" />
             {t("contact.linkedin")}
           </AnchorButton>
+        </div>
+        <div className="mt-6 w-full max-w-md rounded-2xl border border-border/70 bg-card/50 p-5">
+          <p className="mb-4 text-sm text-muted-foreground">{t("contact.cvHint")}</p>
+          <CvDownloadButton className="w-full justify-center" />
         </div>
       </SectionReveal>
     </div>
