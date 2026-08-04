@@ -23,6 +23,8 @@ import type {
 } from "@/types"
 
 const STORAGE_KEY = "portfolio-admin-store-v1"
+/** Bump when seed must rehydrate (e.g. new projects) even if local cache exists. */
+const SEED_REVISION = 2
 
 type StoreState = {
   projects: Project[]
@@ -53,26 +55,88 @@ function seedState(): StoreState {
   }
 }
 
-function loadPersisted(): StoreState | null {
+/** Keep visitor/admin edits, but always inject projects/techs/categories missing from seed. */
+function mergePersistedWithSeed(parsed: Partial<StoreState>): StoreState {
+  const seed = seedState()
+
+  const projectsById = new Map(
+    (Array.isArray(parsed.projects) ? parsed.projects : []).map((p) => [
+      p.id,
+      p,
+    ]),
+  )
+  for (const p of seed.projects) {
+    if (!projectsById.has(p.id)) {
+      projectsById.set(p.id, structuredClone(p))
+    }
+  }
+
+  const categoriesById = new Map(
+    (Array.isArray(parsed.categories) ? parsed.categories : seed.categories).map(
+      (c) => [c.id, c],
+    ),
+  )
+  for (const c of seed.categories) {
+    if (!categoriesById.has(c.id)) {
+      categoriesById.set(c.id, structuredClone(c))
+    }
+  }
+
+  const areasById = new Map(
+    (Array.isArray(parsed.areas) ? parsed.areas : seed.areas).map((a) => [
+      a.id,
+      a,
+    ]),
+  )
+  for (const a of seed.areas) {
+    if (!areasById.has(a.id)) {
+      areasById.set(a.id, structuredClone(a))
+    }
+  }
+
+  const techById = new Map(
+    (
+      Array.isArray(parsed.technologies) ? parsed.technologies : seed.technologies
+    ).map((t) => [t.id, t]),
+  )
+  for (const t of seed.technologies) {
+    if (!techById.has(t.id)) {
+      techById.set(t.id, structuredClone(t))
+    }
+  }
+
+  return {
+    projects: Array.from(projectsById.values()),
+    categories: Array.from(categoriesById.values()),
+    areas: Array.from(areasById.values()),
+    technologies: Array.from(techById.values()),
+    settings: { ...seed.settings, ...(parsed.settings ?? {}) },
+  }
+}
+
+function createInitialState(): StoreState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return null
-    const parsed = JSON.parse(raw) as Partial<StoreState>
-    if (!parsed || !Array.isArray(parsed.projects)) return null
-    const seed = seedState()
-    return {
-      projects: parsed.projects,
-      categories: Array.isArray(parsed.categories)
-        ? parsed.categories
-        : seed.categories,
-      areas: Array.isArray(parsed.areas) ? parsed.areas : seed.areas,
-      technologies: Array.isArray(parsed.technologies)
-        ? parsed.technologies
-        : seed.technologies,
-      settings: { ...seed.settings, ...(parsed.settings ?? {}) },
+    if (raw) {
+      const parsed = JSON.parse(raw) as Partial<StoreState>
+      if (parsed && Array.isArray(parsed.projects)) {
+        return mergePersistedWithSeed(parsed)
+      }
     }
   } catch {
-    return null
+    /* ignore */
+  }
+  return seedState()
+}
+
+function persistState(state: StoreState) {
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ ...state, seedRevision: SEED_REVISION }),
+    )
+  } catch {
+    // Quota exceeded (large data URLs) — keep in-memory only
   }
 }
 
@@ -145,16 +209,26 @@ type PortfolioContextValue = StoreState & {
 const PortfolioContext = createContext<PortfolioContextValue | null>(null)
 
 export function PortfolioStoreProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, undefined, () => {
-    return loadPersisted() ?? seedState()
-  })
+  const [state, dispatch] = useReducer(reducer, undefined, createInitialState)
+
+  // Re-merge seed projects whenever new ones ship (e.g. CAH) even if the tab
+  // still had an older in-memory snapshot before refresh.
+  useEffect(() => {
+    const seedIds = new Set(SEED_PROJECTS.map((p) => p.id))
+    const missing = [...seedIds].filter(
+      (id) => !state.projects.some((p) => p.id === id),
+    )
+    if (missing.length === 0) return
+    dispatch({
+      type: "HYDRATE",
+      state: mergePersistedWithSeed(state),
+    })
+    // Only on mount — state.projects is intentionally the first load snapshot.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    } catch {
-      // Quota exceeded (large data URLs) — keep in-memory only
-    }
+    persistState(state)
   }, [state])
 
   const upsertProject = useCallback((project: Project) => {

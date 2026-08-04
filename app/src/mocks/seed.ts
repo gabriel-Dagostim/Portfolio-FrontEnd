@@ -9,7 +9,7 @@ import type {
 export const INITIAL_SETTINGS: SiteSettings = {
   defaultLocale: "en",
   defaultTheme: "system",
-  featuredProjectId: "proj-imagens-ecommerce",
+  featuredProjectId: "proj-cartas-contra-humanidade",
 }
 
 export const SEED_CATEGORIES: Category[] = [
@@ -194,7 +194,7 @@ const LEGACY_FROM_PORTFOLIO: Project[] = [
     ],
     featured: true,
     published: true,
-    order: 0,
+    order: -10,
     status: "published",
   },
   {
