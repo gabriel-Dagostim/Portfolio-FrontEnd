@@ -39,8 +39,8 @@ export function AdminSettingsPage() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="en">en (default)</SelectItem>
               <SelectItem value="pt-BR">pt-BR</SelectItem>
-              <SelectItem value="en">en</SelectItem>
             </SelectContent>
           </Select>
         </div>

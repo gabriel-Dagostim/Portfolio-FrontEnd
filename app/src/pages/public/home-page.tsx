@@ -23,6 +23,7 @@ import { usePortfolioStore } from "@/app/portfolio-store"
 import { cn } from "@/lib/utils"
 
 const FEATURED_IDS = [
+  "proj-cartas-contra-humanidade",
   "proj-imagens-ecommerce",
   "proj-nexus-estrela",
   "proj-feirao",

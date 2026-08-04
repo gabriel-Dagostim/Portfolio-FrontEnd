@@ -5,9 +5,16 @@ import en from "./locales/en.json"
 import ptBR from "./locales/pt-BR.json"
 
 export type { LocaleCode } from "@/types"
+
+/** Preference chosen by the visitor (EN toggle / PT-BR toggle). */
 export const LOCALE_STORAGE_KEY = "portfolio-locale"
 export const SUPPORTED_LOCALES: LocaleCode[] = ["en", "pt-BR"]
+/** First open and fallback: always English (never browser language). */
 export const DEFAULT_LOCALE: LocaleCode = "en"
+
+function isLocale(value: string | null | undefined): value is LocaleCode {
+  return value === "en" || value === "pt-BR"
+}
 
 function applyDocumentLang(lng: LocaleCode) {
   if (typeof document === "undefined") return
@@ -18,17 +25,22 @@ function applyDocumentLang(lng: LocaleCode) {
       : "Gabriel Dagostim — Portfolio"
 }
 
-function readStoredLocale(): LocaleCode {
+/**
+ * Initial language:
+ * 1) User’s saved choice (after they clicked EN / PT-BR)
+ * 2) Otherwise English — do not use navigator.language
+ */
+function resolveInitialLocale(): LocaleCode {
   try {
-    const v = localStorage.getItem(LOCALE_STORAGE_KEY) as LocaleCode | null
-    if (v && SUPPORTED_LOCALES.includes(v)) return v
+    const stored = localStorage.getItem(LOCALE_STORAGE_KEY)
+    if (isLocale(stored)) return stored
   } catch {
     /* ignore */
   }
   return DEFAULT_LOCALE
 }
 
-const initialLocale = readStoredLocale()
+const initialLocale = resolveInitialLocale()
 
 void i18n.use(initReactI18next).init({
   resources: {
@@ -36,18 +48,18 @@ void i18n.use(initReactI18next).init({
     "pt-BR": { translation: ptBR },
   },
   lng: initialLocale,
-  fallbackLng: "en",
+  fallbackLng: DEFAULT_LOCALE,
+  supportedLngs: SUPPORTED_LOCALES,
+  nonExplicitSupportedLngs: false,
+  load: "currentOnly",
   interpolation: { escapeValue: false },
 })
 
 applyDocumentLang(initialLocale)
 
 i18n.on("languageChanged", (lng) => {
-  applyDocumentLang(
-    SUPPORTED_LOCALES.includes(lng as LocaleCode)
-      ? (lng as LocaleCode)
-      : DEFAULT_LOCALE,
-  )
+  const next = isLocale(lng) ? lng : DEFAULT_LOCALE
+  applyDocumentLang(next)
 })
 
 export function setLocale(lng: LocaleCode) {

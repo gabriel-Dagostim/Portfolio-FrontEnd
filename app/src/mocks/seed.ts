@@ -127,13 +127,76 @@ export const SEED_TECHNOLOGIES: Technology[] = [
   tech("telegram", "Telegram Bot"),
   tech("openai", "IA / LLM"),
   tech("n8n", "n8n"),
+  tech("chakra", "Chakra UI"),
+  tech("rq", "React Query"),
 ]
 
 const LEG = (file: string) => `/legacy-projects/${file}`
 const DEBUTANTE = (file: string) => `/legacy-projects/debutante/${file}`
+const CCH = (file: string) =>
+  `/legacy-projects/cartas-contra-a-humanidade/${file}`
 
 /** Projetos extraídos do portfólio legado (HTML + imagens em /public/legacy-projects). */
 const LEGACY_FROM_PORTFOLIO: Project[] = [
+  {
+    id: "proj-cartas-contra-humanidade",
+    slug: "cartas-contra-a-humanidade",
+    title: {
+      pt: "Cartas Contra a Humanidade",
+      en: "Cards Against Humanity (PT)",
+    },
+    shortDescription: {
+      pt: "Clone online em português do Cards Against Humanity — mesa digital, multiplayer local e visual de feltro.",
+      en: "Portuguese online clone of Cards Against Humanity — digital table, local multiplayer, and a felt-table look.",
+    },
+    fullDescription: {
+      pt: "Jogo de cartas ácidas para amigos: sai uma carta preta (pergunta), cada um responde com cartas brancas e a mesa vota na resposta mais absurda. Projeto não oficial, com baralho PT-BR embutido (~600 cartas), lobby configurável (duração, privada/pública, mão 4–6, cronômetros), mesa com chat, pódio e mão em leque, galeria de cartas e partidas ao vivo. Modo local: auth e salas no navegador + sync no servidor Vite por código de 6 dígitos — multiplayer no mesmo PC (outras abas/navegadores). Stack React 18 + TypeScript + Vite, Chakra UI, Framer Motion e React Query.",
+      en: "A spicy card game for friends: a black card (prompt) is played, everyone answers with white cards, and the table votes for the most absurd reply. Unofficial project with a built-in PT-BR deck (~600 cards), configurable lobby (duration, private/public, hand size 4–6, timers), a table with chat, podium and fan-style hand, card gallery and live matches. Local mode: auth and rooms in the browser plus Vite-server sync via a 6-digit code — multiplayer on the same machine (other tabs/browsers). Stack: React 18 + TypeScript + Vite, Chakra UI, Framer Motion, and React Query.",
+    },
+    context: {
+      pt: "Projeto pessoal / open source para jogar em português com amigos na mesma rede (dev local). Repositório público no GitHub.",
+      en: "Personal / open-source project to play in Portuguese with friends on the same network (local dev). Public repo on GitHub.",
+    },
+    participation: {
+      pt: "Conceito, UI da mesa, lobby multiplayer local, baralho PT-BR, auth anônima ou e-mail/senha e sync da sala.",
+      en: "Concept, table UI, local multiplayer lobby, PT-BR deck, anonymous or email/password auth, and room sync.",
+    },
+    technicalChallenges: {
+      pt: "Estado de partida multiplayer no mesmo browser/servidor Vite, UX de mão/leque e votos, baralho grande com busca/filtros e visual de feltro sem travar a jogatina.",
+      en: "Multiplayer match state across tabs/Vite server, hand fan and voting UX, large deck with search/filters, and a felt aesthetic that stays snappy in play.",
+    },
+    categoryId: "cat-personal",
+    areaId: "area-fs",
+    creationDate: "2025-01-01",
+    technologyIds: [
+      "react",
+      "ts",
+      "vite",
+      "chakra",
+      "sass",
+      "motion",
+      "router",
+      "rq",
+      "firebase",
+    ],
+    githubUrl:
+      "https://github.com/gabriel-Dagostim/cartas-contra-a-humanidade",
+    coverImageUrl: CCH("01-home.png"),
+    thumbnailUrl: CCH("01-home.png"),
+    galleryImages: [
+      CCH("01-home.png"),
+      CCH("02-auth.png"),
+      CCH("03-lobby.png"),
+      CCH("04-match.png"),
+      CCH("05-cards.png"),
+      CCH("06-matches.png"),
+      CCH("07-cast.png"),
+    ],
+    featured: true,
+    published: true,
+    order: 0,
+    status: "published",
+  },
   {
     id: "proj-legacy-luna",
     slug: "luna-store",
