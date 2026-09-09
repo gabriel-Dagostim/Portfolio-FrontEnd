@@ -6,12 +6,30 @@ import { defineConfig } from "vite"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        /**
+         * The framework changes far less often than the portfolio content, so
+         * they get separate chunks and a returning visitor only refetches the
+         * part that actually moved.
+         */
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined
+          if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) {
+            return "react"
+          }
+          if (id.includes("i18next")) return "i18n"
+          return "vendor"
+        },
+      },
     },
   },
 })

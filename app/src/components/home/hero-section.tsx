@@ -1,119 +1,80 @@
 import { useTranslation } from "react-i18next"
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion"
-import { useRef } from "react"
-import { ChevronDown } from "lucide-react"
-import { RouterLinkButton } from "@/components/ui/link-button"
+import { Link } from "react-router-dom"
+import { StatusPanel } from "@/components/home/status-panel"
+import { PageContainer } from "@/components/site/page-header"
+import { buttonVariants } from "@/components/ui/button"
+import { useSiteContent } from "@/app/portfolio-store"
+import { pickLocalized } from "@/lib/i18n-utils"
+import { cn } from "@/lib/utils"
 
-export function HeroSection() {
-  const { t } = useTranslation()
-  const reduce = useReducedMotion()
-  const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  })
+type Props = {
+  projectCount: number
+  systemCount: number
+  yearsInOperations: number
+}
 
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "18%"])
-  const yFloat = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.12])
+export function HeroSection({
+  projectCount,
+  systemCount,
+  yearsInOperations,
+}: Props) {
+  const { t, i18n } = useTranslation()
+  const { profile, status } = useSiteContent()
+  const lang = i18n.language
 
-  const heroRotateX = useTransform(
-    scrollYProgress,
-    [0, 0.35, 0.72, 1],
-    reduce ? [0, 0, 0, 0] : [22, 10, 3, 0],
-  )
-  const heroScale = useTransform(
-    scrollYProgress,
-    [0, 0.45, 1],
-    reduce ? [1, 1, 1] : [0.93, 0.98, 1],
-  )
-  const heroZ = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    reduce ? [0, 0, 0] : [56, 20, 0],
-  )
+  const counts = [
+    { value: projectCount, label: t("home.countProjects") },
+    { value: systemCount, label: t("home.countSystems") },
+    { value: yearsInOperations, label: t("home.countYears") },
+  ]
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-[min(100dvh,900px)] overflow-hidden px-4 pb-24 pt-16 sm:px-6 sm:pb-32 sm:pt-24"
-    >
-      <motion.div
-        style={{ y: yBg, opacity }}
-        className="pointer-events-none absolute inset-0 -z-10"
-        aria-hidden
-      >
-        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/12 blur-3xl dark:bg-primary/18" />
-        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent" />
-      </motion.div>
+    <section className="border-b border-rule">
+      <PageContainer className="grid gap-12 pb-14 pt-14 sm:pt-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-16">
+        <div className="flex flex-col justify-center">
+          <p className="type-data text-xs text-muted-foreground">
+            {pickLocalized(profile.role, lang)}
+          </p>
+          <h1 className="type-display measure-tight mt-4 text-[clamp(2.5rem,5.4vw,3.9rem)]">
+            {pickLocalized(profile.headline, lang)}
+          </h1>
+          <p className="measure mt-6 text-base leading-7 text-muted-foreground sm:text-[1.0625rem] sm:leading-8">
+            {pickLocalized(profile.summary, lang)}
+          </p>
 
-      <div className="mx-auto flex min-h-[calc(min(100dvh,900px)-8rem)] max-w-4xl items-center justify-center [perspective:1600px]">
-        <motion.div
-          style={{
-            y: yFloat,
-            rotateX: heroRotateX,
-            scale: heroScale,
-            translateZ: heroZ,
-          }}
-          className="w-full text-center [transform-style:preserve-3d]"
-        >
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-primary"
-          >
-            {t("common.role")}
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05 }}
-            className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl"
-          >
-            {t("home.headline")}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.12 }}
-            className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground"
-          >
-            {t("home.subtitle")}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.18 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <RouterLinkButton to="/projects" size="lg">
-              {t("home.ctaProjects")}
-            </RouterLinkButton>
-            <RouterLinkButton to="/about" size="lg" variant="outline">
-              {t("home.ctaAbout")}
-            </RouterLinkButton>
-            <RouterLinkButton to="/contact" size="lg" variant="ghost">
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link to="/work" className={cn(buttonVariants({ size: "lg" }))}>
+              {t("home.ctaWork")}
+            </Link>
+            <Link
+              to="/contact"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+            >
               {t("home.ctaContact")}
-            </RouterLinkButton>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="mt-16 flex flex-col items-center gap-1 text-xs text-muted-foreground"
-          >
-            <span>{t("home.scroll")}</span>
-            <ChevronDown className="size-4 animate-bounce" />
-          </motion.div>
-        </motion.div>
-      </div>
+            </Link>
+          </div>
+
+          <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t border-rule pt-6">
+            {counts.map((count) => (
+              <div key={count.label}>
+                <dt className="sr-only">{count.label}</dt>
+                <dd>
+                  <span className="type-data text-2xl text-foreground">
+                    {count.value}
+                  </span>
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    {count.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div>
+          <StatusPanel lines={status} />
+        </div>
+      </PageContainer>
     </section>
   )
 }

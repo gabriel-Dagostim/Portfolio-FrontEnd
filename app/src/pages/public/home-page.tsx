@@ -1,354 +1,190 @@
+import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useMemo, useRef, useState } from "react"
-import {
-  ArrowRight,
-  Building2,
-  Cpu,
-  Bot,
-  UserRound,
-  MessageCircle,
-  Sparkles,
-} from "lucide-react"
 import { Link } from "react-router-dom"
 import { HeroSection } from "@/components/home/hero-section"
-import { HomeTechBackdrop } from "@/components/home/home-tech-backdrop"
-import { HomeDevFlowSection } from "@/components/home/home-dev-flow-section"
-import { SectionReveal } from "@/components/motion/section-reveal"
+import { WorkingMethod } from "@/components/home/working-method"
 import { ProjectCard } from "@/components/projects/project-card"
-import { ProjectDetailSheet } from "@/components/projects/project-detail-sheet"
-import { RouterLinkButton } from "@/components/ui/link-button"
-import { Badge } from "@/components/ui/badge"
+import { ProjectDialog } from "@/components/projects/project-dialog"
+import {
+  PageContainer,
+  SectionHeading,
+} from "@/components/site/page-header"
+import { buttonVariants } from "@/components/ui/button"
 import { usePortfolioStore } from "@/app/portfolio-store"
+import { useProjectDialog } from "@/hooks/use-project-dialog"
+import { pickLocalized } from "@/lib/i18n-utils"
+import { selectProjects } from "@/lib/api-mock"
 import { cn } from "@/lib/utils"
 
-const FEATURED_IDS = [
-  "proj-cartas-contra-humanidade",
-  "proj-imagens-ecommerce",
-  "proj-nexus-estrela",
-  "proj-feirao",
-  "proj-dba-bot",
-  "proj-farmacia-auth",
-  "proj-legacy-debutante",
+const COLLECTIONS = [
+  { to: "/systems", titleKey: "nav.systems", blurbKey: "home.systemsBlurb", categoryId: "cat-estrela" },
+  { to: "/infrastructure", titleKey: "nav.infra", blurbKey: "home.infraBlurb", categoryId: "cat-infra" },
+  { to: "/automations", titleKey: "nav.automations", blurbKey: "home.autoBlurb", categoryId: "cat-auto-ops" },
 ] as const
 
-const EXPLORE = [
-  {
-    to: "/sistemas",
-    icon: Building2,
-    titleKey: "home.exploreEstrelaTitle",
-    bodyKey: "home.exploreEstrelaBody",
-  },
-  {
-    to: "/infra",
-    icon: Cpu,
-    titleKey: "home.exploreInfraTitle",
-    bodyKey: "home.exploreInfraBody",
-  },
-  {
-    to: "/automations",
-    icon: Bot,
-    titleKey: "home.exploreAutoTitle",
-    bodyKey: "home.exploreAutoBody",
-  },
-  {
-    to: "/about",
-    icon: UserRound,
-    titleKey: "home.exploreAboutTitle",
-    bodyKey: "home.exploreAboutBody",
-  },
-] as const
+/** Career start — used for the "years in operations" count in the hero. */
+const CAREER_START_YEAR = 2022
 
 export function HomePage() {
-  const { t } = useTranslation()
-  const { scrollYProgress } = useScroll()
-  const featuredRef = useRef<HTMLElement>(null)
-  const { scrollYProgress: featuredProgress } = useScroll({
-    target: featuredRef,
-    offset: ["start end", "end start"],
-  })
-  const featuredParallaxY = useTransform(featuredProgress, [0, 1], [28, -16])
-  const headerShift = useTransform(featuredProgress, [0, 0.5, 1], [0, -6, 0])
+  const { t, i18n } = useTranslation()
+  const { projects, categories, technologies, settings, content } =
+    usePortfolioStore()
+  const dialog = useProjectDialog()
 
-  const { projects, categories, areas, technologies } = usePortfolioStore()
-  const [sheetProjectId, setSheetProjectId] = useState<string | null>(null)
+  const published = useMemo(() => selectProjects(projects), [projects])
 
-  const published = useMemo(
-    () =>
-      projects.filter((p) => p.published && p.status === "published"),
-    [projects],
-  )
-
-  const featuredList = useMemo(() => {
+  const featured = useMemo(() => {
     const byId = new Map(published.map((p) => [p.id, p]))
-    const picked = FEATURED_IDS.map((id) => byId.get(id)).filter(
-      Boolean,
-    ) as typeof published
+    const picked = settings.homeFeaturedIds
+      .map((id) => byId.get(id))
+      .filter((p): p is (typeof published)[number] => Boolean(p))
     if (picked.length >= 3) return picked
-    const rest = published
-      .filter((p) => !FEATURED_IDS.includes(p.id as (typeof FEATURED_IDS)[number]))
-      .sort((a, b) => a.order - b.order)
+    const rest = published.filter((p) => !picked.includes(p))
     return [...picked, ...rest].slice(0, 6)
-  }, [published])
+  }, [published, settings.homeFeaturedIds])
 
-  const stats = useMemo(() => {
-    const estrela = published.filter((p) => p.categoryId === "cat-estrela").length
-    const infra = published.filter((p) => p.categoryId === "cat-infra").length
-    const auto = published.filter((p) => p.categoryId === "cat-auto-ops").length
-    return { total: published.length, estrela, infra, auto }
-  }, [published])
-
-  const sheetProject = sheetProjectId
-    ? (projects.find((p) => p.id === sheetProjectId) ?? null)
-    : null
-  const sheetCategory = sheetProject
-    ? categories.find((c) => c.id === sheetProject.categoryId)
-    : undefined
-  const sheetArea = sheetProject
-    ? areas.find((a) => a.id === sheetProject.areaId)
-    : undefined
-  const sheetTechs = sheetProject
-    ? technologies.filter((x) => sheetProject.technologyIds.includes(x.id))
-    : []
+  const counts = useMemo(() => {
+    const byCategory = (id: string) =>
+      published.filter((p) => p.categoryId === id).length
+    return {
+      total: projects.filter((p) => p.published && p.status === "published")
+        .length,
+      systems:
+        byCategory("cat-estrela") +
+        byCategory("cat-infra") +
+        byCategory("cat-auto-ops"),
+      years: new Date().getFullYear() - CAREER_START_YEAR,
+      byCategory,
+    }
+  }, [projects, published])
 
   return (
     <>
-      <HomeTechBackdrop pageProgress={scrollYProgress} />
-      <div className="relative z-10">
-        <HeroSection />
+      <HeroSection
+        projectCount={counts.total}
+        systemCount={counts.systems}
+        yearsInOperations={counts.years}
+      />
 
-        {/* Snapshot / atalhos úteis */}
-        <section className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 md:px-8">
-          <SectionReveal>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-              {[
-                {
-                  label: t("home.statProjects"),
-                  value: String(stats.total),
-                },
-                {
-                  label: t("home.statEstrela"),
-                  value: String(stats.estrela),
-                },
-                {
-                  label: t("home.statInfra"),
-                  value: String(stats.infra),
-                },
-                {
-                  label: t("home.statAuto"),
-                  value: String(stats.auto),
-                },
-              ].map((s, i) => (
-                <div
-                  key={s.label}
-                  className={cn(
-                    "rounded-2xl border border-border/70 bg-card/50 px-4 py-3 backdrop-blur-sm",
-                    i === 1 && "sm:translate-y-2",
-                    i === 2 && "lg:-translate-y-1",
-                    i === 3 && "sm:translate-y-3 lg:translate-y-2",
-                  )}
-                >
-                  <p className="text-2xl font-semibold tracking-tight">
-                    {s.value}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          </SectionReveal>
-        </section>
-
-        {/* Explorar áreas */}
-        <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:max-w-7xl">
-          <SectionReveal>
-            <div className="mb-10 flex flex-col gap-2 sm:-ml-3 sm:flex-row sm:items-end sm:justify-between md:-ml-6">
-              <div className="max-w-xl">
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary">
-                  {t("home.exploreEyebrow")}
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
-                  {t("home.exploreTitle")}
-                </h2>
-                <p className="mt-3 max-w-lg text-muted-foreground">
-                  {t("home.exploreSubtitle")}
-                </p>
-              </div>
-            </div>
-          </SectionReveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
-            {EXPLORE.map((item, i) => {
-              const Icon = item.icon
-              return (
-                <SectionReveal key={item.to} delay={0.04 * i}>
-                  <Link
-                    to={item.to}
-                    className={cn(
-                      "group flex h-full gap-4 rounded-3xl border border-border/70 bg-card/50 p-5 backdrop-blur-sm sm:p-6",
-                      "transition-all hover:border-primary/35 hover:bg-card hover:shadow-md",
-                      i % 2 === 1 && "sm:translate-y-4",
-                      i === 2 && "lg:-translate-y-2",
-                    )}
-                  >
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary transition-colors group-hover:bg-primary/18">
-                      <Icon className="size-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-semibold tracking-tight">
-                          {t(item.titleKey)}
-                        </h3>
-                        <ArrowRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-                      </div>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                        {t(item.bodyKey)}
-                      </p>
-                    </div>
-                  </Link>
-                </SectionReveal>
-              )
-            })}
-          </div>
-        </section>
-
-        <HomeDevFlowSection />
-
-        {/* Quem sou — faixa compacta */}
-        <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-          <SectionReveal>
-            <div className="overflow-hidden rounded-3xl border border-border/70 bg-gradient-to-br from-primary/12 via-card/60 to-transparent">
-              <div className="grid items-center gap-6 p-6 sm:grid-cols-[auto_1fr_auto] sm:p-8">
-                <img
-                  src="/profile/perfil.png"
-                  alt={t("about.photoAlt")}
-                  className="mx-auto size-24 rounded-2xl object-cover object-top shadow-md ring-1 ring-border sm:mx-0 sm:size-28"
-                  width={112}
-                  height={112}
-                />
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Sparkles className="size-4 text-primary" />
-                    <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-                      {t("home.whoEyebrow")}
-                    </p>
-                  </div>
-                  <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">
-                    {t("common.fullName")}
-                  </h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    {t("home.whoBody")}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <Badge variant="secondary">{t("about.langPt")}</Badge>
-                    <Badge variant="secondary">{t("about.langEn")}</Badge>
-                    <Badge variant="outline">{t("common.role")}</Badge>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 sm:items-stretch">
-                  <RouterLinkButton to="/about">
-                    {t("home.whoCtaAbout")}
-                  </RouterLinkButton>
-                  <RouterLinkButton to="/skills" variant="outline">
-                    {t("home.whoCtaSkills")}
-                  </RouterLinkButton>
-                </div>
-              </div>
-            </div>
-          </SectionReveal>
-        </section>
-
-        {/* Destaques — vários projetos */}
-        <section
-          ref={featuredRef}
-          className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20"
-        >
-          <SectionReveal>
-            <motion.div
-              style={{ y: headerShift }}
-              className="mb-10 flex flex-col gap-4 sm:-ml-4 sm:flex-row sm:items-end sm:justify-between md:-ml-6"
+      <PageContainer className="py-14 sm:py-16">
+        <SectionHeading
+          title={t("home.workTitle")}
+          lead={t("home.workLead")}
+          aside={
+            <Link
+              to="/work"
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
-              <div className="max-w-xl">
-                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
-                  {t("home.featuredTitle")}
-                </h2>
-                <p className="mt-3 max-w-lg text-muted-foreground">
-                  {t("home.featuredSubtitle")}
+              {t("home.workAll", { count: counts.total })}
+            </Link>
+          }
+        />
+        <div className="mt-8 grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              category={categories.find((c) => c.id === project.categoryId)}
+              techs={technologies.filter((x) =>
+                project.technologyIds.includes(x.id),
+              )}
+              onOpen={() => dialog.openProject(project.id)}
+              className="border-0"
+            />
+          ))}
+        </div>
+      </PageContainer>
+
+      <PageContainer className="pb-14 sm:pb-16">
+        <SectionHeading
+          title={t("home.collectionsTitle")}
+          lead={t("home.collectionsLead")}
+        />
+        <ul className="mt-8 grid grid-cols-1 gap-px border border-rule bg-rule md:grid-cols-3">
+          {COLLECTIONS.map((item) => (
+            <li key={item.to} className="bg-surface">
+              <Link
+                to={item.to}
+                className="group flex h-full flex-col p-5 transition-colors hover:bg-surface-sunken sm:p-6"
+              >
+                <span className="type-data text-2xl text-primary">
+                  {counts.byCategory(item.categoryId)}
+                </span>
+                <h3 className="type-title mt-2 text-lg group-hover:underline group-hover:decoration-primary group-hover:underline-offset-4">
+                  {t(item.titleKey)}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  {t(item.blurbKey)}
                 </p>
-              </div>
-              <div className="flex flex-wrap gap-2 sm:translate-x-2">
-                <RouterLinkButton to="/projects" variant="outline">
-                  {t("home.ctaProjects")}
-                </RouterLinkButton>
-                <RouterLinkButton to="/sistemas" variant="ghost">
-                  {t("nav.systems")}
-                </RouterLinkButton>
-              </div>
-            </motion.div>
-          </SectionReveal>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </PageContainer>
 
-          <motion.div
-            style={{ y: featuredParallaxY }}
-            className="grid gap-6 will-change-transform sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
-          >
-            {featuredList.map((p) => (
-              <ProjectCard
-                key={p.id}
-                project={p}
-                category={categories.find((c) => c.id === p.categoryId)}
-                techs={technologies.filter((x) =>
-                  p.technologyIds.includes(x.id),
-                )}
-                onOpen={() => setSheetProjectId(p.id)}
-              />
-            ))}
-          </motion.div>
-        </section>
+      <WorkingMethod steps={content.flow} />
 
-        {/* Contato rápido */}
-        <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-          <SectionReveal>
-            <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-border/70 bg-card/50 p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:p-8">
-              <div>
-                <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                  {t("home.contactBandTitle")}
-                </h2>
-                <p className="mt-2 max-w-xl text-muted-foreground">
-                  {t("home.contactBandBody")}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <RouterLinkButton
-                  to="/contact"
-                  size="lg"
-                  className="gap-2"
-                >
-                  <MessageCircle className="size-4" />
-                  {t("home.ctaContact")}
-                </RouterLinkButton>
-                <a
-                  href="https://wa.me/5545984127626"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex"
-                >
-                  <span className="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground">
-                    WhatsApp
-                  </span>
-                </a>
-              </div>
-            </div>
-          </SectionReveal>
-        </section>
-      </div>
+      <PageContainer className="pb-14 sm:pb-16">
+        <SectionHeading title={t("home.profileTitle")} />
+        <div className="mt-8 grid gap-6 border border-rule bg-surface p-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8 sm:p-8">
+          <img
+            src={content.profile.photoUrl}
+            alt={t("about.photoAlt")}
+            width={160}
+            height={200}
+            className="h-40 w-32 border border-rule object-cover object-top sm:h-48 sm:w-40"
+          />
+          <div>
+            <p className="type-title text-xl">{content.profile.fullName}</p>
+            <p className="type-data mt-1 text-xs text-muted-foreground">
+              {pickLocalized(content.profile.role, i18n.language)}
+            </p>
+            <p className="measure mt-4 text-[0.9375rem] leading-7 text-muted-foreground">
+              {t("about.howBody")}
+            </p>
+            <Link
+              to="/about"
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }), "mt-5")}
+            >
+              {t("home.profileCta")}
+            </Link>
+          </div>
+        </div>
+      </PageContainer>
 
-      <ProjectDetailSheet
-        project={sheetProject}
-        open={Boolean(sheetProject)}
-        onOpenChange={(o) => {
-          if (!o) setSheetProjectId(null)
-        }}
-        category={sheetCategory}
-        area={sheetArea}
-        techs={sheetTechs}
+      <PageContainer className="pb-16">
+        <div className="flex flex-col gap-5 border-t border-rule pt-8 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="type-title text-2xl sm:text-[1.75rem]">
+              {t("home.contactTitle")}
+            </h2>
+            <p className="measure mt-3 text-[0.9375rem] leading-7 text-muted-foreground">
+              {t("home.contactLead")}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/contact" className={cn(buttonVariants({ size: "lg" }))}>
+              {t("home.ctaContact")}
+            </Link>
+            <a
+              href={`https://wa.me/${content.contact.whatsappE164}`}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </PageContainer>
+
+      <ProjectDialog
+        project={dialog.project}
+        open={dialog.open}
+        onOpenChange={dialog.onOpenChange}
+        category={dialog.category}
+        area={dialog.area}
+        techs={dialog.techs}
       />
     </>
   )

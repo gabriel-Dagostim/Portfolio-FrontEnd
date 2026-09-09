@@ -1,92 +1,75 @@
-import { useState } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useState, type FormEvent } from "react"
+import { Navigate, useNavigate, Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import { Lock } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { useAdminSession } from "@/hooks/use-admin-session"
-import { mockLogin } from "@/lib/api-mock"
-
-const schema = z.object({
-  password: z.string().min(1),
-})
-
-type Form = z.infer<typeof schema>
+import { checkAdminPassword } from "@/lib/api-mock"
 
 export function AdminLoginPage() {
   const { t } = useTranslation()
   const { authed, login } = useAdminSession()
   const navigate = useNavigate()
+  const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
-  const [pending, setPending] = useState(false)
 
-  const form = useForm<Form>({
-    resolver: zodResolver(schema),
-    defaultValues: { password: "" },
-  })
+  if (authed) return <Navigate to="/admin" replace />
 
-  if (authed) {
-    return <Navigate to="/admin" replace />
-  }
-
-  async function onSubmit(values: Form) {
-    setError(null)
-    setPending(true)
-    try {
-      const ok = await mockLogin(values.password)
-      if (ok) {
-        login()
-        navigate("/admin")
-      } else {
-        setError(t("admin.loginError"))
-      }
-    } finally {
-      setPending(false)
+  function onSubmit(event: FormEvent) {
+    event.preventDefault()
+    if (checkAdminPassword(password)) {
+      login()
+      navigate("/admin")
+    } else {
+      setError(t("admin.signInError"))
     }
   }
 
   return (
-    <div className="relative flex min-h-svh items-center justify-center overflow-hidden px-4">
-      <div
-        className="pointer-events-none absolute inset-0 -z-10"
-        aria-hidden
-      >
-        <div className="absolute left-1/2 top-0 h-72 w-[28rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-      </div>
-      <div className="w-full max-w-sm space-y-6 rounded-2xl border border-border/70 bg-card/90 p-8 shadow-lg backdrop-blur-md">
-        <div className="flex items-start gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
-            <Lock className="size-5" />
-          </span>
-          <div>
-            <h1 className="text-xl font-semibold tracking-tight">
-              {t("admin.loginTitle")}
-            </h1>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-              {t("admin.loginHint")}
+    <div className="flex min-h-svh items-center justify-center px-5">
+      <div className="w-full max-w-sm">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          {t("admin.backToSite")}
+        </Link>
+
+        <div className="mt-6 border border-rule-strong bg-surface">
+          <div className="border-b border-rule bg-surface-sunken px-4 py-2.5">
+            <span className="type-data text-xs">{t("admin.signInTitle")}</span>
+          </div>
+          <form className="space-y-4 p-5" onSubmit={onSubmit}>
+            <p className="text-sm leading-6 text-muted-foreground">
+              {t("admin.signInLead")}
             </p>
-          </div>
+            <div className="space-y-1.5">
+              <label htmlFor="password" className="block text-xs font-medium">
+                {t("admin.password")}
+              </label>
+              <Input
+                id="password"
+                type="password"
+                autoComplete="current-password"
+                autoFocus
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value)
+                  setError(null)
+                }}
+                aria-invalid={Boolean(error)}
+              />
+            </div>
+            {error ? (
+              <p className="text-sm text-destructive">{error}</p>
+            ) : null}
+            <Button type="submit" className="w-full">
+              {t("admin.signIn")}
+            </Button>
+          </form>
         </div>
-        <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="space-y-2">
-            <Label htmlFor="password">{t("admin.password")}</Label>
-            <Input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              autoFocus
-              {...form.register("password")}
-            />
-          </div>
-          {error ? <p className="text-sm text-destructive">{error}</p> : null}
-          <Button type="submit" className="w-full" disabled={pending}>
-            {t("admin.signIn")}
-          </Button>
-        </form>
       </div>
     </div>
   )
