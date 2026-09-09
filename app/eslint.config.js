@@ -20,4 +20,16 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    // Providers ship their consumer hook, and the UI primitives ship the cva
+    // variants they are built from. Both are deliberate co-locations, and
+    // neither breaks fast refresh in practice.
+    files: [
+      'src/app/portfolio-store.tsx',
+      'src/app/theme-provider.tsx',
+      'src/components/admin/admin-ui.tsx',
+      'src/components/ui/*.tsx',
+    ],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 ])

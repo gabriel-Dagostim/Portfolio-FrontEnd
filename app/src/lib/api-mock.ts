@@ -1,75 +1,75 @@
 import type { Project, ProjectStatus } from "@/types"
 
-const delay = (ms: number) => new Promise((r) => setTimeout(r, ms))
-
-export type ProjectListFilters = {
+export type ProjectFilters = {
   categoryId?: string
+  areaId?: string
   technologyId?: string
   search?: string
-  includeUnpublished?: boolean
-  /** true = só em andamento; false/undefined = publicados que não são WIP */
+  /** true = only work in progress; false/undefined = everything else. */
   workingOn?: boolean
 }
 
-export async function fetchPublishedProjects(
-  projects: Project[],
-  filters: ProjectListFilters = {},
-): Promise<Project[]> {
-  await delay(180)
-  let list = projects.filter((p) => p.published && p.status === "published")
-  if (filters.includeUnpublished) {
-    list = [...projects]
-  }
-  if (filters.workingOn === true) {
-    list = list.filter((p) => Boolean(p.workingOn))
-  } else {
-    list = list.filter((p) => !p.workingOn)
-  }
-  if (filters.categoryId) {
-    list = list.filter((p) => p.categoryId === filters.categoryId)
-  }
-  const techId = filters.technologyId
-  if (techId) {
-    list = list.filter((p) => p.technologyIds.includes(techId))
-  }
-  if (filters.search?.trim()) {
-    const q = filters.search.trim().toLowerCase()
-    list = list.filter(
-      (p) =>
-        p.title.pt.toLowerCase().includes(q) ||
-        p.title.en.toLowerCase().includes(q) ||
-        p.shortDescription.pt.toLowerCase().includes(q) ||
-        p.shortDescription.en.toLowerCase().includes(q),
-    )
-  }
-  return [...list].sort((a, b) => a.order - b.order)
+function matchesSearch(project: Project, query: string) {
+  const q = query.trim().toLowerCase()
+  if (!q) return true
+  const haystack = [
+    project.title.en,
+    project.title.pt,
+    project.title.es,
+    project.shortDescription.en,
+    project.shortDescription.pt,
+    project.shortDescription.es,
+    project.slug,
+  ]
+  return haystack.some((value) => value.toLowerCase().includes(q))
 }
 
-export async function fetchProjectBySlug(
+/** Pure, synchronous filtering — the data already lives in the store. */
+export function selectProjects(
+  projects: Project[],
+  filters: ProjectFilters = {},
+): Project[] {
+  return projects
+    .filter((p) => p.published && p.status === "published")
+    .filter((p) => (filters.workingOn === true ? p.workingOn : !p.workingOn))
+    .filter((p) => !filters.categoryId || p.categoryId === filters.categoryId)
+    .filter((p) => !filters.areaId || p.areaId === filters.areaId)
+    .filter(
+      (p) =>
+        !filters.technologyId ||
+        p.technologyIds.includes(filters.technologyId),
+    )
+    .filter((p) => matchesSearch(p, filters.search ?? ""))
+    .sort((a, b) => a.order - b.order)
+}
+
+export function findProjectBySlug(
   projects: Project[],
   slug: string,
-  opts?: { includeDrafts?: boolean },
-): Promise<Project | null> {
-  await delay(120)
-  const p = projects.find((x) => x.slug === slug)
-  if (!p) return null
-  if (!opts?.includeDrafts && (!p.published || p.status !== "published")) {
+): Project | null {
+  const project = projects.find((p) => p.slug === slug)
+  if (!project || !project.published || project.status !== "published") {
     return null
   }
-  return p
+  return project
 }
 
-export async function mockLogin(password: string): Promise<boolean> {
-  await delay(350)
-  return password === "GHDSSUPREMO"
+/**
+ * The admin is a local content editor, not a security boundary — the site is
+ * static and every visitor already has the whole dataset in their bundle.
+ */
+export const ADMIN_PASSWORD = "GHDSSUPREMO"
+
+export function checkAdminPassword(password: string): boolean {
+  return password === ADMIN_PASSWORD
 }
 
 export function nextProjectId(projects: Project[]): string {
-  const n = projects.reduce((max, p) => {
-    const m = Number.parseInt(p.id.replace(/\D/g, ""), 10)
-    return Number.isFinite(m) ? Math.max(max, m) : max
+  const max = projects.reduce((acc, p) => {
+    const n = Number.parseInt(p.id.replace(/\D/g, ""), 10)
+    return Number.isFinite(n) ? Math.max(acc, n) : acc
   }, 0)
-  return `proj-${n + 1}`
+  return `proj-${max + 1}`
 }
 
 export const PROJECT_STATUSES: ProjectStatus[] = [

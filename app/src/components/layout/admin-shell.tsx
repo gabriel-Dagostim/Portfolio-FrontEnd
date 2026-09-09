@@ -1,119 +1,159 @@
+import { useState } from "react"
 import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import {
-  LayoutDashboard,
+  Briefcase,
+  Contact,
   FolderKanban,
-  Tags,
-  Cpu,
-  Settings,
+  GitBranch,
+  LayoutDashboard,
+  ExternalLink,
   LogOut,
+  Menu,
+  Settings,
+  Sparkles,
+  Tags,
+  UserRound,
+  X,
 } from "lucide-react"
+import { LanguageSwitch } from "@/components/site/language-switch"
+import { ThemeSwitch } from "@/components/site/theme-switch"
 import { Button } from "@/components/ui/button"
 import { useAdminSession } from "@/hooks/use-admin-session"
 import { cn } from "@/lib/utils"
 
-const linkClass = ({ isActive }: { isActive: boolean }) =>
-  cn(
-    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-    isActive
-      ? "bg-primary/15 text-primary"
-      : "text-muted-foreground hover:bg-muted hover:text-foreground",
-  )
-
-const navItems = [
-  { to: "/admin", end: true, icon: LayoutDashboard, labelKey: "admin.dashboard" },
-  { to: "/admin/projects", end: false, icon: FolderKanban, labelKey: "admin.projects" },
-  { to: "/admin/categories", end: false, icon: Tags, labelKey: "admin.categories" },
-  { to: "/admin/technologies", end: false, icon: Cpu, labelKey: "admin.technologies" },
-  { to: "/admin/settings", end: false, icon: Settings, labelKey: "admin.settings" },
+/**
+ * Three groups, named for what they change: the words on the site, the
+ * project catalogue, and the switches behind both.
+ */
+const NAV_GROUPS = [
+  {
+    labelKey: "admin.sectionContent",
+    items: [
+      { to: "/admin", end: true, icon: LayoutDashboard, labelKey: "admin.overview" },
+      { to: "/admin/profile", icon: UserRound, labelKey: "admin.profile" },
+      { to: "/admin/career", icon: Briefcase, labelKey: "admin.career" },
+      { to: "/admin/skills", icon: Sparkles, labelKey: "admin.skillsNav" },
+      { to: "/admin/flow", icon: GitBranch, labelKey: "admin.flowNav" },
+      { to: "/admin/contact", icon: Contact, labelKey: "admin.contactNav" },
+    ],
+  },
+  {
+    labelKey: "admin.sectionCatalogue",
+    items: [
+      { to: "/admin/projects", icon: FolderKanban, labelKey: "admin.projects" },
+      { to: "/admin/taxonomy", icon: Tags, labelKey: "admin.categories" },
+    ],
+  },
+  {
+    labelKey: "admin.sectionSystem",
+    items: [{ to: "/admin/settings", icon: Settings, labelKey: "admin.settings" }],
+  },
 ] as const
 
 export function AdminShell() {
   const { t } = useTranslation()
   const { authed, logout } = useAdminSession()
   const navigate = useNavigate()
+  const [navOpen, setNavOpen] = useState(false)
 
-  if (!authed) {
-    return <Navigate to="/admin/login" replace />
-  }
+  if (!authed) return <Navigate to="/admin/login" replace />
 
-  function handleLogout() {
+  function signOut() {
     logout()
     navigate("/admin/login")
   }
 
+  const nav = (
+    <nav className="space-y-6">
+      {NAV_GROUPS.map((group) => (
+        <div key={group.labelKey}>
+          <p className="type-data px-3 pb-2 text-[0.6875rem] text-muted-foreground">
+            {t(group.labelKey)}
+          </p>
+          <ul>
+            {group.items.map((item) => {
+              const Icon = item.icon
+              return (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={"end" in item ? item.end : undefined}
+                    onClick={() => setNavOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-2.5 border-l-2 px-3 py-2 text-sm transition-colors",
+                        isActive
+                          ? "border-primary bg-surface-sunken text-foreground"
+                          : "border-transparent text-muted-foreground hover:bg-surface-sunken hover:text-foreground",
+                      )
+                    }
+                  >
+                    <Icon className="size-4 shrink-0" />
+                    {t(item.labelKey)}
+                  </NavLink>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  )
+
   return (
     <div className="flex min-h-svh bg-background">
-      <aside className="hidden w-60 shrink-0 flex-col border-r border-border bg-card/40 md:flex">
-        <div className="border-b border-border px-4 py-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            {t("nav.admin")}
-          </p>
-          <p className="mt-1 text-sm font-semibold tracking-tight">
-            {t("common.brand")}
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-rule bg-surface md:flex">
+        <div className="border-b border-rule px-4 py-4">
+          <p className="type-title text-base">{t("admin.signInTitle")}</p>
+          <p className="type-data mt-0.5 text-[0.6875rem] text-muted-foreground">
+            Gabriel Dagostim
           </p>
         </div>
-        <nav className="flex flex-1 flex-col gap-1 p-3">
-          {navItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                className={linkClass}
-              >
-                <Icon className="size-4" />
-                {t(item.labelKey)}
-              </NavLink>
-            )
-          })}
-        </nav>
-        <div className="border-t border-border p-3">
-          <Button
-            variant="ghost"
-            className="w-full justify-start"
-            onClick={handleLogout}
+        <div className="flex-1 overflow-y-auto py-5">{nav}</div>
+        <div className="space-y-2 border-t border-rule p-3">
+          <NavLink
+            to="/"
+            className="flex items-center gap-2.5 px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            <LogOut className="mr-2 size-4" />
+            <ExternalLink className="size-4" />
+            {t("admin.backToSite")}
+          </NavLink>
+          <Button variant="ghost" className="w-full justify-start" onClick={signOut}>
+            <LogOut className="size-4" />
             {t("admin.signOut")}
           </Button>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-md">
-          <div className="flex items-center justify-between gap-3 px-4 py-3 md:hidden">
-            <span className="text-sm font-semibold">{t("admin.dashboard")}</span>
-            <Button size="sm" variant="outline" onClick={handleLogout}>
-              {t("admin.signOut")}
-            </Button>
+        <header className="sticky top-0 z-30 border-b border-rule bg-background/92 backdrop-blur-md">
+          <div className="flex items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
+            <button
+              type="button"
+              onClick={() => setNavOpen((v) => !v)}
+              aria-expanded={navOpen}
+              className="rounded-sm border border-rule p-1.5 text-muted-foreground md:hidden"
+            >
+              {navOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+              <span className="sr-only">
+                {navOpen ? t("common.closeMenu") : t("common.openMenu")}
+              </span>
+            </button>
+            <div className="ml-auto flex items-center gap-2">
+              <LanguageSwitch />
+              <ThemeSwitch />
+              <Button size="sm" variant="outline" onClick={signOut} className="md:hidden">
+                {t("admin.signOut")}
+              </Button>
+            </div>
           </div>
-          <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:hidden">
-            {navItems.map((item) => {
-              const Icon = item.icon
-              return (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.end}
-                  className={({ isActive }) =>
-                    cn(
-                      "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium",
-                      isActive
-                        ? "border-primary/40 bg-primary/10 text-primary"
-                        : "border-border text-muted-foreground",
-                    )
-                  }
-                >
-                  <Icon className="size-3.5" />
-                  {t(item.labelKey)}
-                </NavLink>
-              )
-            })}
-          </nav>
+          {navOpen ? (
+            <div className="border-t border-rule bg-surface py-4 md:hidden">{nav}</div>
+          ) : null}
         </header>
-        <div className="flex flex-1 flex-col overflow-auto p-4 sm:p-6 md:p-8">
+
+        <div className="flex-1 px-4 py-6 sm:px-6 sm:py-8">
           <Outlet />
         </div>
       </div>

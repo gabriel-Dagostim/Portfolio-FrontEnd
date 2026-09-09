@@ -1,148 +1,104 @@
+import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { Moon, Sun, Monitor } from "lucide-react"
-import { buttonVariants } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { setLocale, type LocaleCode } from "@/i18n"
-import { useThemeMode } from "@/app/theme-provider"
-import { RouterLinkButton } from "@/components/ui/link-button"
+import { Menu, X } from "lucide-react"
+import { LanguageSwitch } from "@/components/site/language-switch"
+import { ThemeSwitch } from "@/components/site/theme-switch"
+import { useSiteContent } from "@/app/portfolio-store"
 import { cn } from "@/lib/utils"
 
-const navClass = ({ isActive }: { isActive: boolean }) =>
-  cn(
-    "text-sm font-medium transition-colors hover:text-primary",
-    isActive ? "text-foreground" : "text-muted-foreground",
-  )
-
-const NAV_LINKS = [
+const NAV = [
   { to: "/", end: true, key: "nav.home" },
-  { to: "/projects", key: "nav.projects" },
-  { to: "/sistemas", key: "nav.systems" },
-  { to: "/infra", key: "nav.infra" },
+  { to: "/work", key: "nav.work" },
+  { to: "/systems", key: "nav.systems" },
+  { to: "/infrastructure", key: "nav.infra" },
   { to: "/automations", key: "nav.automations" },
   { to: "/about", key: "nav.about" },
   { to: "/skills", key: "nav.skills" },
   { to: "/contact", key: "nav.contact" },
 ] as const
 
-function normalizeLocale(language: string): LocaleCode {
-  return language.toLowerCase().startsWith("pt") ? "pt-BR" : "en"
-}
-
 export function PublicHeader() {
-  const { t, i18n } = useTranslation()
-  const { setMode, resolved } = useThemeMode()
-  const locale = normalizeLocale(i18n.language)
+  const { t } = useTranslation()
+  const { profile } = useSiteContent()
+  const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-rule bg-background/88 backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-[84rem] items-center gap-6 px-5 sm:px-8">
         <Link
           to="/"
-          className="shrink-0 font-semibold tracking-tight text-foreground"
+          className="type-title shrink-0 text-[0.9375rem] text-foreground"
         >
-          {t("common.brand")}
+          {profile.shortName}
         </Link>
-        <nav className="hidden items-center gap-4 lg:flex xl:gap-5">
-          {NAV_LINKS.map((item) => (
+
+        <nav className="hidden flex-1 items-center gap-5 lg:flex">
+          {NAV.slice(1).map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
-              end={"end" in item ? item.end : undefined}
-              className={navClass}
+              className={({ isActive }) =>
+                cn(
+                  "border-b-2 py-[1.15rem] text-sm transition-colors",
+                  isActive
+                    ? "border-primary text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground",
+                )
+              }
             >
               {t(item.key)}
             </NavLink>
           ))}
         </nav>
-        <div className="flex items-center gap-1">
-          <div
-            className="mr-1 inline-flex items-center rounded-lg border border-border/70 bg-background/80 p-0.5 text-xs font-medium"
-            role="group"
-            aria-label={t("common.language")}
+
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <LanguageSwitch />
+          <ThemeSwitch className="hidden sm:inline-flex" />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            className="inline-flex items-center justify-center rounded-sm border border-rule p-1.5 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
           >
-            <button
-              type="button"
-              onClick={() => setLocale("en")}
-              className={cn(
-                "rounded-md px-2.5 py-1 transition-colors",
-                locale === "en"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-              aria-pressed={locale === "en"}
-            >
-              EN
-            </button>
-            <button
-              type="button"
-              onClick={() => setLocale("pt-BR")}
-              className={cn(
-                "rounded-md px-2.5 py-1 transition-colors",
-                locale === "pt-BR"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-              aria-pressed={locale === "pt-BR"}
-            >
-              PT-BR
-            </button>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-              aria-label="Theme"
-            >
-              {resolved === "dark" ? (
-                <Moon className="size-4" />
-              ) : (
-                <Sun className="size-4" />
-              )}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setMode("light")}>
-                <Sun className="mr-2 size-4" /> {t("admin.themeLight")}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setMode("dark")}>
-                <Moon className="mr-2 size-4" /> {t("admin.themeDark")}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setMode("system")}>
-                <Monitor className="mr-2 size-4" /> {t("admin.themeSystem")}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <RouterLinkButton
-            to="/admin/login"
-            variant="outline"
-            size="sm"
-            className="hidden sm:inline-flex"
-          >
-            {t("nav.admin")}
-          </RouterLinkButton>
+            {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            <span className="sr-only">
+              {open ? t("common.closeMenu") : t("common.openMenu")}
+            </span>
+          </button>
         </div>
       </div>
-      <div className="border-t border-border/40 px-4 py-2 lg:hidden">
-        <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-          {NAV_LINKS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={"end" in item ? item.end : undefined}
-              className={navClass}
-            >
-              {t(item.key)}
-            </NavLink>
-          ))}
-          <NavLink to="/admin/login" className={navClass}>
-            {t("nav.admin")}
-          </NavLink>
+
+      {open ? (
+        <nav
+          id="mobile-nav"
+          className="border-t border-rule bg-background lg:hidden"
+        >
+          <ul className="mx-auto max-w-[84rem] px-5 py-2 sm:px-8">
+            {NAV.map((item) => (
+              <li key={item.to} className="border-b border-rule/60 last:border-0">
+                <NavLink
+                  to={item.to}
+                  end={"end" in item ? item.end : undefined}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    cn(
+                      "block py-2.5 text-sm",
+                      isActive ? "text-foreground" : "text-muted-foreground",
+                    )
+                  }
+                >
+                  {t(item.key)}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+          <div className="mx-auto max-w-[84rem] px-5 pb-4 sm:px-8">
+            <ThemeSwitch />
+          </div>
         </nav>
-      </div>
+      ) : null}
     </header>
   )
 }

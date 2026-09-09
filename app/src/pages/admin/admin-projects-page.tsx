@@ -1,85 +1,160 @@
-import { Link } from "react-router-dom"
+import { useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { Pencil, Plus, Trash2 } from "lucide-react"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { RouterLinkButton } from "@/components/ui/link-button"
+import { Link } from "react-router-dom"
+import { ArrowDown, ArrowUp, Pencil, Plus, Search, Trash2 } from "lucide-react"
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+  AdminPage,
+  EmptyState,
+  useConfirmedDelete,
+} from "@/components/admin/admin-ui"
 import { Badge } from "@/components/ui/badge"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { usePortfolioStore } from "@/app/portfolio-store"
-import { pickBilingual } from "@/lib/i18n-utils"
+import { pickLocalized } from "@/lib/i18n-utils"
 import { cn } from "@/lib/utils"
 
 export function AdminProjectsPage() {
   const { t, i18n } = useTranslation()
-  const { projects, categories, deleteProject } = usePortfolioStore()
-  const sorted = [...projects].sort((a, b) => a.order - b.order)
+  const { projects, categories, deleteProject, reorderProjects } =
+    usePortfolioStore()
+  const confirmDelete = useConfirmedDelete()
+  const [search, setSearch] = useState("")
+  const lang = i18n.language
+
+  const ordered = useMemo(
+    () => [...projects].sort((a, b) => a.order - b.order),
+    [projects],
+  )
+
+  const visible = useMemo(() => {
+    const query = search.trim().toLowerCase()
+    if (!query) return ordered
+    return ordered.filter(
+      (p) =>
+        p.slug.includes(query) ||
+        pickLocalized(p.title, lang).toLowerCase().includes(query),
+    )
+  }, [ordered, search, lang])
+
+  /** Reordering swaps neighbours in the full list, never the filtered view. */
+  function move(id: string, direction: -1 | 1) {
+    const index = ordered.findIndex((p) => p.id === id)
+    const target = index + direction
+    if (index === -1 || target < 0 || target >= ordered.length) return
+    const next = [...ordered]
+    ;[next[index], next[target]] = [next[target], next[index]]
+    reorderProjects(next.map((p) => p.id))
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          {t("admin.projects")}
-        </h1>
-        <RouterLinkButton to="/admin/projects/new">
-          <Plus className="mr-2 size-4" />
+    <AdminPage
+      title={t("admin.projects")}
+      lead={t("admin.projectsLead")}
+      actions={
+        <Link to="/admin/projects/new" className={cn(buttonVariants({ size: "sm" }))}>
+          <Plus className="size-3.5" />
           {t("admin.newProject")}
-        </RouterLinkButton>
-      </div>
-      <div className="rounded-lg border border-border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>{t("admin.namePt")}</TableHead>
-              <TableHead>{t("common.status")}</TableHead>
-              <TableHead>{t("common.published")}</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sorted.map((p) => {
-              const cat = categories.find((c) => c.id === p.categoryId)
-              return (
-                <TableRow key={p.id}>
-                  <TableCell className="font-medium">
-                    {pickBilingual(p.title, i18n.language)}
-                    <div className="text-xs text-muted-foreground">
-                      {cat ? pickBilingual(cat.name, i18n.language) : p.categoryId}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{p.status}</Badge>
-                  </TableCell>
-                  <TableCell>{p.published ? "yes" : "no"}</TableCell>
-                  <TableCell className="text-right">
-                    <Link
-                      to={`/admin/projects/${p.id}/edit`}
-                      className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "inline-flex")}
-                    >
-                      <Pencil className="size-4" />
-                    </Link>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => {
-                        if (confirm("Delete project?")) deleteProject(p.id)
-                      }}
-                    >
-                      <Trash2 className="size-4 text-destructive" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
+        </Link>
+      }
+    >
+      <label className="mb-4 flex max-w-sm items-center gap-2 border border-rule px-3 py-1.5 focus-within:border-primary">
+        <Search className="size-3.5 shrink-0 text-muted-foreground" />
+        <span className="sr-only">{t("common.search")}</span>
+        <input
+          type="search"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder={t("common.search")}
+          className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+        />
+      </label>
+
+      {visible.length === 0 ? (
+        <EmptyState message={t("admin.empty")} />
+      ) : (
+        <ul className="border border-rule bg-surface">
+          {visible.map((project, index) => {
+            const category = categories.find((c) => c.id === project.categoryId)
+            const title = pickLocalized(project.title, lang) || project.slug
+            return (
+              <li
+                key={project.id}
+                className="flex items-center gap-3 border-b border-rule px-3 py-2.5 last:border-b-0"
+              >
+                <img
+                  src={project.thumbnailUrl}
+                  alt=""
+                  loading="lazy"
+                  className="hidden h-9 w-14 shrink-0 border border-rule object-cover object-top sm:block"
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{title}</p>
+                  <p className="type-data truncate text-xs text-muted-foreground">
+                    {project.slug}
+                    {category
+                      ? ` · ${pickLocalized(category.name, lang)}`
+                      : ""}
+                  </p>
+                </div>
+
+                <div className="hidden shrink-0 items-center gap-1.5 md:flex">
+                  {project.workingOn ? (
+                    <Badge variant="signal">{t("admin.workingOn")}</Badge>
+                  ) : null}
+                  {project.featured ? (
+                    <Badge variant="secondary">{t("admin.featured")}</Badge>
+                  ) : null}
+                  <Badge variant={project.published ? "muted" : "outline"}>
+                    {project.published
+                      ? t("admin.statusPublished")
+                      : t("admin.statusDraft")}
+                  </Badge>
+                </div>
+
+                <div className="flex shrink-0 items-center gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    disabled={index === 0}
+                    onClick={() => move(project.id, -1)}
+                    aria-label={`${t("admin.order")} −`}
+                  >
+                    <ArrowUp className="size-3.5" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    disabled={index === visible.length - 1}
+                    onClick={() => move(project.id, 1)}
+                    aria-label={`${t("admin.order")} +`}
+                  >
+                    <ArrowDown className="size-3.5" />
+                  </Button>
+                  <Link
+                    to={`/admin/projects/${project.id}`}
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "icon-sm" }),
+                    )}
+                    aria-label={t("admin.editProject")}
+                  >
+                    <Pencil className="size-3.5" />
+                  </Link>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={() =>
+                      confirmDelete(title, () => deleteProject(project.id))
+                    }
+                    aria-label={t("common.delete")}
+                  >
+                    <Trash2 className="size-3.5" />
+                  </Button>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </AdminPage>
   )
 }
