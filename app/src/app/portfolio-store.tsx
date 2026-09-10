@@ -26,7 +26,7 @@ import type {
   Technology,
 } from "@/types"
 
-/** v2 — the store gained Spanish and editable site content. */
+/** v2, the store gained Spanish and editable site content. */
 const STORAGE_KEY = "portfolio-admin-store-v2"
 
 type StoreState = {
@@ -116,7 +116,7 @@ function createInitialState(): StoreState {
       if (parsed && typeof parsed === "object") return mergePersisted(parsed)
     }
   } catch {
-    /* corrupt or unavailable storage — fall through to the seed */
+    /* corrupt or unavailable storage, fall through to the seed */
   }
   return seedState()
 }
@@ -125,7 +125,7 @@ function persistState(state: StoreState) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   } catch {
-    // Quota exceeded (usually a large data-URL upload) — stay in memory.
+    // Quota exceeded (usually a large data-URL upload), stay in memory.
   }
 }
 

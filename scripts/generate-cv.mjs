@@ -46,7 +46,7 @@ function documentFor(data, fonts) {
   const { labels } = data
 
   const section = (title, body) => `
-    <section class="block">
+    <section class="section">
       <h2>${escape(title)}</h2>
       ${body}
     </section>`
@@ -68,7 +68,7 @@ function documentFor(data, fonts) {
   const education = data.education
     .map(
       (item) => `
-      <article class="entry compact">
+      <article class="entry entry-compact">
         <div class="entry-head">
           <h3>${escape(item.title)}</h3>
           <span class="period">${escape(item.period)}</span>
@@ -78,180 +78,171 @@ function documentFor(data, fonts) {
     )
     .join("")
 
-  const selected = `<ul class="selected">${data.selected
-    .map(
-      (item) =>
-        `<li><span class="selected-name">${escape(item.name)}</span> ${escape(item.note)}</li>`,
-    )
-    .join("")}</ul>`
+  const pairs = (rows) =>
+    `<div class="pairs">${rows
+      .map(
+        ([label, value]) =>
+          `<div class="pair"><span class="pair-label">${escape(label)}</span><span class="pair-value">${escape(value)}</span></div>`,
+      )
+      .join("")}</div>`
+
+  const selected = pairs(data.selected.map((i) => [i.name, i.note]))
+  const skills = pairs(data.skills.map((s) => [s.label, s.value]))
+  const languages = pairs(data.languages.map((l) => [l.name, l.level]))
 
   const awards = `<ul>${data.awards.map((a) => `<li>${escape(a)}</li>`).join("")}</ul>`
-
-  const skills = data.skills
-    .map(
-      (skill) => `
-      <div class="skill">
-        <span class="skill-label">${escape(skill.label)}</span>
-        <span class="skill-value">${escape(skill.value)}</span>
-      </div>`,
-    )
-    .join("")
-
-  const languages = data.languages
-    .map(
-      (language) => `
-      <div class="skill">
-        <span class="skill-label">${escape(language.name)}</span>
-        <span class="skill-value">${escape(language.level)}</span>
-      </div>`,
-    )
-    .join("")
 
   return `<!doctype html>
 <html lang="${data.htmlLang}">
 <head>
 <meta charset="utf-8">
-<title>${escape(CONTACT.name)} — ${escape(data.role)}</title>
+<title>${escape(CONTACT.name)}, ${escape(data.role)}</title>
 <style>
 ${fonts}
 
 :root{
-  --ink:#17242f;
-  --body:#3b4b57;
-  --muted:#6b7a86;
-  --rule:#d6dbdf;
+  --ink:#16222d;
+  --body:#3c4b57;
+  --muted:#6d7c88;
+  --rule:#d9dee2;
   --primary:#1c4d6e;
-  --signal:#a8712a;
-  --sunken:#f2f4f6;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 
-@page{size:A4;margin:11mm 11mm;}
+/* Generous margins are part of the convention this has to meet. */
+@page{size:A4;margin:18mm 17mm;}
 
 html{font-family:'Archivo Variable',sans-serif;}
 body{
   color:var(--body);
-  font-size:8.9pt;
-  line-height:1.42;
+  font-size:10pt;
+  line-height:1.5;
   -webkit-print-color-adjust:exact;
   print-color-adjust:exact;
 }
 
-/* Masthead — the name is the one place the type gets loud. */
-header.masthead{
-  border-bottom:1.6pt solid var(--ink);
-  padding-bottom:6pt;
-  margin-bottom:9pt;
-}
+header.masthead{margin-bottom:20pt;}
 h1{
-  font-size:22pt;
-  font-stretch:112%;
+  font-size:24pt;
+  font-stretch:106%;
   font-weight:700;
-  letter-spacing:-.028em;
-  line-height:1;
+  letter-spacing:-.022em;
+  line-height:1.1;
   color:var(--ink);
 }
 .role{
-  margin-top:3pt;
-  font-size:10pt;
+  margin-top:5pt;
+  font-size:11.5pt;
   font-weight:500;
   color:var(--primary);
 }
-.contact-line{
-  margin-top:6pt;
-  font-family:'JetBrains Mono Variable',monospace;
-  font-size:7.3pt;
-  letter-spacing:-.01em;
+.contact{
+  margin-top:9pt;
+  padding-top:9pt;
+  border-top:.8pt solid var(--rule);
+  font-size:9pt;
   color:var(--muted);
 }
-.contact-line span+span::before{content:"  ·  ";color:var(--rule);}
-
-.layout{display:grid;grid-template-columns:1fr 60mm;gap:8mm;align-items:start;}
-
-.block{margin-bottom:8pt;break-inside:avoid;}
-.block h2{
-  font-family:'JetBrains Mono Variable',monospace;
-  font-size:7.6pt;
-  font-weight:600;
-  color:var(--primary);
-  padding-bottom:2.2pt;
-  margin-bottom:5pt;
-  border-bottom:.7pt solid var(--rule);
+.contact span:not(:last-child)::after{
+  content:"   |   ";
+  color:var(--rule);
 }
 
-.summary{text-align:justify;}
+.section{margin-bottom:17pt;}
+.section:last-child{margin-bottom:0;}
+.section h2{
+  break-after:avoid;
+  font-size:10.5pt;
+  font-weight:700;
+  letter-spacing:.01em;
+  color:var(--ink);
+  padding-bottom:4pt;
+  margin-bottom:10pt;
+  border-bottom:.8pt solid var(--rule);
+}
 
-.entry{margin-bottom:6.5pt;break-inside:avoid;}
+.summary{max-width:62em;}
+
+.entry{margin-bottom:13pt;break-inside:avoid;}
 .entry:last-child{margin-bottom:0;}
-.entry.compact{margin-bottom:4.5pt;}
-.entry-head{display:flex;justify-content:space-between;align-items:baseline;gap:6pt;}
-.entry h3{font-size:9.8pt;font-weight:650;color:var(--ink);letter-spacing:-.012em;}
+.entry-compact{margin-bottom:9pt;}
+.entry-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:10pt;
+}
+.entry h3{
+  font-size:11pt;
+  font-weight:650;
+  color:var(--ink);
+  letter-spacing:-.008em;
+}
 .period{
-  font-family:'JetBrains Mono Variable',monospace;
-  font-size:7.2pt;
-  color:var(--signal);
+  font-size:9pt;
+  color:var(--muted);
   white-space:nowrap;
 }
-.org{font-size:8.4pt;color:var(--muted);margin-top:.5pt;}
+.org{
+  margin-top:1.5pt;
+  font-size:9.5pt;
+  font-weight:500;
+  color:var(--primary);
+}
 
-ul{list-style:none;margin-top:3.5pt;}
-li{position:relative;padding-left:8pt;margin-bottom:2pt;}
+.entry ul{margin-top:6pt;}
+ul{list-style:none;}
+li{
+  position:relative;
+  padding-left:11pt;
+  margin-bottom:4pt;
+}
+li:last-child{margin-bottom:0;}
 li::before{
   content:"";
   position:absolute;
-  left:0;top:5.2pt;
-  width:3pt;height:.9pt;
-  background:var(--signal);
+  left:0;
+  top:5.6pt;
+  width:4pt;
+  height:1pt;
+  background:var(--primary);
 }
 
-.selected li{padding-left:8pt;}
-.selected-name{color:var(--ink);font-weight:600;}
-
-/* Right rail */
-aside .block{
-  background:var(--sunken);
-  border:.7pt solid var(--rule);
-  padding:6pt 7pt;
+/* Label and value rows. Each row is its own block so a page break can never
+   land between a label and the value it belongs to. */
+.pair{
+  display:flex;
+  gap:14pt;
+  margin-bottom:7pt;
+  break-inside:avoid;
 }
-aside .block h2{border-bottom-color:var(--rule);}
-
-.skill{margin-bottom:4pt;}
-.skill:last-child{margin-bottom:0;}
-.skill-label{
-  display:block;
-  font-size:8.2pt;
+.pair:last-child{margin-bottom:0;}
+.pair-label{
+  flex:0 0 26%;
+  font-size:9.5pt;
   font-weight:650;
   color:var(--ink);
 }
-.skill-value{display:block;font-size:8pt;color:var(--body);}
+.pair-value{flex:1;font-size:9.5pt;}
 </style>
 </head>
 <body>
 <header class="masthead">
   <h1>${escape(CONTACT.name)}</h1>
   <p class="role">${escape(data.role)}</p>
-  <p class="contact-line">
-    <span>${escape(data.location)}</span><span>${escape(CONTACT.email)}</span><span>${escape(CONTACT.phone)}</span>
-  </p>
-  <p class="contact-line">
-    <span>${escape(CONTACT.portfolio)}</span><span>${escape(CONTACT.linkedin)}</span><span>${escape(CONTACT.github)}</span>
+  <p class="contact">
+    <span>${escape(data.location)}</span><span>${escape(CONTACT.email)}</span><span>${escape(CONTACT.phone)}</span><span>${escape(CONTACT.linkedin)}</span><span>${escape(CONTACT.github)}</span><span>${escape(CONTACT.portfolio)}</span>
   </p>
 </header>
 
-<div class="layout">
-  <main>
-    ${section(labels.profile, `<p class="summary">${escape(data.profile)}</p>`)}
-    ${section(labels.experience, experience)}
-    ${section(labels.education, education)}
-  </main>
-  <aside>
-    ${section(labels.skills, skills)}
-    ${section(labels.selected, selected)}
-    ${section(labels.awards, awards)}
-    ${section(labels.languages, languages)}
-  </aside>
-</div>
+${section(labels.profile, `<p class="summary">${escape(data.profile)}</p>`)}
+${section(labels.experience, experience)}
+${section(labels.selected, selected)}
+${section(labels.skills, skills)}
+${section(labels.education, education)}
+${section(labels.awards, awards)}
+${section(labels.languages, languages)}
 </body>
 </html>`
 }

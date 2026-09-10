@@ -7,7 +7,7 @@ export type Localized = {
   es: string
 }
 
-/** Legacy alias — the store held two languages before Spanish was added. */
+/** Legacy alias, the store held two languages before Spanish was added. */
 export type Bilingual = Localized
 
 export type ProjectStatus = "draft" | "published" | "archived"
@@ -36,14 +36,14 @@ export type Project = {
   published: boolean
   order: number
   status: ProjectStatus
-  /** Still being built — listed under the "In progress" tab. */
+  /** Still being built, listed under the "In progress" tab. */
   workingOn?: boolean
 }
 
 export type Category = {
   id: string
   name: Localized
-  /** Internal product with no public URL — screenshots carry the case. */
+  /** Internal product with no public URL, screenshots carry the case. */
   showcaseOnly?: boolean
 }
 
@@ -96,7 +96,7 @@ export type CareerEntry = {
   logoUrl: string
   logoFit: "contain" | "cover"
   period: Localized
-  /** Sort key — higher is more recent. */
+  /** Sort key, higher is more recent. */
   startYear: number
   title: Localized
   body: Localized

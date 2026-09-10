@@ -40,8 +40,8 @@ export function WorkingMethod({ steps }: { steps: FlowStep[] }) {
           className="border-t-0 pt-0"
         />
 
-        <div className="mt-10">
-          <ol className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-4 lg:grid-cols-7">
+        <div className="mt-12">
+          <ol className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
             {steps.map((step, index) => {
               const isActive = step.id === active.id
               return (
@@ -51,7 +51,7 @@ export function WorkingMethod({ steps }: { steps: FlowStep[] }) {
                     onClick={() => setActiveId(step.id)}
                     aria-current={isActive}
                     className={cn(
-                      "flex h-full w-full flex-col items-start gap-1 px-3 py-3 text-left transition-colors",
+                      "flex h-full w-full flex-col items-start gap-2 px-4 py-4 text-left transition-colors",
                       isActive
                         ? "bg-primary text-primary-foreground"
                         : "hover:bg-surface-sunken",
@@ -87,7 +87,7 @@ export function WorkingMethod({ steps }: { steps: FlowStep[] }) {
             })}
           </ol>
 
-          {/* Loop-back arcs — drawn only where the desktop rail is one row. */}
+          {/* Loop-back arcs, drawn only where the desktop rail is one row. */}
           <svg
             className="hidden h-16 w-full lg:block"
             viewBox="0 0 100 16"
@@ -128,7 +128,7 @@ export function WorkingMethod({ steps }: { steps: FlowStep[] }) {
             })}
           </svg>
 
-          <div className="border border-rule bg-background p-5 sm:p-7">
+          <div className="border border-rule bg-background p-6 sm:p-9">
             <p className="type-data text-xs text-muted-foreground">
               {t("home.flowStep", {
                 index: activeIndex + 1,
@@ -136,14 +136,14 @@ export function WorkingMethod({ steps }: { steps: FlowStep[] }) {
               })}{" "}
               · {pickLocalized(active.role, lang)}
             </p>
-            <h3 className="type-title mt-2 text-xl sm:text-2xl">
+            <h3 className="type-title mt-3 text-xl sm:text-2xl">
               {pickLocalized(active.title, lang)}
             </h3>
-            <div className="mt-4 grid gap-6 md:grid-cols-2">
+            <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-10">
               <p className="text-[0.9375rem] leading-7 text-foreground">
                 {pickLocalized(active.body, lang)}
               </p>
-              <div className="border-t border-rule pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+              <div className="border-t border-rule pt-4 md:border-l md:border-t-0 md:pl-10 md:pt-0">
                 <h4 className="type-data text-xs text-muted-foreground">
                   {t("home.flowPractice")}
                 </h4>

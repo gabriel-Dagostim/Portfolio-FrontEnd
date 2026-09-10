@@ -211,7 +211,7 @@ export function AdminProjectFormPage() {
                 onChange={(e) => patch({ categoryId: e.target.value })}
                 className="h-9 w-full rounded-sm border border-input bg-surface px-2.5 text-sm outline-none focus-visible:border-primary"
               >
-                <option value="">—</option>
+                <option value="">{t("admin.none")}</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {pickLocalized(category.name, lang)}
@@ -225,7 +225,7 @@ export function AdminProjectFormPage() {
                 onChange={(e) => patch({ areaId: e.target.value })}
                 className="h-9 w-full rounded-sm border border-input bg-surface px-2.5 text-sm outline-none focus-visible:border-primary"
               >
-                <option value="">—</option>
+                <option value="">{t("admin.none")}</option>
                 {areas.map((area) => (
                   <option key={area.id} value={area.id}>
                     {pickLocalized(area.name, lang)}

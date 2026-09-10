@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 /**
- * Buttons are near-square and flat — the page's structure is drawn with
+ * Buttons are near-square and flat, the page's structure is drawn with
  * hairlines, so controls should read as part of that grid, not as pills.
  */
 const buttonVariants = cva(

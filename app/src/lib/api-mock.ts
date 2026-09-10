@@ -24,7 +24,7 @@ function matchesSearch(project: Project, query: string) {
   return haystack.some((value) => value.toLowerCase().includes(q))
 }
 
-/** Pure, synchronous filtering — the data already lives in the store. */
+/** Pure, synchronous filtering, the data already lives in the store. */
 export function selectProjects(
   projects: Project[],
   filters: ProjectFilters = {},
@@ -55,7 +55,7 @@ export function findProjectBySlug(
 }
 
 /**
- * The admin is a local content editor, not a security boundary — the site is
+ * The admin is a local content editor, not a security boundary, the site is
  * static and every visitor already has the whole dataset in their bundle.
  */
 export const ADMIN_PASSWORD = "GHDSSUPREMO"

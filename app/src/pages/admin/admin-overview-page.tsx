@@ -71,7 +71,7 @@ export function AdminOverviewPage() {
       }
     >
       <div className="space-y-6">
-        <dl className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-3 lg:grid-cols-6">
+        <dl className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {stats.map((stat) => (
             <div key={stat.label} className="bg-surface px-4 py-3">
               <dd className="type-data text-2xl">{stat.value}</dd>
@@ -83,11 +83,11 @@ export function AdminOverviewPage() {
         </dl>
 
         <Panel title={t("admin.jumpTo")}>
-          <ul className="grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-7 lg:grid-cols-3">
             {SHORTCUTS.map((item) => {
               const Icon = item.icon
               return (
-                <li key={item.to} className="bg-surface">
+                <li key={item.to} className="border border-rule bg-surface">
                   <Link
                     to={item.to}
                     className="flex items-center gap-2.5 px-4 py-3 text-sm transition-colors hover:bg-surface-sunken"

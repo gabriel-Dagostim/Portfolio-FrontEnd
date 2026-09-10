@@ -26,13 +26,13 @@ export function AboutPage() {
   const lang = i18n.language
 
   return (
-    <PageContainer className="pb-8">
+    <PageContainer className="pb-16">
       <PageHeader
         title={t("about.title")}
         lead={t("about.lead", { age: ageFrom(profile.birthDate) })}
       />
 
-      <section className="grid gap-8 py-10 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-12">
+      <section className="grid gap-12 py-16 lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] lg:gap-20">
         <div>
           <img
             src={profile.photoUrl}
@@ -98,7 +98,7 @@ export function AboutPage() {
             {pickLocalized(profile.summary, lang)}
           </p>
 
-          <div className="mt-10 border-t border-rule pt-6">
+          <div className="mt-14 border-t border-rule pt-8">
             <h2 className="type-title text-xl">{t("about.cvTitle")}</h2>
             <p className="measure mt-2 text-sm leading-6 text-muted-foreground">
               {t("about.cvLead")}
@@ -113,7 +113,7 @@ export function AboutPage() {
           title={t("about.recordTitle")}
           lead={t("about.recordLead")}
         />
-        <div className="mt-8">
+        <div className="mt-12">
           <CareerRecord entries={career} />
         </div>
       </section>

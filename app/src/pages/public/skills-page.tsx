@@ -30,19 +30,19 @@ export function SkillsPage() {
   }, [projects, technologies])
 
   return (
-    <PageContainer className="pb-10">
+    <PageContainer className="pb-16">
       <PageHeader title={t("skills.title")} lead={t("skills.lead")} />
 
-      <div className="my-10 grid grid-cols-1 gap-px border border-rule bg-rule md:grid-cols-2">
+      <div className="my-14 grid grid-cols-1 gap-6 md:grid-cols-2">
         {content.skills.map((group) => (
-          <section key={group.id} className="bg-surface p-5 sm:p-7">
+          <section key={group.id} className="border border-rule bg-surface p-6 sm:p-9">
             <h2 className="type-title text-xl">
               {pickLocalized(group.title, lang)}
             </h2>
-            <p className="measure mt-3 text-[0.9375rem] leading-7 text-muted-foreground">
+            <p className="measure mt-4 text-[0.9375rem] leading-8 text-muted-foreground">
               {pickLocalized(group.body, lang)}
             </p>
-            <ul className="mt-5 flex flex-wrap gap-1.5">
+            <ul className="mt-6 flex flex-wrap gap-2">
               {group.items.map((item) => {
                 const match = usage.get(item.toLowerCase())
                 return (

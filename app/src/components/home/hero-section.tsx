@@ -31,7 +31,7 @@ export function HeroSection({
   return (
     <section className="border-b border-rule">
       <PageContainer className="grid gap-12 pb-14 pt-14 sm:pt-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-16">
-        <div className="flex flex-col justify-center">
+        <div className="text-scrim flex flex-col justify-center">
           <p className="type-data text-xs text-muted-foreground">
             {pickLocalized(profile.role, lang)}
           </p>

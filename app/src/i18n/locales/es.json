@@ -48,7 +48,7 @@
     "workAll": "Los {{count}} proyectos",
     "collectionsTitle": "Tres tipos de problema",
     "collectionsLead": "El trabajo se divide con claridad por lo que estaba roto antes de que existiera.",
-    "systemsBlurb": "Seguimiento de ventas, control de vencimientos, auth centralizado, informes de telefonía, consulta de comisiones — software en producción para una red de farmacias.",
+    "systemsBlurb": "Seguimiento de ventas, control de vencimientos, auth centralizado, informes de telefonía y consulta de comisiones. Software en producción para una red minorista.",
     "infraBlurb": "Un centro de mando de monitoreo, SSH desde el navegador, bots de operación e instaladores que mantienen cientos de máquinas en un solo estándar.",
     "autoBlurb": "Bots, pipelines de imágenes y asistentes de datos que se llevan la parte repetitiva del turno y la hacen sin que haya que pedirlo.",
     "profileTitle": "Quién está construyendo",
@@ -59,11 +59,11 @@
     "flowLoop": "Si falla aquí, el trabajo vuelve",
     "flowPractice": "En la práctica",
     "contactTitle": "¿Tienes algo que construir?",
-    "contactLead": "Un sistema, una integración, una automatización — cuéntame qué se rompe hoy y te digo con honestidad si puedo resolverlo."
+    "contactLead": "Un sistema, una integración, una automatización. Cuéntame qué se rompe hoy y te digo con honestidad si puedo resolverlo."
   },
   "projects": {
     "title": "Trabajo",
-    "lead": "La mayor parte de esto está funcionando ahora mismo dentro de una red de farmacias. Abre cualquiera para ver el caso detrás.",
+    "lead": "La mayor parte de esto está funcionando ahora mismo en producción. Abre cualquiera para ver el caso detrás.",
     "tabPublished": "Entregados",
     "tabWorking": "En curso",
     "workingBadge": "En curso",
@@ -76,7 +76,7 @@
     "stack": "Stack",
     "area": "Disciplina",
     "internalSystem": "Interno",
-    "internalOnly": "Sistema interno — sin demo público",
+    "internalOnly": "Sistema interno, sin demo público",
     "context": "El caso",
     "participation": "Mi parte",
     "challenges": "Lo que fue difícil",
@@ -97,7 +97,7 @@
   },
   "collections": {
     "systemsTitle": "Sistemas",
-    "systemsLead": "Software en producción dentro de Farmácias Estrela. No hay enlace público a ninguno, así que hablan las capturas.",
+    "systemsLead": "Software interno funcionando en producción. No hay enlace público a ninguno, así que hablan las capturas.",
     "systemsEmpty": "Todavía no hay sistemas publicados.",
     "infraTitle": "Infraestructura",
     "infraLead": "Servidores, redes, monitoreo y la automatización que mantiene de pie una operación distribuida un lunes por la mañana.",
@@ -108,7 +108,7 @@
   },
   "about": {
     "title": "Perfil",
-    "lead": "Tengo {{age}} años, vivo en Cascavel y he pasado los últimos años construyendo el software del que una red de farmacias depende para abrir cada mañana.",
+    "lead": "Tengo {{age}} años, vivo en Cascavel y he pasado los últimos años construyendo el software interno del que una operación depende para atravesar el día.",
     "photoAlt": "Gabriel Henrique Dagostim en un centro de datos",
     "recordTitle": "El historial",
     "recordLead": "Trabajo y estudio, en el orden en que ocurrieron. Empieza con un Arduino.",
@@ -124,7 +124,7 @@
   },
   "skills": {
     "title": "Competencias",
-    "lead": "No es una lista de casillas — es aquello con lo que realmente he entregado, agrupado por el tipo de problema que resuelve.",
+    "lead": "No es una lista de casillas. Es aquello con lo que realmente he entregado, agrupado por el tipo de problema que resuelve.",
     "appliedIn": "Aplicado en",
     "appliedCount_one": "{{count}} proyecto",
     "appliedCount_other": "{{count}} proyectos"
@@ -249,7 +249,7 @@
     "statusArchived": "Archivado",
     "githubUrl": "URL de GitHub",
     "liveUrl": "URL del sitio",
-    "showcaseOnly": "Interno — solo capturas",
+    "showcaseOnly": "Interno, solo capturas",
     "saveError": "Rellena los campos obligatorios antes de guardar.",
     "deleteConfirm": "¿Eliminar «{{name}}»? Esto no se puede deshacer.",
     "defaultLocale": "Idioma por defecto para visitantes nuevos",

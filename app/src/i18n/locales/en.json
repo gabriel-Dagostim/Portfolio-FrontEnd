@@ -48,7 +48,7 @@
     "workAll": "All {{count}} projects",
     "collectionsTitle": "Three kinds of problem",
     "collectionsLead": "The work splits cleanly by what was broken before it existed.",
-    "systemsBlurb": "Sales tracking, expiry control, centralised auth, telephony reporting, commission lookup — production software for a pharmacy network.",
+    "systemsBlurb": "Sales tracking, expiry control, centralised auth, telephony reporting, and commission lookup. Production software for a retail network.",
     "infraBlurb": "A monitoring command centre, browser SSH, ops bots, and installers that keep several hundred machines to one standard.",
     "autoBlurb": "Bots, image pipelines, and data assistants that take the repetitive part of a shift and do it without asking.",
     "profileTitle": "Who is building this",
@@ -59,11 +59,11 @@
     "flowLoop": "Fails here and the work goes back",
     "flowPractice": "In practice",
     "contactTitle": "Have something that needs building?",
-    "contactLead": "A system, an integration, an automation — tell me what breaks today and I will tell you honestly whether I can fix it."
+    "contactLead": "A system, an integration, an automation. Tell me what breaks today and I will tell you honestly whether I can fix it."
   },
   "projects": {
     "title": "Work",
-    "lead": "Most of these are running inside a pharmacy network right now. Open any one for the case behind it.",
+    "lead": "Most of these are running in production right now. Open any one for the case behind it.",
     "tabPublished": "Shipped",
     "tabWorking": "In progress",
     "workingBadge": "In progress",
@@ -76,7 +76,7 @@
     "stack": "Stack",
     "area": "Discipline",
     "internalSystem": "Internal",
-    "internalOnly": "Internal system — no public demo",
+    "internalOnly": "Internal system, no public demo",
     "context": "The case",
     "participation": "My part",
     "challenges": "What made it hard",
@@ -97,7 +97,7 @@
   },
   "collections": {
     "systemsTitle": "Systems",
-    "systemsLead": "Software running in production inside Farmácias Estrela. There is no public link to any of it, so the screenshots do the talking.",
+    "systemsLead": "Internal software running in production. There is no public link to any of it, so the screenshots do the talking.",
     "systemsEmpty": "No systems published yet.",
     "infraTitle": "Infrastructure",
     "infraLead": "Servers, networks, monitoring, and the automation that keeps a distributed operation standing up on a Monday morning.",
@@ -108,7 +108,7 @@
   },
   "about": {
     "title": "About",
-    "lead": "I am {{age}}, based in Cascavel, and I have spent the last few years building the software a pharmacy network depends on to open its doors each morning.",
+    "lead": "I am {{age}}, based in Cascavel, and I have spent the last few years building the internal software an operation depends on to get through its day.",
     "photoAlt": "Gabriel Henrique Dagostim in a data centre",
     "recordTitle": "The record",
     "recordLead": "Work and study, in the order they happened. It starts with an Arduino.",
@@ -124,7 +124,7 @@
   },
   "skills": {
     "title": "Skills",
-    "lead": "Not a checklist — this is what I have actually shipped with, grouped by the kind of problem it solves.",
+    "lead": "Not a checklist. This is what I have actually shipped with, grouped by the kind of problem it solves.",
     "appliedIn": "Applied in",
     "appliedCount_one": "{{count}} project",
     "appliedCount_other": "{{count}} projects"
@@ -249,7 +249,7 @@
     "statusArchived": "Archived",
     "githubUrl": "GitHub URL",
     "liveUrl": "Live URL",
-    "showcaseOnly": "Internal — screenshots only",
+    "showcaseOnly": "Internal, screenshots only",
     "saveError": "Fill in the required fields before saving.",
     "deleteConfirm": "Delete “{{name}}”? This cannot be undone.",
     "defaultLocale": "Default language for new visitors",

@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       { path: "skills", element: <SkillsPage /> },
       { path: "contact", element: <ContactPage /> },
 
-      // Paths the old site shipped with — keep the links people already have.
+      // Paths the old site shipped with, keep the links people already have.
       { path: "projects", element: <Navigate to="/work" replace /> },
       { path: "projects/:slug", element: <LegacyProjectRedirect /> },
       { path: "sistemas", element: <Navigate to="/systems" replace /> },

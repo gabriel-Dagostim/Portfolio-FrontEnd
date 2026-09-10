@@ -214,14 +214,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "En curso: orquestando rutinas financieras y fiscales con n8n e IA, para que el trabajo deje de ser manual.",
     },
     fullDescription: {
-      en: "An ongoing automation project built on n8n and AI. The flows connect systems, data, and decisions — weighted towards finance and tax routines — to cut rework, errors, and operational time. It pulls from Linx systems and the ERP, validates what comes back, and triggers the next step at the moment it matters.",
-      pt: "Projeto de automação em andamento, sobre n8n e IA. Os fluxos conectam sistemas, dados e decisões — com peso em rotinas financeiras e fiscais — para reduzir retrabalho, erros e tempo operacional. Puxa dos sistemas Linx e do ERP, valida o que volta e aciona o próximo passo no momento em que importa.",
-      es: "Proyecto de automatización en curso, sobre n8n e IA. Los flujos conectan sistemas, datos y decisiones — con peso en rutinas financieras y fiscales — para reducir retrabajo, errores y tiempo operativo. Extrae de los sistemas Linx y del ERP, valida lo que vuelve y activa el siguiente paso en el momento que importa.",
+      en: "An ongoing automation project built on n8n and AI. The flows connect systems, data, and decisions (weighted towards finance and tax routines) to cut rework, errors, and operational time. It pulls from Linx systems and the ERP, validates what comes back, and triggers the next step at the moment it matters.",
+      pt: "Projeto de automação em andamento, sobre n8n e IA. Os fluxos conectam sistemas, dados e decisões (com peso em rotinas financeiras e fiscais) para reduzir retrabalho, erros e tempo operacional. Puxa dos sistemas Linx e do ERP, valida o que volta e aciona o próximo passo no momento em que importa.",
+      es: "Proyecto de automatización en curso, sobre n8n e IA. Los flujos conectan sistemas, datos y decisiones (con peso en rutinas financieras y fiscales) para reducir retrabajo, errores y tiempo operativo. Extrae de los sistemas Linx y del ERP, valida lo que vuelve y activa el siguiente paso en el momento que importa.",
     },
     context: {
-      en: "Operational automation still being built — no public demo yet. The portfolio records the focus and the stage it is at.",
-      pt: "Automação operacional ainda em construção — sem demo pública. O portfólio registra o foco e o estágio do trabalho.",
-      es: "Automatización operativa todavía en construcción — sin demo público. El portafolio registra el enfoque y la etapa del trabajo.",
+      en: "Operational automation still being built, no public demo yet. The portfolio records the focus and the stage it is at.",
+      pt: "Automação operacional ainda em construção, sem demo pública. O portfólio registra o foco e o estágio do trabalho.",
+      es: "Automatización operativa todavía en construcción, sin demo público. El portafolio registra el enfoque y la etapa del trabajo.",
     },
     participation: {
       en: "Designing and implementing the n8n flows, the ERP and data integrations, and the AI layer that supports finance and tax decisions.",
@@ -251,8 +251,8 @@ export const SEED_PROJECTS: Project[] = [
     slug: "gerenciamento-imagens-ecommerce",
     title: {
       en: "E-commerce image pipeline",
-      pt: "Gerenciamento de imagens — E-commerce",
-      es: "Gestión de imágenes — E-commerce",
+      pt: "Gerenciamento de imagens, E-commerce",
+      es: "Gestión de imágenes, E-commerce",
     },
     shortDescription: {
       en: "Finds product photos by barcode across pharmacy sites, queues them for approval, catalogues what passes, and publishes it to the store.",
@@ -260,14 +260,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Busca fotos de producto por código de barras en sitios de farmacia, las pone en cola de aprobación, cataloga lo aprobado y lo publica en la tienda.",
     },
     fullDescription: {
-      en: "Estrela's e-commerce has no integration or database to query, so this system stands in for one. It compares the ERP against what the store is missing, searches those barcodes across pre-registered pharmacy sites (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), downloads candidates, and opens an approval queue — as a list or as the Swipe reviewer. Approved images land in a catalogued MinIO bank and an extractor applies them to the store through OpenClaw. Scheduled jobs hunt for new products and re-search the gaps, so published photos stay correct.",
-      pt: "O e-commerce da Estrela não oferece integração nem banco para consulta, então este sistema faz esse papel. Confronta o ERP com o que falta na loja, busca esses EANs em sites de farmácia pré-cadastrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), baixa os candidatos e abre a fila de aprovação — em lista ou no revisor Swipe. As imagens aprovadas entram num banco MinIO catalogado e um extrator aplica na loja via OpenClaw. Rotinas periódicas caçam produtos novos e re-buscam as lacunas, mantendo as fotos publicadas corretas.",
-      es: "El e-commerce de Estrela no ofrece integración ni base de datos consultable, así que este sistema cumple ese papel. Compara el ERP con lo que falta en la tienda, busca esos códigos en sitios de farmacia preregistrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), descarga los candidatos y abre la cola de aprobación — en lista o en el revisor Swipe. Las imágenes aprobadas entran en un banco MinIO catalogado y un extractor las aplica a la tienda vía OpenClaw. Rutinas periódicas buscan productos nuevos y revisan los huecos, para que las fotos publicadas sigan siendo correctas.",
+      en: "Estrela's e-commerce has no integration or database to query, so this system stands in for one. It compares the ERP against what the store is missing, searches those barcodes across pre-registered pharmacy sites (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), downloads candidates, and opens an approval queue, as a list or as the Swipe reviewer. Approved images land in a catalogued MinIO bank and an extractor applies them to the store through OpenClaw. Scheduled jobs hunt for new products and re-search the gaps, so published photos stay correct.",
+      pt: "O e-commerce da Estrela não oferece integração nem banco para consulta, então este sistema faz esse papel. Confronta o ERP com o que falta na loja, busca esses EANs em sites de farmácia pré-cadastrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), baixa os candidatos e abre a fila de aprovação, em lista ou no revisor Swipe. As imagens aprovadas entram num banco MinIO catalogado e um extrator aplica na loja via OpenClaw. Rotinas periódicas caçam produtos novos e re-buscam as lacunas, mantendo as fotos publicadas corretas.",
+      es: "El e-commerce de Estrela no ofrece integración ni base de datos consultable, así que este sistema cumple ese papel. Compara el ERP con lo que falta en la tienda, busca esos códigos en sitios de farmacia preregistrados (Consulta Remédios, RaiaDrogasil, São João, Covabra, Amazon), descarga los candidatos y abre la cola de aprobación, en lista o en el revisor Swipe. Las imágenes aprobadas entran en un banco MinIO catalogado y un extractor las aplica a la tienda vía OpenClaw. Rutinas periódicas buscan productos nuevos y revisan los huecos, para que las fotos publicadas sigan siendo correctas.",
     },
     context: {
-      en: "E-commerce operations at SIT Estrela. Internal only — the screenshots show the dashboard, the search, the review queue, and the approved bank.",
-      pt: "Operação de e-commerce no SIT Estrela. Uso interno — as prints mostram o dashboard, a consulta, a fila de revisão e o banco aprovado.",
-      es: "Operación de e-commerce en SIT Estrela. Uso interno — las capturas muestran el panel, la consulta, la cola de revisión y el banco aprobado.",
+      en: "E-commerce operations at SIT Estrela. Internal only. The screenshots show the dashboard, the search, the review queue, and the approved bank.",
+      pt: "Operação de e-commerce no SIT Estrela. Uso interno. As prints mostram o dashboard, a consulta, a fila de revisão e o banco aprovado.",
+      es: "Operación de e-commerce en SIT Estrela. Uso interno. Las capturas muestran el panel, la consulta, la cola de revisión y el banco aprobado.",
     },
     participation: {
       en: "The whole pipeline: the ERP-versus-store gap check, the barcode scrapers, the approval queue, the image bank, and the OpenClaw publishing step.",
@@ -321,14 +321,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Pide el dato de la tienda en lenguaje natural por Telegram; escribe el SQL, lo ejecuta y responde con un número, una lista o una hoja de cálculo.",
     },
     fullDescription: {
-      en: "A conversational DBA for Rede Estrela. An Obsidian vault of linked notes maps the database's semantic structure — tables, relationships, hubs like RC_CLI — as a dense graph the model can query without stuffing the whole schema into every prompt. On top sits the training context and the model itself. The Telegram bot reads informal asks (\"cancelled sales yesterday at store 1\", \"receipts after 6pm at branch 1\"), confirms its reading and the SQL when the question is ambiguous, runs the query, and picks the right shape for the answer: one metric, a list, or an Excel with tens of thousands of rows. A yes/no reply stores good answers for questions like it.",
-      pt: "Um DBA conversacional para a Rede Estrela. Um cofre Obsidian de notas linkadas mapeia a estrutura semântica do banco — tabelas, relações, hubs como RC_CLI — num grafo denso que o modelo consulta sem carregar o schema inteiro a cada prompt. Em cima disso ficam o contexto de treino e o próprio modelo. O bot Telegram entende pedidos informais (\"vendas canceladas ontem na loja 1\", \"cupons após 18h na filial 1\"), confirma leitura e SQL quando a pergunta é ambígua, executa a consulta e escolhe o formato certo da resposta: uma métrica, uma lista ou um Excel com dezenas de milhares de linhas. Um sim/não registra boas respostas para perguntas parecidas.",
-      es: "Un DBA conversacional para Rede Estrela. Una bóveda Obsidian de notas enlazadas mapea la estructura semántica de la base — tablas, relaciones, hubs como RC_CLI — en un grafo denso que el modelo consulta sin cargar el esquema entero en cada prompt. Encima están el contexto de entrenamiento y el propio modelo. El bot de Telegram entiende pedidos informales (\"ventas canceladas ayer en la tienda 1\", \"tickets después de las 18h en la sucursal 1\"), confirma su lectura y el SQL cuando la pregunta es ambigua, ejecuta la consulta y elige el formato correcto: una métrica, una lista o un Excel con decenas de miles de filas. Un sí/no guarda las buenas respuestas para preguntas similares.",
+      en: "A conversational DBA for Rede Estrela. An Obsidian vault of linked notes maps the database's semantic structure (tables, relationships, hubs like RC_CLI) as a dense graph the model can query without stuffing the whole schema into every prompt. On top sits the training context and the model itself. The Telegram bot reads informal asks (\"cancelled sales yesterday at store 1\", \"receipts after 6pm at branch 1\"), confirms its reading and the SQL when the question is ambiguous, runs the query, and picks the right shape for the answer: one metric, a list, or an Excel with tens of thousands of rows. A yes/no reply stores good answers for questions like it.",
+      pt: "Um DBA conversacional para a Rede Estrela. Um cofre Obsidian de notas linkadas mapeia a estrutura semântica do banco (tabelas, relações, hubs como RC_CLI) num grafo denso que o modelo consulta sem carregar o schema inteiro a cada prompt. Em cima disso ficam o contexto de treino e o próprio modelo. O bot Telegram entende pedidos informais (\"vendas canceladas ontem na loja 1\", \"cupons após 18h na filial 1\"), confirma leitura e SQL quando a pergunta é ambígua, executa a consulta e escolhe o formato certo da resposta: uma métrica, uma lista ou um Excel com dezenas de milhares de linhas. Um sim/não registra boas respostas para perguntas parecidas.",
+      es: "Un DBA conversacional para Rede Estrela. Una bóveda Obsidian de notas enlazadas mapea la estructura semántica de la base (tablas, relaciones, hubs como RC_CLI) en un grafo denso que el modelo consulta sin cargar el esquema entero en cada prompt. Encima están el contexto de entrenamiento y el propio modelo. El bot de Telegram entiende pedidos informales (\"ventas canceladas ayer en la tienda 1\", \"tickets después de las 18h en la sucursal 1\"), confirma su lectura y el SQL cuando la pregunta es ambigua, ejecuta la consulta y elige el formato correcto: una métrica, una lista o un Excel con decenas de miles de filas. Un sí/no guarda las buenas respuestas para preguntas similares.",
     },
     context: {
-      en: "ERP data (SQL Server) reachable from a chat window. Internal only — the screenshots show the Obsidian graph and the Telegram bot.",
-      pt: "Dados do ERP (SQL Server) alcançáveis de uma janela de chat. Uso interno — as prints mostram o grafo Obsidian e o bot Telegram.",
-      es: "Datos del ERP (SQL Server) accesibles desde una ventana de chat. Uso interno — las capturas muestran el grafo Obsidian y el bot de Telegram.",
+      en: "ERP data (SQL Server) reachable from a chat window. Internal only. The screenshots show the Obsidian graph and the Telegram bot.",
+      pt: "Dados do ERP (SQL Server) alcançáveis de uma janela de chat. Uso interno. As prints mostram o grafo Obsidian e o bot Telegram.",
+      es: "Datos del ERP (SQL Server) accesibles desde una ventana de chat. Uso interno. Las capturas muestran el grafo Obsidian y el bot de Telegram.",
     },
     participation: {
       en: "The semantic model in Obsidian, the context and AI pipeline, and the Telegram bot end to end: natural language to SQL, confirmation, execution, export, and feedback.",
@@ -363,9 +363,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-swipe-revisao",
     slug: "revisao-rapida-swipe",
     title: {
-      en: "Swipe — bulk product review",
-      pt: "Swipe — revisão rápida de produtos",
-      es: "Swipe — revisión rápida de productos",
+      en: "Swipe: bulk product review",
+      pt: "Swipe: revisão rápida de produtos",
+      es: "Swipe: revisión rápida de productos",
     },
     shortDescription: {
       en: "Reviewing thousands of product listings, one card at a time: photo, price, and name checked with a swipe.",
@@ -378,14 +378,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Revisar miles de productos en una hoja de cálculo desgasta, así que la revisión pasó a ser una baraja de tarjetas. Cada tarjeta muestra la imagen candidata y su fuente, el precio, el código de barras, el precio de lista y el nombre del ERP; el revisor aprueba o rechaza con un deslizamiento. Las sesiones tienen metas, la cola se filtra por prioridad de stock o por la lista de códigos de un Feirão, y aprobar pide confirmar la categoría. Hoy mueve la revisión del e-commerce interno de Estrela.",
     },
     context: {
-      en: "E-commerce and Feirão operations. Internal only — the screenshots show the swipe deck and the approval dialog.",
-      pt: "Operação de e-commerce e Feirões. Uso interno — as prints mostram o baralho de swipe e o diálogo de aprovação.",
-      es: "Operación de e-commerce y Feirões. Uso interno — las capturas muestran la baraja de swipe y el diálogo de aprobación.",
+      en: "E-commerce and Feirão operations. Internal only. The screenshots show the swipe deck and the approval dialog.",
+      pt: "Operação de e-commerce e Feirões. Uso interno. As prints mostram o baralho de swipe e o diálogo de aprovação.",
+      es: "Operación de e-commerce y Feirões. Uso interno. Las capturas muestran la baraja de swipe y el diálogo de aprobación.",
     },
     participation: {
-      en: "The whole review experience — gestures, queues, session goals — wired into the e-commerce image flow.",
-      pt: "A experiência de revisão inteira — gestos, filas, metas de sessão — ligada ao fluxo de imagens do e-commerce.",
-      es: "Toda la experiencia de revisión — gestos, colas, metas de sesión — conectada al flujo de imágenes del e-commerce.",
+      en: "The whole review experience (gestures, queues, session goals) wired into the e-commerce image flow.",
+      pt: "A experiência de revisão inteira (gestos, filas, metas de sessão) ligada ao fluxo de imagens do e-commerce.",
+      es: "Toda la experiencia de revisión (gestos, colas, metas de sesión) conectada al flujo de imágenes del e-commerce.",
     },
     technicalChallenges: {
       en: "A queue of tens of thousands of items split into finite sessions, swipe gestures that stay smooth, priority and barcode-list filters, and a category confirmation that does not break the reviewer's rhythm.",
@@ -411,24 +411,24 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-nexus-estrela",
     slug: "nexus-estrela",
     title: {
-      en: "Nexus Estrela — command centre",
-      pt: "Nexus Estrela — centro de comando",
-      es: "Nexus Estrela — centro de mando",
+      en: "Nexus Estrela: command centre",
+      pt: "Nexus Estrela: centro de comando",
+      es: "Nexus Estrela: centro de mando",
     },
     shortDescription: {
-      en: "Every server, branch, and critical dependency on one board — with browser SSH and a Telegram bot that mirrors it.",
-      pt: "Todo servidor, filial e dependência crítica num painel só — com SSH pelo navegador e um bot Telegram que espelha tudo.",
-      es: "Cada servidor, sucursal y dependencia crítica en un solo tablero — con SSH desde el navegador y un bot de Telegram que lo replica.",
+      en: "Every server, branch, and critical dependency on one board, with browser SSH and a Telegram bot that mirrors it.",
+      pt: "Todo servidor, filial e dependência crítica num painel só, com SSH pelo navegador e um bot Telegram que espelha tudo.",
+      es: "Cada servidor, sucursal y dependencia crítica en un solo tablero, con SSH desde el navegador y un bot de Telegram que lo replica.",
     },
     fullDescription: {
-      en: "The operational command centre for Rede Estrela. It tracks the health of servers and branches — CPU, memory, ping, Docker, database, uptime — maps the data centre and the stores in a compact or flow view, and gathers the critical alerts in one place. From the browser you can open an SSH session, run the quick commands (restart, start, backup, logs, speed test), and act on a branch behind a confirmation. The Telegram bot mirrors the queries and the actions — status, branches, criticals, sales, receipts, ping, Docker, logs, server tests — so the network can be run from anywhere. Sales and receipts arrive reconciled in near real time, with visual and audible alerts when the operation stalls. It also maps the network's dependencies (PIX, the TEF network, internal systems) so a broken link shows up the moment it breaks.",
-      pt: "O centro de comando operacional da Rede Estrela. Acompanha a saúde de servidores e filiais — CPU, memória, ping, Docker, banco, uptime —, mapeia o CPD e as lojas em visão compacta ou de fluxo, e reúne os alertas críticos num lugar só. Do navegador dá para abrir SSH, rodar os comandos rápidos (restart, start, backup, logs, teste de velocidade) e agir na filial atrás de uma confirmação. O bot Telegram espelha consultas e ações — status, filiais, críticas, vendas, cupons, ping, Docker, logs, testes de servidor — para operar a rede de qualquer lugar. Vendas e cupons chegam conciliados quase em tempo real, com alerta visual e sonoro quando a operação para. Também mapeia as dependências da rede (PIX, rede TEF, sistemas internos) para o elo quebrado aparecer no instante em que quebra.",
-      es: "El centro de mando operativo de Rede Estrela. Sigue la salud de servidores y sucursales — CPU, memoria, ping, Docker, base de datos, uptime —, mapea el centro de datos y las tiendas en vista compacta o de flujo, y reúne las alertas críticas en un solo lugar. Desde el navegador se abre una sesión SSH, se ejecutan los comandos rápidos (restart, start, backup, logs, test de velocidad) y se actúa sobre una sucursal tras una confirmación. El bot de Telegram replica consultas y acciones — estado, sucursales, críticas, ventas, tickets, ping, Docker, logs, pruebas de servidor — para operar la red desde cualquier sitio. Ventas y tickets llegan conciliados casi en tiempo real, con alertas visuales y sonoras cuando la operación se detiene. También mapea las dependencias de la red (PIX, red TEF, sistemas internos) para que un enlace caído aparezca en el momento en que cae.",
+      en: "The operational command centre for Rede Estrela. It tracks the health of servers and branches (CPU, memory, ping, Docker, database, uptime), maps the data centre and the stores in a compact or flow view, and gathers the critical alerts in one place. From the browser you can open an SSH session, run the quick commands (restart, start, backup, logs, speed test), and act on a branch behind a confirmation. The Telegram bot mirrors the queries and the actions (status, branches, criticals, sales, receipts, ping, Docker, logs, server tests) so the network can be run from anywhere. Sales and receipts arrive reconciled in near real time, with visual and audible alerts when the operation stalls. It also maps the network's dependencies (PIX, the TEF network, internal systems) so a broken link shows up the moment it breaks.",
+      pt: "O centro de comando operacional da Rede Estrela. Acompanha a saúde de servidores e filiais: CPU, memória, ping, Docker, banco e uptime, e mapeia o CPD e as lojas em visão compacta ou de fluxo, e reúne os alertas críticos num lugar só. Do navegador dá para abrir SSH, rodar os comandos rápidos (restart, start, backup, logs, teste de velocidade) e agir na filial atrás de uma confirmação. O bot Telegram espelha consultas e ações (status, filiais, críticas, vendas, cupons, ping, Docker, logs, testes de servidor) para operar a rede de qualquer lugar. Vendas e cupons chegam conciliados quase em tempo real, com alerta visual e sonoro quando a operação para. Também mapeia as dependências da rede (PIX, rede TEF, sistemas internos) para o elo quebrado aparecer no instante em que quebra.",
+      es: "El centro de mando operativo de Rede Estrela. Sigue la salud de servidores y sucursales: CPU, memoria, ping, Docker, base de datos y uptime, y mapea el centro de datos y las tiendas en vista compacta o de flujo, y reúne las alertas críticas en un solo lugar. Desde el navegador se abre una sesión SSH, se ejecutan los comandos rápidos (restart, start, backup, logs, test de velocidad) y se actúa sobre una sucursal tras una confirmación. El bot de Telegram replica consultas y acciones (estado, sucursales, críticas, ventas, tickets, ping, Docker, logs, pruebas de servidor) para operar la red desde cualquier sitio. Ventas y tickets llegan conciliados casi en tiempo real, con alertas visuales y sonoras cuando la operación se detiene. También mapea las dependencias de la red (PIX, red TEF, sistemas internos) para que un enlace caído aparezca en el momento en que cae.",
     },
     context: {
-      en: "IT operations at Rede Estrela — data centre plus branches. Internal only; the screenshots show the web panel and the Telegram bot.",
-      pt: "Operação de TI da Rede Estrela — CPD e filiais. Uso interno; as prints mostram o painel web e o bot Telegram.",
-      es: "Operación de TI de Rede Estrela — centro de datos y sucursales. Uso interno; las capturas muestran el panel web y el bot de Telegram.",
+      en: "IT operations at Rede Estrela, data centre plus branches. Internal only; the screenshots show the web panel and the Telegram bot.",
+      pt: "Operação de TI da Rede Estrela, CPD e filiais. Uso interno; as prints mostram o painel web e o bot Telegram.",
+      es: "Operación de TI de Rede Estrela, centro de datos y sucursales. Uso interno; las capturas muestran el panel web y el bot de Telegram.",
     },
     participation: {
       en: "Designed and built the web command centre, the infra and sales metrics integration, browser SSH, and the Telegram bot for monitoring and remote action.",
@@ -482,14 +482,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Facturación y meta de cada sucursal en vivo en un día de ventas pico, presentado como una carrera que las tiendas siguen.",
     },
     fullDescription: {
-      en: "Built for Feirão Maternidade at Rede Estrela: near real-time tracking of network and branch revenue, goal progress, a podium, a quick panel, and a TV mode for the in-store screens. The Coyote and Road Runner framing marks the stores still chasing their goal and celebrates the ones that smash it — which is what actually keeps a team watching the board through a long control day.",
-      pt: "Feito para o Feirão Maternidade na Rede Estrela: acompanhamento quase em tempo real do faturamento da rede e de cada filial, progresso de meta, pódio, painel rápido e modo TV para as telas das lojas. A leitura Coiote e Papa-Léguas marca as lojas que ainda perseguem a meta e celebra quem estoura o alvo — que é o que realmente mantém o time olhando o painel num dia longo de controle.",
-      es: "Hecho para el Feirão Maternidade en Rede Estrela: seguimiento casi en tiempo real de la facturación de la red y de cada sucursal, progreso de meta, podio, panel rápido y modo TV para las pantallas de las tiendas. La lectura Coyote y Correcaminos marca las tiendas que aún persiguen la meta y celebra a las que la superan — que es lo que de verdad mantiene al equipo mirando el tablero en un día largo de control.",
+      en: "Built for Feirão Maternidade at Rede Estrela: near real-time tracking of network and branch revenue, goal progress, a podium, a quick panel, and a TV mode for the in-store screens. The Coyote and Road Runner framing marks the stores still chasing their goal and celebrates the ones that smash it, which is what actually keeps a team watching the board through a long control day.",
+      pt: "Feito para o Feirão Maternidade na Rede Estrela: acompanhamento quase em tempo real do faturamento da rede e de cada filial, progresso de meta, pódio, painel rápido e modo TV para as telas das lojas. A leitura Coiote e Papa-Léguas marca as lojas que ainda perseguem a meta e celebra quem estoura o alvo, que é o que realmente mantém o time olhando o painel num dia longo de controle.",
+      es: "Hecho para el Feirão Maternidade en Rede Estrela: seguimiento casi en tiempo real de la facturación de la red y de cada sucursal, progreso de meta, podio, panel rápido y modo TV para las pantallas de las tiendas. La lectura Coyote y Correcaminos marca las tiendas que aún persiguen la meta y celebra a las que la superan, que es lo que de verdad mantiene al equipo mirando el tablero en un día largo de control.",
     },
     context: {
-      en: "Peak sales day at Rede Estrela. Internal only — the screenshots carry the product.",
-      pt: "Dia de pico de vendas na Rede Estrela. Uso interno — as prints carregam o produto.",
-      es: "Día de ventas pico en Rede Estrela. Uso interno — las capturas llevan el producto.",
+      en: "Peak sales day at Rede Estrela. Internal only. The screenshots carry the product.",
+      pt: "Dia de pico de vendas na Rede Estrela. Uso interno. As prints carregam o produto.",
+      es: "Día de ventas pico en Rede Estrela. Uso interno. Las capturas llevan el producto.",
     },
     participation: {
       en: "Conceived and built the tracking board: overview, branches, history, TV mode, and the game layer over it.",
@@ -524,9 +524,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-farmacia-auth",
     slug: "farmacia-auth",
     title: {
-      en: "Farmácia Auth — access control",
-      pt: "Farmácia Auth — controle de acesso",
-      es: "Farmácia Auth — control de acceso",
+      en: "Farmácia Auth: access control",
+      pt: "Farmácia Auth: controle de acesso",
+      es: "Farmácia Auth: control de acceso",
     },
     shortDescription: {
       en: "One place that decides who reaches which internal system, logs every action, and hands the password over so nobody has to type it.",
@@ -534,19 +534,19 @@ export const SEED_PROJECTS: Project[] = [
       es: "Un solo lugar que decide quién accede a qué sistema interno, registra cada acción y entrega la contraseña para que nadie tenga que escribirla.",
     },
     fullDescription: {
-      en: "The authentication and access-control hub for Rede Estrela. Users, roles, and permissions are registered once; internal sites read those rules over WebSocket or the API to authenticate and gate features. Every access and action is written to an audit log. It ships with an admin panel (dashboard, users, roles, permissions, logs), a documented REST API (login, validate, refresh, recover, reset), and a plugin that configures each user's passwords — set once in the app, delivered by the plugin to the target site, so nobody writes a password on a sticky note. Roughly 70% of the network is covered so far.",
-      pt: "O hub de autenticação e controle de acesso da Rede Estrela. Usuários, cargos e permissões são cadastrados uma vez; os sites internos leem essas regras por WebSocket ou pela API para autenticar e liberar recursos. Cada acesso e ação vai para um log auditável. Vem com painel admin (dashboard, usuários, cargos, permissões, logs), API REST documentada (login, validate, refresh, recover, reset) e um plugin que configura as senhas de cada usuário — definidas uma vez na aplicação, entregues pelo plugin ao site alvo, para ninguém anotar senha em papel. Cerca de 70% da rede já está coberta.",
-      es: "El hub de autenticación y control de acceso de Rede Estrela. Usuarios, cargos y permisos se registran una vez; los sitios internos leen esas reglas por WebSocket o por la API para autenticar y habilitar funciones. Cada acceso y acción va a un registro auditable. Incluye panel de administración (tablero, usuarios, cargos, permisos, registros), API REST documentada (login, validate, refresh, recover, reset) y un plugin que configura las contraseñas de cada usuario — definidas una vez en la aplicación, entregadas por el plugin al sitio destino, para que nadie apunte una contraseña en un papel. Cerca del 70% de la red ya está cubierta.",
+      en: "The authentication and access-control hub for Rede Estrela. Users, roles, and permissions are registered once; internal sites read those rules over WebSocket or the API to authenticate and gate features. Every access and action is written to an audit log. It ships with an admin panel (dashboard, users, roles, permissions, logs), a documented REST API (login, validate, refresh, recover, reset), and a plugin that configures each user's passwords, set once in the app, delivered by the plugin to the target site, so nobody writes a password on a sticky note. Roughly 70% of the network is covered so far.",
+      pt: "O hub de autenticação e controle de acesso da Rede Estrela. Usuários, cargos e permissões são cadastrados uma vez; os sites internos leem essas regras por WebSocket ou pela API para autenticar e liberar recursos. Cada acesso e ação vai para um log auditável. Vem com painel admin (dashboard, usuários, cargos, permissões, logs), API REST documentada (login, validate, refresh, recover, reset) e um plugin que configura as senhas de cada usuário, definidas uma vez na aplicação, entregues pelo plugin ao site alvo, para ninguém anotar senha em papel. Cerca de 70% da rede já está coberta.",
+      es: "El hub de autenticación y control de acceso de Rede Estrela. Usuarios, cargos y permisos se registran una vez; los sitios internos leen esas reglas por WebSocket o por la API para autenticar y habilitar funciones. Cada acceso y acción va a un registro auditable. Incluye panel de administración (tablero, usuarios, cargos, permisos, registros), API REST documentada (login, validate, refresh, recover, reset) y un plugin que configura las contraseñas de cada usuario, definidas una vez en la aplicación, entregadas por el plugin al sitio destino, para que nadie apunte una contraseña en un papel. Cerca del 70% de la red ya está cubierta.",
     },
     context: {
-      en: "Internal security and single sign-on at Farmácias Estrela (the Sentinel network). No public link — the screenshots show login, the panel, and the API docs.",
-      pt: "Segurança interna e SSO nas Farmácias Estrela (rede Sentinel). Sem link público — as prints mostram login, painel e docs da API.",
-      es: "Seguridad interna y SSO en Farmácias Estrela (red Sentinel). Sin enlace público — las capturas muestran el login, el panel y la documentación de la API.",
+      en: "Internal security and single sign-on at Farmácias Estrela (the Sentinel network). No public link. The screenshots show login, the panel, and the API docs.",
+      pt: "Segurança interna e SSO nas Farmácias Estrela (rede Sentinel). Sem link público. As prints mostram login, painel e docs da API.",
+      es: "Seguridad interna y SSO en Farmácias Estrela (red Sentinel). Sin enlace público. Las capturas muestran el login, el panel y la documentación de la API.",
     },
     participation: {
-      en: "Designed and built the central Auth — the panel, the JWT API, the role model, the audit trail — and the password-plugin flow for the sites that consume it.",
-      pt: "Concebi e construí o Auth central — painel, API JWT, modelo de cargos, trilha de auditoria — e o fluxo do plugin de senhas para os sites que consomem.",
-      es: "Diseñé y construí el Auth central — panel, API JWT, modelo de cargos, rastro de auditoría — y el flujo del plugin de contraseñas para los sitios que lo consumen.",
+      en: "Designed and built the central Auth (the panel, the JWT API, the role model, the audit trail) and the password-plugin flow for the sites that consume it.",
+      pt: "Concebi e construí o Auth central (painel, API JWT, modelo de cargos, trilha de auditoria) e o fluxo do plugin de senhas para os sites que consomem.",
+      es: "Diseñé y construí el Auth central (panel, API JWT, modelo de cargos, rastro de auditoría) y el flujo del plugin de contraseñas para los sitios que lo consumen.",
     },
     technicalChallenges: {
       en: "A role model that holds across many sites, JWT refresh that stays safe, apps reading rules in real time, complete action logs, and injecting a password without ever exposing it to the person using it.",
@@ -576,9 +576,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-validade-conveniencia",
     slug: "gestao-validade-conveniencia",
     title: {
-      en: "Expiry control — convenience goods",
-      pt: "Gestão de validade — conveniência",
-      es: "Control de vencimiento — conveniencia",
+      en: "Expiry control for convenience goods",
+      pt: "Gestão de validade na conveniência",
+      es: "Control de vencimiento en conveniencia",
     },
     shortDescription: {
       en: "Registers what is about to expire, matches it against what the till actually sold, and tells the manager how much to write off.",
@@ -591,9 +591,9 @@ export const SEED_PROJECTS: Project[] = [
       es: "Sistema interno de Farmácias Estrela para la conveniencia. El operador registra productos cerca de su vencimiento y sigue ese stock por vencer. El módulo Ventas × Por vencer cruza los registros del punto de venta con el registro, así la tienda sabe cuándo se vendió ese ítem y cuánto dar de baja. Incluye tablero por tienda, gestión de productos, alertas de lotes vencidos y críticos, informes en Excel y PDF, flujo de revisión para el gerente y control de bonificación cuando la caja vende uno de los ítems marcados.",
     },
     context: {
-      en: "Day-to-day store operations. Internal only — the screenshots carry the product.",
-      pt: "Operação diária da loja. Uso interno — as prints carregam o produto.",
-      es: "Operación diaria de la tienda. Uso interno — las capturas llevan el producto.",
+      en: "Day-to-day store operations. Internal only. The screenshots carry the product.",
+      pt: "Operação diária da loja. Uso interno. As prints carregam o produto.",
+      es: "Operación diaria de la tienda. Uso interno. Las capturas llevan el producto.",
     },
     participation: {
       en: "Built the system: dashboard, products, alerts, the sales cross-check, reports, and the write-off and bonus flow.",
@@ -627,9 +627,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-relatorio-telefonia",
     slug: "relatorio-telefonia-goto",
     title: {
-      en: "Telephony report — GoTo",
-      pt: "Relatório de telefonia — GoTo",
-      es: "Informe de telefonía — GoTo",
+      en: "Telephony report: GoTo",
+      pt: "Relatório de telefonia: GoTo",
+      es: "Informe de telefonía: GoTo",
     },
     shortDescription: {
       en: "Shows how many calls each store answered and how many it lost, month by month, against the Televendas targets.",
@@ -637,14 +637,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Muestra cuántas llamadas atendió cada tienda y cuántas perdió, mes a mes, frente a las metas de Televendas.",
     },
     fullDescription: {
-      en: "A web system fed by a GoTo integration that consolidates Televendas telephony: open months, a per-store report with volume received, the store or WhatsApp line that did not answer, the loss percentage, sorting by any metric, and an Excel export. You can drill into individual calls, look at the hours they came in, and compare performance against the missed and answered call targets — so the network can see what it is failing to pick up.",
-      pt: "Sistema web alimentado por uma integração GoTo que consolida a telefonia de Televendas: meses abertos, relatório por loja com volume recebido, a loja ou linha de WhatsApp que não atendeu, o percentual de perda, ordenação por qualquer métrica e exportação em Excel. Dá para detalhar ligações, olhar os horários em que entraram e comparar o desempenho com as metas de perdidas e atendidas — para a rede ver o que está deixando de atender.",
-      es: "Sistema web alimentado por una integración con GoTo que consolida la telefonía de Televendas: meses abiertos, informe por tienda con volumen recibido, la tienda o línea de WhatsApp que no atendió, el porcentaje de pérdida, ordenación por cualquier métrica y exportación a Excel. Se puede detallar llamadas, ver los horarios en que entraron y comparar el desempeño con las metas de perdidas y atendidas — para que la red vea lo que está dejando de atender.",
+      en: "A web system fed by a GoTo integration that consolidates Televendas telephony: open months, a per-store report with volume received, the store or WhatsApp line that did not answer, the loss percentage, sorting by any metric, and an Excel export. You can drill into individual calls, look at the hours they came in, and compare performance against the missed and answered call targets, so the network can see what it is failing to pick up.",
+      pt: "Sistema web alimentado por uma integração GoTo que consolida a telefonia de Televendas: meses abertos, relatório por loja com volume recebido, a loja ou linha de WhatsApp que não atendeu, o percentual de perda, ordenação por qualquer métrica e exportação em Excel. Dá para detalhar ligações, olhar os horários em que entraram e comparar o desempenho com as metas de perdidas e atendidas, para a rede ver o que está deixando de atender.",
+      es: "Sistema web alimentado por una integración con GoTo que consolida la telefonía de Televendas: meses abiertos, informe por tienda con volumen recibido, la tienda o línea de WhatsApp que no atendió, el porcentaje de pérdida, ordenación por cualquier métrica y exportación a Excel. Se puede detallar llamadas, ver los horarios en que entraron y comparar el desempeño con las metas de perdidas y atendidas, para que la red vea lo que está dejando de atender.",
     },
     context: {
-      en: "Televendas at Farmácias Estrela. Internal only — the screenshots show the month list and a monthly report.",
-      pt: "Televendas nas Farmácias Estrela. Uso interno — as prints mostram a lista de meses e um relatório mensal.",
-      es: "Televendas en Farmácias Estrela. Uso interno — las capturas muestran la lista de meses y un informe mensual.",
+      en: "Televendas at Farmácias Estrela. Internal only. The screenshots show the month list and a monthly report.",
+      pt: "Televendas nas Farmácias Estrela. Uso interno. As prints mostram a lista de meses e um relatório mensal.",
+      es: "Televendas en Farmácias Estrela. Uso interno. Las capturas muestran la lista de meses y un informe mensual.",
     },
     participation: {
       en: "The GoTo integration and the reporting app: monthly consolidation, per-store metrics, export, and the loss view.",
@@ -672,9 +672,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-consulta-comissao",
     slug: "consulta-comissao",
     title: {
-      en: "Commission lookup — SIT Estrela",
-      pt: "Consulta de comissão — SIT Estrela",
-      es: "Consulta de comisión — SIT Estrela",
+      en: "Commission lookup: SIT Estrela",
+      pt: "Consulta de comissão: SIT Estrela",
+      es: "Consulta de comisión: SIT Estrela",
     },
     shortDescription: {
       en: "Type a barcode, get the product and what each role in the store earns on it.",
@@ -682,14 +682,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Escribe el código de barras y aparece el producto con lo que gana cada cargo de la tienda.",
     },
     fullDescription: {
-      en: "A web app from the Innovation and Technology team that reads ERP data to work out sales commission by product. The user enters a barcode or the internal code; the system returns the item record — description, manufacturer, category, product line — and the commission grid by role: sales consultant, cashier, pharmacists, and the variants for Mercado Pago and WhatsApp orders. A lean piece of ERP-to-web plumbing built for one thing: a fast answer while a customer is standing there.",
-      pt: "Aplicação web do Setor de Inovação e Tecnologia que lê dados do ERP para calcular a comissão da venda por produto. O usuário informa o EAN ou o código interno; o sistema devolve o cadastro do item — descrição, fabricante, categoria, linha — e a grade de comissão por cargo: consultor de vendas, caixa, farmacêuticos e as variações de Mercado Pago e WhatsApp. Uma ligação enxuta entre ERP e web feita para uma coisa: responder rápido com o cliente na frente.",
-      es: "Aplicación web del área de Innovación y Tecnología que lee datos del ERP para calcular la comisión de venta por producto. El usuario ingresa el código de barras o el código interno; el sistema devuelve el registro del ítem — descripción, fabricante, categoría, línea — y la tabla de comisión por cargo: asesor de ventas, caja, farmacéuticos y las variantes de Mercado Pago y WhatsApp. Una conexión ligera entre ERP y web hecha para una cosa: responder rápido con el cliente delante.",
+      en: "A web app from the Innovation and Technology team that reads ERP data to work out sales commission by product. The user enters a barcode or the internal code; the system returns the item record (description, manufacturer, category, product line) and the commission grid by role: sales consultant, cashier, pharmacists, and the variants for Mercado Pago and WhatsApp orders. A lean piece of ERP-to-web plumbing built for one thing: a fast answer while a customer is standing there.",
+      pt: "Aplicação web do Setor de Inovação e Tecnologia que lê dados do ERP para calcular a comissão da venda por produto. O usuário informa o EAN ou o código interno; o sistema devolve o cadastro do item (descrição, fabricante, categoria, linha) e a grade de comissão por cargo: consultor de vendas, caixa, farmacêuticos e as variações de Mercado Pago e WhatsApp. Uma ligação enxuta entre ERP e web feita para uma coisa: responder rápido com o cliente na frente.",
+      es: "Aplicación web del área de Innovación y Tecnología que lee datos del ERP para calcular la comisión de venta por producto. El usuario ingresa el código de barras o el código interno; el sistema devuelve el registro del ítem (descripción, fabricante, categoría, línea) y la tabla de comisión por cargo: asesor de ventas, caja, farmacéuticos y las variantes de Mercado Pago y WhatsApp. Una conexión ligera entre ERP y web hecha para una cosa: responder rápido con el cliente delante.",
     },
     context: {
-      en: "Internal lookup at Farmácias Estrela / SIT. No public link — the screenshots show the flow.",
-      pt: "Consulta interna nas Farmácias Estrela / SIT. Sem link público — as prints mostram o fluxo.",
-      es: "Consulta interna en Farmácias Estrela / SIT. Sin enlace público — las capturas muestran el flujo.",
+      en: "Internal lookup at Farmácias Estrela / SIT. No public link. The screenshots show the flow.",
+      pt: "Consulta interna nas Farmácias Estrela / SIT. Sem link público. As prints mostram o fluxo.",
+      es: "Consulta interna en Farmácias Estrela / SIT. Sin enlace público. Las capturas muestran el flujo.",
     },
     participation: {
       en: "Wired the ERP commission data into a web lookup by product and role.",
@@ -697,9 +697,9 @@ export const SEED_PROJECTS: Project[] = [
       es: "Conecté los datos de comisión del ERP con una consulta web por producto y cargo.",
     },
     technicalChallenges: {
-      en: "Turning the ERP's commission rules — which vary by product line and role — into something readable, accepting either code as input, and answering fast enough to be used at the counter.",
-      pt: "Transformar as regras de comissão do ERP — que variam por linha e cargo — em algo legível, aceitar qualquer um dos códigos e responder rápido o bastante para usar no balcão.",
-      es: "Convertir las reglas de comisión del ERP — que varían por línea y cargo — en algo legible, aceptar cualquiera de los códigos y responder lo bastante rápido para usarlo en el mostrador.",
+      en: "Turning the ERP's commission rules (which vary by product line and role) into something readable, accepting either code as input, and answering fast enough to be used at the counter.",
+      pt: "Transformar as regras de comissão do ERP (que variam por linha e cargo) em algo legível, aceitar qualquer um dos códigos e responder rápido o bastante para usar no balcão.",
+      es: "Convertir las reglas de comisión del ERP (que varían por línea y cargo) en algo legible, aceptar cualquiera de los códigos y responder lo bastante rápido para usarlo en el mostrador.",
     },
     categoryId: "cat-estrela",
     areaId: "area-fs",
@@ -717,9 +717,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-instalador-estrela",
     slug: "instalador-estrela",
     title: {
-      en: "Instalador Estrela — infra automation",
-      pt: "Instalador Estrela — automação de infra",
-      es: "Instalador Estrela — automatización de infra",
+      en: "Instalador Estrela: infra automation",
+      pt: "Instalador Estrela: automação de infra",
+      es: "Instalador Estrela: automatización de infra",
     },
     shortDescription: {
       en: "A console tool that sets a machine up to company standard, then keeps the till running by repairing itself at boot.",
@@ -727,14 +727,14 @@ export const SEED_PROJECTS: Project[] = [
       es: "Herramienta de consola que deja la máquina en el estándar de la empresa y mantiene la caja funcionando reparándose al arrancar.",
     },
     fullDescription: {
-      en: "A console IT hub that automates the routine infra work. It installs and configures the point of sale, printers, card terminals, the Linx integration modules, budgeting, warehouse, DeskManager, and the insurer plugins; it also brings a machine to company standard — applications, wallpaper, users, hostname, operating system, Microsoft licensing. It runs its own checks and heals back to that baseline. On the point of sale there is a boot-time repair bot: it clears logs and temp files, notices when the COM port has changed and reconfigures the till, and recognises the known failures — a stuck print spooler and the others that stop Windows or the POS outright. When the monitoring panel raises an alert for a case that is already mapped, the remote repair starts and the machine fixes itself.",
-      pt: "Central de TI em console que automatiza o trabalho de infra rotineiro. Instala e configura PDV, impressoras, TEF, os módulos de integração Linx, orçamento, depósito, DeskManager e os convênios; também deixa a máquina no padrão da empresa — aplicativos, papel de parede, usuários, hostname, sistema operacional, licenciamento Microsoft. Roda as próprias verificações e volta sozinha para esse padrão. No PDV existe um bot de reparo na inicialização: limpa logs e temporários, percebe quando a porta COM mudou e reconfigura o caixa, e reconhece as falhas conhecidas — spooler travado e as outras que param o Windows ou o PDV de vez. Quando o painel alerta um caso já mapeado, o reparo remoto começa e a máquina se conserta.",
-      es: "Central de TI en consola que automatiza el trabajo de infraestructura rutinario. Instala y configura el punto de venta, impresoras, terminales de tarjeta, los módulos de integración Linx, presupuesto, depósito, DeskManager y los convenios; también deja la máquina en el estándar de la empresa — aplicaciones, fondo de pantalla, usuarios, hostname, sistema operativo, licencias Microsoft. Ejecuta sus propias verificaciones y vuelve sola a ese estándar. En el punto de venta hay un bot de reparación al arranque: limpia registros y temporales, detecta cuando el puerto COM cambió y reconfigura la caja, y reconoce las fallas conocidas — cola de impresión trabada y las otras que detienen Windows o el punto de venta. Cuando el panel alerta un caso ya mapeado, la reparación remota arranca y la máquina se arregla sola.",
+      en: "A console IT hub that automates the routine infra work. It installs and configures the point of sale, printers, card terminals, the Linx integration modules, budgeting, warehouse, DeskManager, and the insurer plugins; it also brings a machine to company standard: applications, wallpaper, users, hostname, operating system, Microsoft licensing. It runs its own checks and heals back to that baseline. On the point of sale there is a boot-time repair bot: it clears logs and temp files, notices when the COM port has changed and reconfigures the till, and recognises the known failures: a stuck print spooler and the others that stop Windows or the POS outright. When the monitoring panel raises an alert for a case that is already mapped, the remote repair starts and the machine fixes itself.",
+      pt: "Central de TI em console que automatiza o trabalho de infra rotineiro. Instala e configura PDV, impressoras, TEF, os módulos de integração Linx, orçamento, depósito, DeskManager e os convênios; também deixa a máquina no padrão da empresa: aplicativos, papel de parede, usuários, hostname, sistema operacional, licenciamento Microsoft. Roda as próprias verificações e volta sozinha para esse padrão. No PDV existe um bot de reparo na inicialização: limpa logs e temporários, percebe quando a porta COM mudou e reconfigura o caixa, e reconhece as falhas conhecidas: spooler travado e as outras que param o Windows ou o PDV de vez. Quando o painel alerta um caso já mapeado, o reparo remoto começa e a máquina se conserta.",
+      es: "Central de TI en consola que automatiza el trabajo de infraestructura rutinario. Instala y configura el punto de venta, impresoras, terminales de tarjeta, los módulos de integración Linx, presupuesto, depósito, DeskManager y los convenios; también deja la máquina en el estándar de la empresa: aplicaciones, fondo de pantalla, usuarios, hostname, sistema operativo, licencias Microsoft. Ejecuta sus propias verificaciones y vuelve sola a ese estándar. En el punto de venta hay un bot de reparación al arranque: limpia registros y temporales, detecta cuando el puerto COM cambió y reconfigura la caja, y reconoce las fallas conocidas: cola de impresión trabada y las otras que detienen Windows o el punto de venta. Cuando el panel alerta un caso ya mapeado, la reparación remota arranca y la máquina se arregla sola.",
     },
     context: {
-      en: "Field and data-centre operations at Rede Estrela. Internal only — the screenshots show the console menus.",
-      pt: "Operação de campo e CPD na Rede Estrela. Uso interno — as prints mostram os menus do console.",
-      es: "Operación de campo y centro de datos en Rede Estrela. Uso interno — las capturas muestran los menús de la consola.",
+      en: "Field and data-centre operations at Rede Estrela. Internal only. The screenshots show the console menus.",
+      pt: "Operação de campo e CPD na Rede Estrela. Uso interno. As prints mostram os menus do console.",
+      es: "Operación de campo y centro de datos en Rede Estrela. Uso interno. Las capturas muestran los menús de la consola.",
     },
     participation: {
       en: "Built the installer hub, its stable branches, the install routines, and the boot repair and remote fix flow for the point of sale.",
@@ -767,9 +767,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-cartas-contra-humanidade",
     slug: "cartas-contra-a-humanidade",
     title: {
-      en: "Cards Against Humanity — Portuguese table",
+      en: "Cards Against Humanity in Portuguese",
       pt: "Cartas Contra a Humanidade",
-      es: "Cartas Contra la Humanidad — mesa en portugués",
+      es: "Cartas Contra la Humanidad en portugués",
     },
     shortDescription: {
       en: "An unofficial Portuguese build of the card game: a felt table, a fanned hand, and a room your friends join with a six-digit code.",
@@ -777,9 +777,9 @@ export const SEED_PROJECTS: Project[] = [
       es: "Versión no oficial en portugués del juego de cartas: mesa de fieltro, mano en abanico y una sala a la que los amigos entran con un código de seis dígitos.",
     },
     fullDescription: {
-      en: "A black card asks something, everyone answers with white cards, and the table votes for the most absurd reply. Built around a Portuguese deck of about 600 cards, with a configurable lobby (round length, public or private, hand size four to six, timers), a table with chat, a podium, a fanned hand, a card gallery, and a live matches view. In local mode the auth and rooms live in the browser and sync through the Vite server on a six-digit code — enough for a group on the same machine or the same network. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
-      pt: "Sai uma carta preta com a pergunta, cada um responde com cartas brancas e a mesa vota na resposta mais absurda. Construído em torno de um baralho em português com cerca de 600 cartas, com lobby configurável (duração, pública ou privada, mão de quatro a seis, cronômetros), mesa com chat, pódio, mão em leque, galeria de cartas e partidas ao vivo. No modo local a autenticação e as salas ficam no navegador e sincronizam pelo servidor Vite com um código de seis dígitos — o suficiente para um grupo na mesma máquina ou na mesma rede. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
-      es: "Sale una carta negra con la pregunta, cada uno responde con cartas blancas y la mesa vota la respuesta más absurda. Construido alrededor de una baraja en portugués de unas 600 cartas, con lobby configurable (duración, pública o privada, mano de cuatro a seis, cronómetros), mesa con chat, podio, mano en abanico, galería de cartas y partidas en vivo. En modo local la autenticación y las salas viven en el navegador y sincronizan por el servidor Vite con un código de seis dígitos — suficiente para un grupo en la misma máquina o la misma red. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
+      en: "A black card asks something, everyone answers with white cards, and the table votes for the most absurd reply. Built around a Portuguese deck of about 600 cards, with a configurable lobby (round length, public or private, hand size four to six, timers), a table with chat, a podium, a fanned hand, a card gallery, and a live matches view. In local mode the auth and rooms live in the browser and sync through the Vite server on a six-digit code, enough for a group on the same machine or the same network. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
+      pt: "Sai uma carta preta com a pergunta, cada um responde com cartas brancas e a mesa vota na resposta mais absurda. Construído em torno de um baralho em português com cerca de 600 cartas, com lobby configurável (duração, pública ou privada, mão de quatro a seis, cronômetros), mesa com chat, pódio, mão em leque, galeria de cartas e partidas ao vivo. No modo local a autenticação e as salas ficam no navegador e sincronizam pelo servidor Vite com um código de seis dígitos, o suficiente para um grupo na mesma máquina ou na mesma rede. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
+      es: "Sale una carta negra con la pregunta, cada uno responde con cartas blancas y la mesa vota la respuesta más absurda. Construido alrededor de una baraja en portugués de unas 600 cartas, con lobby configurable (duración, pública o privada, mano de cuatro a seis, cronómetros), mesa con chat, podio, mano en abanico, galería de cartas y partidas en vivo. En modo local la autenticación y las salas viven en el navegador y sincronizan por el servidor Vite con un código de seis dígitos, suficiente para un grupo en la misma máquina o la misma red. React 18, TypeScript, Vite, Chakra UI, Framer Motion, React Query.",
     },
     context: {
       en: "A personal open-source project, built to play in Portuguese with friends on the same network. The repository is public.",
@@ -831,9 +831,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-legacy-debutante",
     slug: "site-debutante",
     title: {
-      en: "Debutante site — Ana Luiza",
-      pt: "Site de debutante — Ana Luiza",
-      es: "Sitio de quinceañera — Ana Luiza",
+      en: "Debutante site for Ana Luiza",
+      pt: "Site de debutante da Ana Luiza",
+      es: "Sitio de quinceañera de Ana Luiza",
     },
     shortDescription: {
       en: "A fifteenth-birthday site where guests buy from the gift list and the party's photo album fills up as the night goes on.",
@@ -841,9 +841,9 @@ export const SEED_PROJECTS: Project[] = [
       es: "Sitio de quince años donde los invitados compran de la lista de regalos y el álbum de la fiesta se llena a medida que avanza la noche.",
     },
     fullDescription: {
-      en: "The full site for a fifteenth-birthday celebration: a home page with a countdown and RSVP, event details with a map, a gift list with search and filters and Mercado Pago checkout (card, PIX, boleto) alongside a free-amount PIX option. The live gallery is an image bank — guests upload from their phones and the photos land in a masonry timeline of the party. Everything was built so a guest can give a gift and share a memory without hitting friction.",
-      pt: "O site completo de uma festa de quinze anos: home com contagem regressiva e confirmação, informações do evento com mapa, lista de presentes com busca e filtros e checkout Mercado Pago (cartão, PIX, boleto) ao lado de um PIX de valor livre. A galeria viva é um banco de imagens — os convidados sobem fotos do celular e elas entram numa timeline em mosaico da festa. Tudo pensado para o convidado presentear e compartilhar uma memória sem esbarrar em fricção.",
-      es: "El sitio completo de una fiesta de quince años: inicio con cuenta regresiva y confirmación, información del evento con mapa, lista de regalos con búsqueda y filtros y checkout de Mercado Pago (tarjeta, PIX, boleto) junto a un PIX de monto libre. La galería viva es un banco de imágenes — los invitados suben fotos desde el móvil y aparecen en una línea de tiempo en mosaico de la fiesta. Todo pensado para que el invitado regale y comparta un recuerdo sin fricción.",
+      en: "The full site for a fifteenth-birthday celebration: a home page with a countdown and RSVP, event details with a map, a gift list with search and filters and Mercado Pago checkout (card, PIX, boleto) alongside a free-amount PIX option. The live gallery is an image bank. Guests upload from their phones and the photos land in a masonry timeline of the party. Everything was built so a guest can give a gift and share a memory without hitting friction.",
+      pt: "O site completo de uma festa de quinze anos: home com contagem regressiva e confirmação, informações do evento com mapa, lista de presentes com busca e filtros e checkout Mercado Pago (cartão, PIX, boleto) ao lado de um PIX de valor livre. A galeria viva é um banco de imagens. Os convidados sobem fotos do celular e elas entram numa timeline em mosaico da festa. Tudo pensado para o convidado presentear e compartilhar uma memória sem esbarrar em fricção.",
+      es: "El sitio completo de una fiesta de quince años: inicio con cuenta regresiva y confirmación, información del evento con mapa, lista de regalos con búsqueda y filtros y checkout de Mercado Pago (tarjeta, PIX, boleto) junto a un PIX de monto libre. La galería viva es un banco de imágenes. Los invitados suben fotos desde el móvil y aparecen en una línea de tiempo en mosaico de la fiesta. Todo pensado para que el invitado regale y comparta un recuerdo sin fricción.",
     },
     context: {
       en: "A real event in Cascavel, Paraná. Public site with the gift list and the collaborative gallery.",
@@ -884,9 +884,9 @@ export const SEED_PROJECTS: Project[] = [
     id: "proj-legacy-luna",
     slug: "luna-store",
     title: {
-      en: "Luna Store — Luna Network",
-      pt: "Luna Store — Luna Network",
-      es: "Luna Store — Luna Network",
+      en: "Luna Store for Luna Network",
+      pt: "Luna Store para a Luna Network",
+      es: "Luna Store para Luna Network",
     },
     shortDescription: {
       en: "A store for a Minecraft server network, written from scratch rather than dropped onto an e-commerce template.",
@@ -894,9 +894,9 @@ export const SEED_PROJECTS: Project[] = [
       es: "Tienda para una red de servidores de Minecraft, escrita desde cero en vez de montada sobre una plantilla de e-commerce.",
     },
     fullDescription: {
-      en: "An exclusive store for a Minecraft server network, built on an original concept. The code is entirely custom — no off-the-shelf shop template — with an interface shaped around the game's items and purchase flows, and attention to usability and payment safety.",
-      pt: "Loja exclusiva para uma rede de servidores Minecraft, sobre um conceito original. O código é 100% autoral — sem template pronto de loja — com interface moldada pelos itens e fluxos de compra do jogo, e atenção a usabilidade e segurança no pagamento.",
-      es: "Tienda exclusiva para una red de servidores de Minecraft, sobre un concepto original. El código es totalmente propio — sin plantilla de tienda prefabricada — con una interfaz moldeada por los ítems y los flujos de compra del juego, y atención a la usabilidad y la seguridad del pago.",
+      en: "An exclusive store for a Minecraft server network, built on an original concept. The code is entirely custom (no off-the-shelf shop template) with an interface shaped around the game's items and purchase flows, and attention to usability and payment safety.",
+      pt: "Loja exclusiva para uma rede de servidores Minecraft, sobre um conceito original. O código é 100% autoral (sem template pronto de loja) com interface moldada pelos itens e fluxos de compra do jogo, e atenção a usabilidade e segurança no pagamento.",
+      es: "Tienda exclusiva para una red de servidores de Minecraft, sobre un concepto original. El código es totalmente propio (sin plantilla de tienda prefabricada) con una interfaz moldeada por los ítems y los flujos de compra del juego, y atención a la usabilidad y la seguridad del pago.",
     },
     context: {
       en: "A live project at lunanetwork.com.br.",
