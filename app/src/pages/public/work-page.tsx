@@ -138,7 +138,7 @@ export function WorkPage() {
             ) : null}
           </div>
         ) : (
-          <div className="my-10 grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+          <div className="my-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-7 lg:grid-cols-3">
             {list.map((project) => (
               <ProjectCard
                 key={project.id}
@@ -148,7 +148,6 @@ export function WorkPage() {
                   project.technologyIds.includes(x.id),
                 )}
                 onOpen={() => dialog.openProject(project.id)}
-                className="border-0"
               />
             ))}
           </div>

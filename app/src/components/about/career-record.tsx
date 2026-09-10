@@ -10,7 +10,7 @@ type Filter = "all" | "work" | "education"
 /**
  * Work and study used to be two identical timelines. They are one record now,
  * ordered by when things actually happened, with a filter for the two views.
- * The spine is a real hairline — the years hang off it like a ledger.
+ * The spine is a real hairline, the years hang off it like a ledger.
  */
 export function CareerRecord({ entries }: { entries: CareerEntry[] }) {
   const { t, i18n } = useTranslation()
@@ -53,9 +53,9 @@ export function CareerRecord({ entries }: { entries: CareerEntry[] }) {
         ))}
       </div>
 
-      <ol className="mt-10 border-l border-rule-strong pl-6 sm:pl-10">
+      <ol className="mt-12 border-l border-rule-strong pl-7 sm:pl-12">
         {sorted.map((entry) => (
-          <li key={entry.id} className="relative pb-10 last:pb-0">
+          <li key={entry.id} className="relative pb-14 last:pb-0">
             <span
               aria-hidden
               className={cn(
@@ -78,7 +78,7 @@ export function CareerRecord({ entries }: { entries: CareerEntry[] }) {
               ) : null}
             </div>
 
-            <div className="mt-3 flex items-start gap-4">
+            <div className="mt-4 flex items-start gap-5">
               {entry.logoUrl ? (
                 <img
                   src={entry.logoUrl}
@@ -104,12 +104,12 @@ export function CareerRecord({ entries }: { entries: CareerEntry[] }) {
               </div>
             </div>
 
-            <p className="measure mt-4 text-[0.9375rem] leading-7 text-muted-foreground">
+            <p className="measure mt-5 text-[0.9375rem] leading-8 text-muted-foreground">
               {pickLocalized(entry.body, lang)}
             </p>
 
             {entry.tags.length > 0 ? (
-              <ul className="mt-4 flex flex-wrap gap-1.5">
+              <ul className="mt-5 flex flex-wrap gap-2">
                 {entry.tags.map((tag) => (
                   <li key={tag.en}>
                     <Badge variant="outline">{pickLocalized(tag, lang)}</Badge>

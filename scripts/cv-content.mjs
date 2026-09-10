@@ -13,11 +13,15 @@ export const CONTACT = {
 }
 
 const SHARED_SKILLS = {
-  backend: "Node.js · Python · REST · JWT · SQL Server · PostgreSQL · MongoDB · MinIO",
-  frontend: "TypeScript · React · Vite · Next.js · Tailwind CSS · shadcn/ui · i18next",
-  data: "SQL · NL→SQL · LLMs · Obsidian knowledge graphs · Excel/PDF reporting",
-  infra: "Windows Server · Active Directory · Linux · Docker · Coolify · Nginx · PowerShell",
-  automation: "n8n · Telegram bots · Playwright scrapers · Webhooks · Scheduled jobs · CLI installers",
+  backend: "Node.js, Python, REST, JWT, SQL Server, PostgreSQL, MongoDB, MinIO",
+  frontend: "TypeScript, React, Vite, Next.js, Tailwind CSS, shadcn/ui, i18next",
+  dataEn: "Advanced SQL, natural language to SQL, LLMs, knowledge graphs, reporting",
+  dataPt: "SQL avançado, linguagem natural para SQL, LLMs, grafos de conhecimento, relatórios",
+  dataEs: "SQL avanzado, lenguaje natural a SQL, LLMs, grafos de conocimiento, informes",
+  infra: "Windows Server, Active Directory, Linux, Docker, Coolify, Nginx, PowerShell",
+  automationEn: "n8n, Telegram bots, Playwright scrapers, webhooks, scheduled jobs, CLI installers",
+  automationPt: "n8n, bots de Telegram, scrapers Playwright, webhooks, rotinas agendadas, instaladores CLI",
+  automationEs: "n8n, bots de Telegram, scrapers Playwright, webhooks, tareas programadas, instaladores CLI",
 }
 
 export const CV = {
@@ -25,7 +29,7 @@ export const CV = {
     file: "Gabriel-Dagostim-CV-en.pdf",
     htmlLang: "en",
     role: "Infrastructure and full-stack developer",
-    location: "Cascavel, Paraná — Brazil",
+    location: "Cascavel, Paraná, Brazil",
     labels: {
       profile: "Profile",
       experience: "Experience",
@@ -37,23 +41,23 @@ export const CV = {
       contact: "Contact",
     },
     profile:
-      "I build the internal software a pharmacy network of dozens of branches runs on: backend APIs, monitoring command centres, centralised access control, data pipelines, and bots that answer operational questions in plain language. I start from the process and the person doing it, find the bottleneck, and ship something that survives a real shift.",
+      "I build the internal software a retail network of dozens of branches runs on: backend APIs, monitoring command centres, centralised access control, data pipelines, and bots that answer operational questions in plain language. I start from the process and the person doing it, find the bottleneck, and ship something that survives a real shift.",
     experience: [
       {
         title: "Infrastructure and senior developer",
         org: "Farmácias Estrela",
-        period: "Feb 2025 — present",
+        period: "Feb 2025 to Present",
         bullets: [
           "Built Nexus, the network's command centre: near real-time branch telemetry, browser SSH, gated remote actions, and a Telegram bot that mirrors both.",
-          "Designed and shipped Farmácia Auth — centralised roles, permissions, JWT API, and an audit trail — now covering roughly 70% of the network.",
+          "Designed and shipped Farmácia Auth, centralised roles, permissions, JWT API, and an audit trail, now covering roughly 70% of the network.",
           "Automated the e-commerce image pipeline end to end: ERP gap detection, barcode scrapers, an approval queue, a MinIO catalogue, and automatic publishing.",
           "Built a natural-language-to-SQL assistant over the ERP, modelling the database as a linked-note knowledge graph so the team queries it from Telegram.",
         ],
       },
       {
-        title: "Analyst and support — data centre",
+        title: "Analyst and support, Data Centre",
         org: "Unioeste",
-        period: "Nov 2023 — Feb 2025",
+        period: "Nov 2023 to Feb 2025",
         bullets: [
           "Kept institutional systems available: uptime, incident response, and technical support for internal users.",
           "Networking, Active Directory, and continuous work on the university's server environment.",
@@ -62,7 +66,7 @@ export const CV = {
       {
         title: "Social media",
         org: "EletroLimp",
-        period: "Jan 2023 — Nov 2023",
+        period: "Jan 2023 to Nov 2023",
         bullets: [
           "Ran the brand's content operation: posting methodology, paid boosting, and the marketing CRM.",
           "Produced the visual components that went into the company's website and internal system.",
@@ -71,7 +75,7 @@ export const CV = {
       {
         title: "UI freelancer",
         org: "Workana",
-        period: "Sep 2022 — Aug 2023",
+        period: "Sep 2022 to Aug 2023",
         bullets: [
           "UI and UX freelancing for clients: Figma prototypes, interfaces, and supporting copy.",
         ],
@@ -79,7 +83,7 @@ export const CV = {
     ],
     education: [
       {
-        title: "Postgraduate — AI applied to business",
+        title: "Postgraduate in AI Applied to Business",
         org: "Centro Universitário Assis Gurgacz (FAG)",
         period: "In progress",
       },
@@ -102,9 +106,9 @@ export const CV = {
     skills: [
       { label: "Backend and APIs", value: SHARED_SKILLS.backend },
       { label: "Frontend", value: SHARED_SKILLS.frontend },
-      { label: "Data and AI", value: SHARED_SKILLS.data },
+      { label: "Data and AI", value: SHARED_SKILLS.dataEn },
       { label: "Infrastructure", value: SHARED_SKILLS.infra },
-      { label: "Automation", value: SHARED_SKILLS.automation },
+      { label: "Automation", value: SHARED_SKILLS.automationEn },
     ],
     selected: [
       {
@@ -125,12 +129,12 @@ export const CV = {
       },
     ],
     awards: [
-      "FAG hackathons — podium finishes at Show Rural Digital, including third place in 2024.",
-      "Eureka robotics fairs — FEBRACE 2021, Infomatrix (Mexico), third place at Fenecit 2020, FETEC-SP.",
+      "FAG hackathons, podium finishes at Show Rural Digital, including third place in 2024.",
+      "Eureka robotics fairs, FEBRACE 2021, Infomatrix (Mexico), third place at Fenecit 2020, FETEC-SP.",
     ],
     languages: [
       { name: "Portuguese", level: "Native" },
-      { name: "English", level: "Intermediate — New York School" },
+      { name: "English", level: "Intermediate, New York School" },
     ],
   },
 
@@ -138,7 +142,7 @@ export const CV = {
     file: "Gabriel-Dagostim-CV-pt-BR.pdf",
     htmlLang: "pt-BR",
     role: "Desenvolvedor full stack e de infraestrutura",
-    location: "Cascavel, Paraná — Brasil",
+    location: "Cascavel, Paraná, Brasil",
     labels: {
       profile: "Perfil",
       experience: "Experiência",
@@ -150,23 +154,23 @@ export const CV = {
       contact: "Contato",
     },
     profile:
-      "Construo o software interno em que uma rede de farmácias com dezenas de filiais roda: APIs de backend, centros de comando de monitoramento, controle de acesso centralizado, pipelines de dados e bots que respondem perguntas operacionais em linguagem comum. Começo pelo processo e por quem executa ele, acho o gargalo e entrego algo que sobrevive a um turno real.",
+      "Construo o software interno em que uma rede de varejo com dezenas de filiais roda: APIs de backend, centros de comando de monitoramento, controle de acesso centralizado, pipelines de dados e bots que respondem perguntas operacionais em linguagem comum. Começo pelo processo e por quem executa ele, acho o gargalo e entrego algo que sobrevive a um turno real.",
     experience: [
       {
         title: "Infraestrutura e desenvolvedor sênior",
         org: "Farmácias Estrela",
-        period: "Fev 2025 — atual",
+        period: "Fev 2025 até o momento",
         bullets: [
           "Construí o Nexus, centro de comando da rede: telemetria quase em tempo real das filiais, SSH pelo navegador, ações remotas confirmadas e um bot Telegram que espelha tudo.",
-          "Concebi e entreguei o Farmácia Auth — cargos, permissões, API JWT e trilha de auditoria centralizados —, hoje cobrindo cerca de 70% da rede.",
+          "Concebi e entreguei o Farmácia Auth, com cargos, permissões, API JWT e trilha de auditoria centralizados, hoje cobrindo cerca de 70% da rede.",
           "Automatizei o pipeline de imagens do e-commerce de ponta a ponta: detecção de lacunas no ERP, scrapers por EAN, fila de aprovação, catálogo MinIO e publicação automática.",
           "Criei um assistente de linguagem natural para SQL sobre o ERP, modelando o banco como um grafo de notas linkadas para o time consultar pelo Telegram.",
         ],
       },
       {
-        title: "Analista e suporte — datacenter",
+        title: "Analista e suporte, Datacenter",
         org: "Unioeste",
-        period: "Nov 2023 — Fev 2025",
+        period: "Nov 2023 a fev 2025",
         bullets: [
           "Mantive os sistemas institucionais disponíveis: uptime, resposta a incidentes e suporte técnico aos usuários internos.",
           "Redes, Active Directory e trabalho contínuo no ambiente de servidores da universidade.",
@@ -175,7 +179,7 @@ export const CV = {
       {
         title: "Social media",
         org: "EletroLimp",
-        period: "Jan 2023 — Nov 2023",
+        period: "Jan 2023 a nov 2023",
         bullets: [
           "Toquei a operação de conteúdo da marca: metodologia de posts, impulsionamento e o CRM de marketing.",
           "Produzi os componentes visuais que foram para o site e o sistema interno da empresa.",
@@ -184,7 +188,7 @@ export const CV = {
       {
         title: "Freelancer de UI",
         org: "Workana",
-        period: "Set 2022 — Ago 2023",
+        period: "Set 2022 a ago 2023",
         bullets: [
           "Freelas de UI e UX para clientes: protótipos em Figma, interfaces e textos de apoio.",
         ],
@@ -192,7 +196,7 @@ export const CV = {
     ],
     education: [
       {
-        title: "Pós-graduação — IA aplicada a negócios",
+        title: "Pós-graduação em IA aplicada a negócios",
         org: "Centro Universitário Assis Gurgacz (FAG)",
         period: "Cursando",
       },
@@ -215,9 +219,9 @@ export const CV = {
     skills: [
       { label: "Backend e APIs", value: SHARED_SKILLS.backend },
       { label: "Frontend", value: SHARED_SKILLS.frontend },
-      { label: "Dados e IA", value: SHARED_SKILLS.data },
+      { label: "Dados e IA", value: SHARED_SKILLS.dataPt },
       { label: "Infraestrutura", value: SHARED_SKILLS.infra },
-      { label: "Automação", value: SHARED_SKILLS.automation },
+      { label: "Automação", value: SHARED_SKILLS.automationPt },
     ],
     selected: [
       {
@@ -238,12 +242,12 @@ export const CV = {
       },
     ],
     awards: [
-      "Hackathons da FAG — pódios no Show Rural Digital, incluindo 3º lugar em 2024.",
-      "Feiras de robótica Eureka — FEBRACE 2021, Infomatrix (México), 3º lugar no Fenecit 2020, FETEC-SP.",
+      "Hackathons da FAG, pódios no Show Rural Digital, incluindo 3º lugar em 2024.",
+      "Feiras de robótica Eureka, FEBRACE 2021, Infomatrix (México), 3º lugar no Fenecit 2020, FETEC-SP.",
     ],
     languages: [
       { name: "Português", level: "Nativo" },
-      { name: "Inglês", level: "Intermediário — New York School" },
+      { name: "Inglês", level: "Intermediário, New York School" },
     ],
   },
 
@@ -251,7 +255,7 @@ export const CV = {
     file: "Gabriel-Dagostim-CV-es.pdf",
     htmlLang: "es",
     role: "Desarrollador full stack y de infraestructura",
-    location: "Cascavel, Paraná — Brasil",
+    location: "Cascavel, Paraná, Brasil",
     labels: {
       profile: "Perfil",
       experience: "Experiencia",
@@ -263,23 +267,23 @@ export const CV = {
       contact: "Contacto",
     },
     profile:
-      "Construyo el software interno sobre el que funciona una red de farmacias con decenas de sucursales: APIs de backend, centros de mando de monitoreo, control de acceso centralizado, pipelines de datos y bots que responden preguntas operativas en lenguaje común. Empiezo por el proceso y por quien lo ejecuta, encuentro el cuello de botella y entrego algo que sobrevive a un turno real.",
+      "Construyo el software interno sobre el que funciona una red minorista con decenas de sucursales: APIs de backend, centros de mando de monitoreo, control de acceso centralizado, pipelines de datos y bots que responden preguntas operativas en lenguaje común. Empiezo por el proceso y por quien lo ejecuta, encuentro el cuello de botella y entrego algo que sobrevive a un turno real.",
     experience: [
       {
         title: "Infraestructura y desarrollador sénior",
         org: "Farmácias Estrela",
-        period: "Feb 2025 — actual",
+        period: "Feb 2025 hasta la fecha",
         bullets: [
           "Construí Nexus, el centro de mando de la red: telemetría casi en tiempo real de las sucursales, SSH desde el navegador, acciones remotas confirmadas y un bot de Telegram que lo replica.",
-          "Diseñé y entregué Farmácia Auth — cargos, permisos, API JWT y rastro de auditoría centralizados —, hoy cubriendo cerca del 70% de la red.",
+          "Diseñé y entregué Farmácia Auth, con cargos, permisos, API JWT y rastro de auditoría centralizados, hoy cubriendo cerca del 70% de la red.",
           "Automaticé el pipeline de imágenes del e-commerce de punta a punta: detección de huecos en el ERP, scrapers por código de barras, cola de aprobación, catálogo MinIO y publicación automática.",
           "Creé un asistente de lenguaje natural a SQL sobre el ERP, modelando la base como un grafo de notas enlazadas para que el equipo la consulte desde Telegram.",
         ],
       },
       {
-        title: "Analista y soporte — centro de datos",
+        title: "Analista y soporte, Centro de Datos",
         org: "Unioeste",
-        period: "Nov 2023 — Feb 2025",
+        period: "Nov 2023 a feb 2025",
         bullets: [
           "Mantuve disponibles los sistemas institucionales: uptime, respuesta a incidentes y soporte técnico a usuarios internos.",
           "Redes, Active Directory y trabajo continuo en el entorno de servidores de la universidad.",
@@ -288,7 +292,7 @@ export const CV = {
       {
         title: "Social media",
         org: "EletroLimp",
-        period: "Ene 2023 — Nov 2023",
+        period: "Ene 2023 a nov 2023",
         bullets: [
           "Llevé la operación de contenido de la marca: metodología de publicación, impulso pagado y el CRM de marketing.",
           "Produje los componentes visuales que se usaron en el sitio y el sistema interno de la empresa.",
@@ -297,7 +301,7 @@ export const CV = {
       {
         title: "Freelance de UI",
         org: "Workana",
-        period: "Sep 2022 — Ago 2023",
+        period: "Sep 2022 a ago 2023",
         bullets: [
           "Trabajos freelance de UI y UX para clientes: prototipos en Figma, interfaces y textos de apoyo.",
         ],
@@ -305,7 +309,7 @@ export const CV = {
     ],
     education: [
       {
-        title: "Posgrado — IA aplicada a negocios",
+        title: "Posgrado en IA aplicada a negocios",
         org: "Centro Universitário Assis Gurgacz (FAG)",
         period: "En curso",
       },
@@ -328,9 +332,9 @@ export const CV = {
     skills: [
       { label: "Backend y APIs", value: SHARED_SKILLS.backend },
       { label: "Frontend", value: SHARED_SKILLS.frontend },
-      { label: "Datos e IA", value: SHARED_SKILLS.data },
+      { label: "Datos e IA", value: SHARED_SKILLS.dataEs },
       { label: "Infraestructura", value: SHARED_SKILLS.infra },
-      { label: "Automatización", value: SHARED_SKILLS.automation },
+      { label: "Automatización", value: SHARED_SKILLS.automationEs },
     ],
     selected: [
       {
@@ -351,12 +355,12 @@ export const CV = {
       },
     ],
     awards: [
-      "Hackatones de FAG — podios en Show Rural Digital, incluido el tercer lugar en 2024.",
-      "Ferias de robótica Eureka — FEBRACE 2021, Infomatrix (México), tercer lugar en Fenecit 2020, FETEC-SP.",
+      "Hackatones de FAG, podios en Show Rural Digital, incluido el tercer lugar en 2024.",
+      "Ferias de robótica Eureka, FEBRACE 2021, Infomatrix (México), tercer lugar en Fenecit 2020, FETEC-SP.",
     ],
     languages: [
       { name: "Portugués", level: "Nativo" },
-      { name: "Inglés", level: "Intermedio — New York School" },
+      { name: "Inglés", level: "Intermedio, New York School" },
     ],
   },
 }

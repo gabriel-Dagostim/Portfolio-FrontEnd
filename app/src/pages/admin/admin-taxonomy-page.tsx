@@ -45,7 +45,7 @@ export function AdminTaxonomyPage() {
     },
   ]
 
-  /** How many projects reference an id — deleting one in use would orphan them. */
+  /** How many projects reference an id, deleting one in use would orphan them. */
   const usedBy = (predicate: (p: (typeof store.projects)[number]) => boolean) =>
     store.projects.filter(predicate).length
 

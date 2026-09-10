@@ -10,7 +10,7 @@ export type { LocaleCode } from "@/types"
 
 export const LOCALE_STORAGE_KEY = "portfolio-locale"
 
-/** Order matters — this drives the language switch. */
+/** Order matters, this drives the language switch. */
 export const SUPPORTED_LOCALES: {
   code: LocaleCode
   short: string
@@ -21,7 +21,7 @@ export const SUPPORTED_LOCALES: {
   { code: "es", short: "ES", label: "Español" },
 ]
 
-/** First visit and fallback are always English — never the browser language. */
+/** First visit and fallback are always English, never the browser language. */
 export const DEFAULT_LOCALE: LocaleCode = "en"
 
 const LOCALE_CODES = SUPPORTED_LOCALES.map((l) => l.code)
@@ -31,9 +31,9 @@ function isLocale(value: unknown): value is LocaleCode {
 }
 
 const DOCUMENT_TITLE: Record<LocaleCode, string> = {
-  en: "Gabriel Dagostim — Infrastructure and full-stack developer",
-  "pt-BR": "Gabriel Dagostim — Desenvolvedor full stack e de infraestrutura",
-  es: "Gabriel Dagostim — Desarrollador full stack y de infraestructura",
+  en: "Gabriel Dagostim, Infrastructure and full-stack developer",
+  "pt-BR": "Gabriel Dagostim, Desenvolvedor full stack e de infraestrutura",
+  es: "Gabriel Dagostim, Desarrollador full stack y de infraestructura",
 }
 
 const HTML_LANG: Record<LocaleCode, string> = {
@@ -51,7 +51,7 @@ function applyDocumentLang(lng: LocaleCode) {
 /**
  * Order of precedence: the visitor's own choice, then the language the admin
  * set as the site default, then English. The browser's language is never used
- * — English stays the front door.
+ *, English stays the front door.
  */
 function resolveInitialLocale(): LocaleCode {
   try {

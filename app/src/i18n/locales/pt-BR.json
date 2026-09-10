@@ -48,7 +48,7 @@
     "workAll": "Todos os {{count}} projetos",
     "collectionsTitle": "Três tipos de problema",
     "collectionsLead": "O trabalho se divide direito pelo que estava quebrado antes de ele existir.",
-    "systemsBlurb": "Acompanhamento de vendas, gestão de validade, auth centralizado, relatório de telefonia, consulta de comissão — software em produção numa rede de farmácias.",
+    "systemsBlurb": "Acompanhamento de vendas, gestão de validade, auth centralizado, relatório de telefonia e consulta de comissão. Software em produção numa rede de varejo.",
     "infraBlurb": "Um centro de comando de monitoramento, SSH pelo navegador, bots de operação e instaladores que mantêm centenas de máquinas num padrão só.",
     "autoBlurb": "Bots, pipelines de imagem e assistentes de dados que pegam a parte repetitiva do turno e fazem sem precisar pedir.",
     "profileTitle": "Quem está construindo",
@@ -59,11 +59,11 @@
     "flowLoop": "Falhou aqui, o trabalho volta",
     "flowPractice": "Na prática",
     "contactTitle": "Tem alguma coisa para construir?",
-    "contactLead": "Um sistema, uma integração, uma automação — me conta o que quebra hoje e eu digo com honestidade se consigo resolver."
+    "contactLead": "Um sistema, uma integração, uma automação. Me conta o que quebra hoje e eu digo com honestidade se consigo resolver."
   },
   "projects": {
     "title": "Trabalho",
-    "lead": "A maior parte disso está rodando numa rede de farmácias agora. Abra qualquer um para ver o caso por trás.",
+    "lead": "A maior parte disso está rodando em produção agora. Abra qualquer um para ver o caso por trás.",
     "tabPublished": "Entregues",
     "tabWorking": "Em andamento",
     "workingBadge": "Em andamento",
@@ -76,7 +76,7 @@
     "stack": "Stack",
     "area": "Disciplina",
     "internalSystem": "Interno",
-    "internalOnly": "Sistema interno — sem demo pública",
+    "internalOnly": "Sistema interno, sem demo pública",
     "context": "O caso",
     "participation": "Minha parte",
     "challenges": "O que foi difícil",
@@ -97,7 +97,7 @@
   },
   "collections": {
     "systemsTitle": "Sistemas",
-    "systemsLead": "Software em produção dentro das Farmácias Estrela. Não existe link público para nenhum deles, então as prints é que falam.",
+    "systemsLead": "Software interno rodando em produção. Não existe link público para nenhum deles, então as prints é que falam.",
     "systemsEmpty": "Nenhum sistema publicado ainda.",
     "infraTitle": "Infraestrutura",
     "infraLead": "Servidores, redes, monitoramento e a automação que mantém uma operação distribuída de pé numa segunda-feira de manhã.",
@@ -108,7 +108,7 @@
   },
   "about": {
     "title": "Sobre",
-    "lead": "Tenho {{age}} anos, moro em Cascavel e passei os últimos anos construindo o software de que uma rede de farmácias depende para abrir as portas toda manhã.",
+    "lead": "Tenho {{age}} anos, moro em Cascavel e passei os últimos anos construindo o software interno de que uma operação depende para atravessar o dia.",
     "photoAlt": "Gabriel Henrique Dagostim em um datacenter",
     "recordTitle": "O histórico",
     "recordLead": "Trabalho e estudo, na ordem em que aconteceram. Começa com um Arduino.",
@@ -124,7 +124,7 @@
   },
   "skills": {
     "title": "Competências",
-    "lead": "Não é uma lista de checkboxes — é aquilo com que eu de fato entreguei, agrupado pelo tipo de problema que resolve.",
+    "lead": "Não é uma lista de checkboxes. É aquilo com que eu de fato entreguei, agrupado pelo tipo de problema que resolve.",
     "appliedIn": "Aplicado em",
     "appliedCount_one": "{{count}} projeto",
     "appliedCount_other": "{{count}} projetos"
@@ -249,7 +249,7 @@
     "statusArchived": "Arquivado",
     "githubUrl": "URL do GitHub",
     "liveUrl": "URL do site",
-    "showcaseOnly": "Interno — só prints",
+    "showcaseOnly": "Interno, só prints",
     "saveError": "Preencha os campos obrigatórios antes de salvar.",
     "deleteConfirm": "Excluir “{{name}}”? Isso não tem volta.",
     "defaultLocale": "Idioma padrão para novos visitantes",

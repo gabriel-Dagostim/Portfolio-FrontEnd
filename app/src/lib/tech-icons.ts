@@ -1,4 +1,4 @@
-/** CDN paths for tech logos — Devicon multi-color + Simple Icons fallback. */
+/** CDN paths for tech logos, Devicon multi-color + Simple Icons fallback. */
 const D = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons"
 const S = (slug: string) => `https://cdn.simpleicons.org/${slug}`
 

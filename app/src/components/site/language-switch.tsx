@@ -4,7 +4,7 @@ import { normalizeLocale } from "@/lib/i18n-utils"
 import { cn } from "@/lib/utils"
 
 /**
- * Three languages sit side by side rather than behind a dropdown — the
+ * Three languages sit side by side rather than behind a dropdown, the
  * switch is part of the site's promise, so it should be visible.
  */
 export function LanguageSwitch({ className }: { className?: string }) {

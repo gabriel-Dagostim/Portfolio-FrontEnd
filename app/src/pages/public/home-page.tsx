@@ -22,7 +22,7 @@ const COLLECTIONS = [
   { to: "/automations", titleKey: "nav.automations", blurbKey: "home.autoBlurb", categoryId: "cat-auto-ops" },
 ] as const
 
-/** Career start — used for the "years in operations" count in the hero. */
+/** Career start, used for the "years in operations" count in the hero. */
 const CAREER_START_YEAR = 2022
 
 export function HomePage() {
@@ -66,7 +66,7 @@ export function HomePage() {
         yearsInOperations={counts.years}
       />
 
-      <PageContainer className="py-14 sm:py-16">
+      <PageContainer className="py-20 sm:py-24">
         <SectionHeading
           title={t("home.workTitle")}
           lead={t("home.workLead")}
@@ -79,7 +79,7 @@ export function HomePage() {
             </Link>
           }
         />
-        <div className="mt-8 grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-7 lg:grid-cols-3">
           {featured.map((project) => (
             <ProjectCard
               key={project.id}
@@ -89,31 +89,30 @@ export function HomePage() {
                 project.technologyIds.includes(x.id),
               )}
               onOpen={() => dialog.openProject(project.id)}
-              className="border-0"
             />
           ))}
         </div>
       </PageContainer>
 
-      <PageContainer className="pb-14 sm:pb-16">
+      <PageContainer className="pb-20 sm:pb-24">
         <SectionHeading
           title={t("home.collectionsTitle")}
           lead={t("home.collectionsLead")}
         />
-        <ul className="mt-8 grid grid-cols-1 gap-px border border-rule bg-rule md:grid-cols-3">
+        <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {COLLECTIONS.map((item) => (
-            <li key={item.to} className="bg-surface">
+            <li key={item.to} className="border border-rule bg-surface">
               <Link
                 to={item.to}
-                className="group flex h-full flex-col p-5 transition-colors hover:bg-surface-sunken sm:p-6"
+                className="group flex h-full flex-col p-6 transition-colors hover:bg-surface-sunken sm:p-8"
               >
                 <span className="type-data text-2xl text-primary">
                   {counts.byCategory(item.categoryId)}
                 </span>
-                <h3 className="type-title mt-2 text-lg group-hover:underline group-hover:decoration-primary group-hover:underline-offset-4">
+                <h3 className="type-title mt-3 text-lg group-hover:underline group-hover:decoration-primary group-hover:underline-offset-4">
                   {t(item.titleKey)}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">
                   {t(item.blurbKey)}
                 </p>
               </Link>
@@ -124,27 +123,27 @@ export function HomePage() {
 
       <WorkingMethod steps={content.flow} />
 
-      <PageContainer className="pb-14 sm:pb-16">
+      <PageContainer className="pb-20 sm:pb-24">
         <SectionHeading title={t("home.profileTitle")} />
-        <div className="mt-8 grid gap-6 border border-rule bg-surface p-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8 sm:p-8">
+        <div className="mt-10 grid gap-8 border border-rule bg-surface p-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-10 sm:p-10">
           <img
             src={content.profile.photoUrl}
             alt={t("about.photoAlt")}
             width={160}
             height={200}
-            className="h-40 w-32 border border-rule object-cover object-top sm:h-48 sm:w-40"
+            className="h-44 w-36 border border-rule object-cover object-top sm:h-56 sm:w-44"
           />
           <div>
             <p className="type-title text-xl">{content.profile.fullName}</p>
             <p className="type-data mt-1 text-xs text-muted-foreground">
               {pickLocalized(content.profile.role, i18n.language)}
             </p>
-            <p className="measure mt-4 text-[0.9375rem] leading-7 text-muted-foreground">
+            <p className="measure mt-5 text-[0.9375rem] leading-8 text-muted-foreground">
               {t("about.howBody")}
             </p>
             <Link
               to="/about"
-              className={cn(buttonVariants({ variant: "outline", size: "sm" }), "mt-5")}
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }), "mt-6")}
             >
               {t("home.profileCta")}
             </Link>
@@ -152,8 +151,8 @@ export function HomePage() {
         </div>
       </PageContainer>
 
-      <PageContainer className="pb-16">
-        <div className="flex flex-col gap-5 border-t border-rule pt-8 sm:flex-row sm:items-end sm:justify-between">
+      <PageContainer className="pb-24">
+        <div className="flex flex-col gap-8 border-t border-rule pt-10 sm:flex-row sm:items-end sm:justify-between sm:gap-12">
           <div>
             <h2 className="type-title text-2xl sm:text-[1.75rem]">
               {t("home.contactTitle")}

@@ -41,7 +41,7 @@ export function AdminPage({
   )
 }
 
-/** A titled group of fields — this is what keeps the admin readable. */
+/** A titled group of fields, this is what keeps the admin readable. */
 export function Panel({
   title,
   description,
@@ -120,7 +120,7 @@ type LangKey = (typeof LANGS)[number]["key"]
 
 /**
  * One label, one box, three tabs. A dot on a tab means that language is still
- * empty — the fastest way to see what is missing without opening each one.
+ * empty, the fastest way to see what is missing without opening each one.
  */
 export function LocalizedField({
   label,

@@ -18,7 +18,7 @@ export function ContactPage() {
       setCopied(value)
       window.setTimeout(() => setCopied(null), 1800)
     } catch {
-      /* clipboard blocked — the value is visible and selectable anyway */
+      /* clipboard blocked, the value is visible and selectable anyway */
     }
   }
 
@@ -58,17 +58,17 @@ export function ContactPage() {
   ]
 
   return (
-    <PageContainer className="pb-16">
+    <PageContainer className="pb-24">
       <PageHeader title={t("contact.title")} lead={t("contact.lead")} />
 
-      <ul className="my-10 grid grid-cols-1 gap-px border border-rule bg-rule sm:grid-cols-2">
+      <ul className="my-14 grid grid-cols-1 gap-5 sm:grid-cols-2">
         {channels.map((channel) => {
           const Icon = channel.icon
           const isCopied = copied === channel.value
           return (
             <li
               key={channel.id}
-              className="flex items-center gap-4 bg-surface p-5"
+              className="flex items-center gap-5 border border-rule bg-surface p-6"
             >
               <span className="flex size-10 shrink-0 items-center justify-center border border-rule text-muted-foreground">
                 <Icon className="size-4" />

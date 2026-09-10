@@ -2,9 +2,9 @@
 @import "shadcn/tailwind.css";
 
 /* ── Typefaces ───────────────────────────────────────────────────────────
-   Archivo    — grotesque with a real width axis. Signage/industrial voice;
+   Archivo    is a grotesque with a real width axis. Signage/industrial voice;
                 carries both display and body so the page reads as one system.
-   JetBrains  — reserved for machine output: counts, years, identifiers,
+   JetBrains  is reserved for machine output: counts, years, identifiers,
                 stack names, status lines. Never used as decorative chrome. */
 @import "@fontsource-variable/archivo/wdth.css";
 @import "@fontsource-variable/jetbrains-mono/wght.css";
@@ -43,7 +43,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Signal colours — used for meaning (status, live, alert), never decoration */
+  /* Signal colours, used for meaning (status, live, alert), never decoration */
   --color-signal: var(--signal);
   --color-signal-foreground: var(--signal-foreground);
   --color-positive: var(--positive);
@@ -144,12 +144,13 @@
   }
 
   html {
-    @apply font-sans;
+    @apply bg-background font-sans;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    background: transparent;
     font-variant-numeric: tabular-nums;
     font-synthesis-weight: none;
   }
@@ -212,6 +213,35 @@
   /* The structural spine: a hairline the page hangs off. */
   .rule-top {
     border-top: 1px solid var(--rule);
+  }
+
+  /*
+   * A soft halo that calms the animated background behind a block of copy.
+   * Blurred and elliptical so it never reads as a box, only as the page
+   * quietening down where something has to be read.
+   */
+  .text-scrim {
+    position: relative;
+    isolation: auto;
+  }
+
+  .text-scrim::before {
+    content: "";
+    position: absolute;
+    inset: -1.5rem -1rem;
+    z-index: -1;
+    background: var(--background);
+    opacity: 0.78;
+    filter: blur(28px);
+    border-radius: 40%;
+    pointer-events: none;
+  }
+
+  @media (min-width: 640px) {
+    .text-scrim::before {
+      inset: -2rem -3rem;
+      filter: blur(32px);
+    }
   }
 }
 

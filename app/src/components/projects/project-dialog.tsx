@@ -52,7 +52,7 @@ export function ProjectDialog({
               {pickLocalized(project.shortDescription, i18n.language)}
             </DialogDescription>
             <ScrollArea className="min-h-0 flex-1">
-              <div className="px-5 py-6 sm:px-8 sm:py-8">
+              <div className="px-6 py-8 sm:px-10 sm:py-10">
                 <ProjectDetail
                   project={project}
                   category={category}

@@ -21,9 +21,9 @@ type Props = {
 function Field({ label, value }: { label: string; value?: string }) {
   if (!value) return null
   return (
-    <div className="border-t border-rule py-4 first:border-t-0 first:pt-0">
+    <div className="border-t border-rule py-5 first:border-t-0 first:pt-0">
       <h3 className="type-data text-xs text-muted-foreground">{label}</h3>
-      <p className="measure mt-2 text-sm leading-6 text-foreground">{value}</p>
+      <p className="measure mt-2.5 text-sm leading-7 text-foreground">{value}</p>
     </div>
   )
 }
@@ -54,7 +54,7 @@ export function ProjectDetail({
     setIndex((i) => (i + delta + gallery.length) % gallery.length)
 
   return (
-    <article className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
+    <article className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
       <div className="min-w-0 lg:sticky lg:top-4 lg:self-start">
         <div className="relative overflow-hidden border border-rule bg-surface-sunken">
           <img
@@ -129,10 +129,10 @@ export function ProjectDetail({
           <Badge variant="data">{project.creationDate.slice(0, 4)}</Badge>
         </div>
 
-        <h2 className="type-title mt-4 text-2xl sm:text-[1.75rem]">
+        <h2 className="type-title mt-5 text-2xl sm:text-[1.75rem]">
           {pickLocalized(project.title, lang)}
         </h2>
-        <p className="measure mt-3 text-[0.9375rem] leading-7 text-muted-foreground">
+        <p className="measure mt-4 text-[0.9375rem] leading-8 text-muted-foreground">
           {pickLocalized(project.shortDescription, lang)}
         </p>
 
@@ -170,7 +170,7 @@ export function ProjectDetail({
           </div>
         ) : null}
 
-        <div className="mt-8">
+        <div className="mt-10">
           <Field
             label={t("projects.context")}
             value={pickLocalized(project.context, lang)}
@@ -190,11 +190,11 @@ export function ProjectDetail({
         </div>
 
         {techs.length > 0 ? (
-          <div className="mt-2 border-t border-rule pt-4">
+          <div className="mt-4 border-t border-rule pt-6">
             <h3 className="type-data text-xs text-muted-foreground">
               {t("projects.technologies")}
             </h3>
-            <ul className="mt-3 flex flex-wrap gap-1.5">
+            <ul className="mt-4 flex flex-wrap gap-2">
               {techs.map((techItem) => (
                 <li key={techItem.id}>
                   <Badge variant="data" className="gap-1.5 py-1">

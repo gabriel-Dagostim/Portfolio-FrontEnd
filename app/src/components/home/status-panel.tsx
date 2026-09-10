@@ -17,7 +17,7 @@ const STATE_LABEL: Record<StatusLine["state"], string> = {
 
 /**
  * The one bold element on the site: a readout shaped like the monitoring
- * panels Gabriel builds for a living. Rows resolve once on first paint —
+ * panels Gabriel builds for a living. Rows resolve once on first paint,
  * the only motion on the page that nobody asked for.
  */
 export function StatusPanel({ lines }: { lines: StatusLine[] }) {
@@ -54,7 +54,7 @@ export function StatusPanel({ lines }: { lines: StatusLine[] }) {
             </dt>
             <dd className="text-sm leading-6 text-foreground">
               {pickLocalized(line.value, i18n.language)}
-              <span className="sr-only"> — {t(STATE_LABEL[line.state])}</span>
+              <span className="sr-only">, {t(STATE_LABEL[line.state])}</span>
             </dd>
           </div>
         ))}
